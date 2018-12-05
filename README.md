@@ -33,9 +33,11 @@ With my system in th 80s and 90's we had ported OS9 level1 to UniFLEX :-) It wou
 We ported the FLEX debugger to UniFLEX and gave it some extra features like a system-call trap. It is in my archives.
 A number of Unix utilities were ported too (with adaptations for i.e permissions) at, atrun, basename, cat, cmp, cron, crypt, ls, pstat, cu, login, su, find, grep, uniq, units, and a lot more ran very well. One guy here made a port of C-Kermit, it is in my archives.
 
-#################################################################################################################################
+#############################################################################################
+
 Why would I do this all? First it is fun, it was in those days too. Second, I am getting older (70) and I have a lot of information about these systems in documentation and in knowlegde. I would like to get it immortal. Here on the Internet, for anyone to explore and experience the fun and excitement while doing that. 
-#################################################################################################################################
+#############################################################################################
+
 As more people get involved we could add some simple networking, SD card interface and so on. And yes the boards will have GAL's to minimize discrete logic. That was the reason for my Perlblast project. I will make all deisgn files for the GAL's available too.
 
 I hope I may complete this project in time :-))
