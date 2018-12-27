@@ -2,10 +2,9 @@
 an UniFLEX  compatible hardware/software project on Eurocards
 
 Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. Because
-the SWTPC hardware was not suitable for 24-7 I got to design an Eurocard based system that was influenced for a part on the SWTPC design but had some additions, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
+the SWTPC hardware was not suitable for 24-7 I got to design an Eurocard based system (CS System) that was influenced for a part on the SWTPC design but had some additions, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
 
-The resulting hardware has run UniFLEX for many years without failure, that is the hardware never failed but the 5 1/4 Winchester
-disks did, they barely reached one year with 24-7 operation.
+The resulting hardware has run UniFLEX for many years without failure, that is the hardware never failed but the 5 1/4 Winchester disks did, they barely reached one year with 24-7 operation.
 In that time the SASI interface was used but now we have/had IDE/PATA and SATA.
 
 Some months ago it started itching and I started to re-design the CPU board as the first one. The original one had a DATRAM that would allow to re-map memory for processes in 4K blocks, but the DATRAM could only hold one process map. Context switching was
@@ -13,9 +12,11 @@ expensive. My new design has a dual ported RAM that will store the maps for 64 p
 I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (unlikely) event that someone likes it and want to 
 build and experiment with the hard- and software, I feel it is better not to challenge the soldering skills too much.
 
+A friend gave me his CS System that he ran professionally up to 1995! It still works, even the SASI Hard disk and it helps me now to recover the missing pieces in knowledge and it is fun to use it again.
+
 I will post all design files and schematics for the boards in the near future when I have completed the tests. 
 
-The next board will be the MON-itor board, it contains up to 1 MByte static RAM, 2K ROM, an ACIA for console via RS232, a PIA for printer, timer control and memory trap. It also provides the main address decoding for te system. The memory trap will catch addressing of non-existing memory for read and write. Any access to it results in an abort of the responsible process and give a core dump. When reading from 'non-existent' memory, the resulting data is $3F, this will produce a trap also.
+The next board will be the MON-itor board, it contains up to 1 MByte static RAM, 2K ROM, an ACIA for console via RS232, a PIA for printer, timer control and memory trap. It also provides the main address decoding for te system. The memory trap will catch addressing of non-existing memory for read and write. Any access to it results in an abort of the responsible process and give a core dump. When reading from 'non-existent' memory, the resulting data is $3F, this will produce a trap also. I believe I have figured out a reliable way to use a HD63X09 in native mode for the OS and immume for changes in the operating mode by a user processes (modem access.....) with minor overhead.
 
 In the works is further an IDE interface, DMA driven. The design is finished and a board can be made. I expect not that it will
 work the first time. We will see. 
