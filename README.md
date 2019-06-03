@@ -13,6 +13,7 @@ The first iteration learned that some things had to change, most particulary the
 
 I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (unlikely) event that someone likes it and want to 
 build and experiment with the hard- and software, I feel it is better not to challenge soldering skills too much.
+(OK, only very very few ones, which you normally would not need to have ;-( )
 
 A friend gave me his CS System that he ran professionally up to 1995! It still works, even the SASI Hard disk and it helps me now to recover the missing pieces in knowledge and it is fun to use it again.
 
