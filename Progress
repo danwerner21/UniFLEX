@@ -1,0 +1,54 @@
+2019-06-03.
+
+Status of project is as follows:
+
+CPU09MM3
+First design version of CPU board works but lacks HD6309/6809 detection. E clock at 4 MHz. All signals are is expected.
+Second design version is finished and ready, I will order them in the coming days. 
+The card provides the normal bus signals, DATA and ADDRESS and CONTROL and additionally /VMA, /XFEXX
+The memory mapper can store 64 maps of 16 memory pages each.
+
+CPU09MON
+First design version of MONitor board showed some weaknesses in the design. Made a second design version which is in the mail.
+I dropped the parallel port and used it for the 'LIGHTS' function, 8 LEDS that are togled in various parts of the kernel code.
+I placed the master baudrate clock on this board, it can be transferred over the backplane to i.e. CPU09SR4.
+It has two RAM chips 512Kx8, one ROM 8Kx8, an ACIA, a PIA for timer control and 'LIGHTS', Xtal clock for baudrate(s), hardware
+for BLACKHOLE and WHITEHOLE. In user mode any access to this memory region results in a trap and end of user process.
+The ROM can be hardware or software selected as 4 images of 2Kbyte each. So one image could be a MIKBUG compatible monitor
+where another could be UniBUG and a third SBUG.
+
+CPU09IDE
+First design proved to be working but now I understand more about the IDE interface and with some IDE disks I found that
+I had to improve some things, The second design version is in the mail too.
+PIO works, DMA works. Some IDE disks do a DMA in one single cycle, but others break it up in 2 or 3 parts: first is 510 bytes,
+second is one byte and the last is one byte too. The DMA state machine can handle all. 
+
+CPU09SR4
+First design version of the 4 port serial card is ready. It has place  for 4 ACIA devices. Each ACIA have a software controllable
+baudrate selection: 38k4, 19k2, 9k6, 4k8, 2k4, 1k2, 0k6 and 0k3. When it is time for it I will order the proto version.
+
+CPU09IOP
+First design version of the serial character devices IOP (IOprocessor) is ready. When it is time for it I will order the proto version.
+When finished the IOP should be able to control a couple of CPU09SR4 boards.
+
+CPU09SPI
+First design version of the SPI board is ready. It can be used with the W5500 network component or with a SD card reader.
+The SPI interface is to work with DMA to a local processor (HD63C09) and the data can be transferred to the OS via a 1Kx8 
+dual-port RAM. When it is time for it I will order the proto version.
+
+CPU09BP
+The design for the backplane is ready. As I have a compatible backplane from the 80's I can wait for the first proto version.
+During the last months a few times the design had improved and reworked. It is place for a ATX style power connector
+and 7 slots for boards. It could fit in an 19" rack. I expect soon to order the prototypes.
+
+On the software side I am thinking about how to bring up a simple system. With a minimal filesystem and programs.
+On Linux I can create a fresh UniFLEX filesystem as a file. I used Evenson's SWTPC emulator to check my results and that helped me.
+Sad thing is that the Evenson's Emulator sometimes just dies.....
+As I can mount this or any UniFLEX filesystem with FUSE on Linux, the building process can be automated with scripts. The biggest hurdle
+is to get it on the IDE disk easily. But I have a few ways to try. 
+
+I have a LOT of fun with my GAL programming hardware and software. I rewrote the GALBLAST.C code in PERL and designed hardware that
+can switch the supply voltages and the programming voltages. It works with a normal PC parallel port and also with _SOME_ USB<->IEE1284
+dongles. I made a separate GitHub archive for it. 
+In the near future I will post both hardware and software on GitHub.
+
