@@ -50,13 +50,13 @@
 #endif
 #include "fuse_UniFLEX.h"
 
-char *index(const char *s, int c);
-unsigned int major(dev_t dev);
-unsigned int minor(dev_t dev);
+char *index(const char *s, int32_t c);
+//unsigned int major(dev_t dev);
+//unsigned int minor(dev_t dev);
 
 
 // the disk image reference
-static int fs_fdn = -1;
+static int32_t fs_fdn = -1;
 
 //
 // various temp storages
@@ -65,9 +65,9 @@ uint8_t filebuf[UFBLKSIZ];			// temp for data
 const uint8_t zerobuf[UFBLKSIZ] = {0};	// empty buffer 
 
 // prototypes
-static int fs_getblk(void);
-static int fs_putblk(int block);
-static int fs_errno = -1;
+static int32_t fs_getblk(void);
+static int32_t fs_putblk(int32_t block);
+static int32_t fs_errno = -1;
 
 static LINSIR lhdsir = {0};			// Linux 'SIR'
 static uint16_t ucrdir = -1;
@@ -87,9 +87,9 @@ const UDIRENT newdir[] =
 //
 // the lowest level interface
 //
-static int fs_readblock(int blockno, uint8_t* buffer)
+static int32_t fs_readblock(int32_t blockno, uint8_t* buffer)
 {
-	int count;
+	int32_t count;
 
 	if (lseek(fs_fdn,(off_t)( blockno * UFBLKSIZ), 0) < 0)
 	{
@@ -104,9 +104,9 @@ static int fs_readblock(int blockno, uint8_t* buffer)
 	return count;
 }
 
-static int fs_writeblock(int blockno, uint8_t* buffer)
+static int32_t fs_writeblock(int32_t blockno, uint8_t* buffer)
 {
-	int count;
+	int32_t count;
 
 	if (lseek(fs_fdn,(off_t)( blockno * UFBLKSIZ), 0) < 0)
 	{
@@ -179,17 +179,17 @@ static void fs_ll4uf3(uint8_t* target, uint32_t val)
 //	return (uint16_t)(((*target + 1) << 8) + *(target+1));
 //}
 
-static int fs_isdir(LINODE* ino)
+static int32_t fs_isdir(LINODE* ino)
 {
 	return ((ino->f_mode & S_IFDIR) == S_IFDIR);
 }
 
-static int fs_isfile(LINODE* ino)
+static int32_t fs_isfile(LINODE* ino)
 {
 	return (ino->f_mode & S_IFREG);
 }
 
-static int fs_isspec(LINODE* ino)
+static int32_t fs_isspec(LINODE* ino)
 {
 	return (ino->f_mode &(S_IFCHR|S_IFBLK));
 }
@@ -199,13 +199,13 @@ static int fs_isspec(LINODE* ino)
 // read an UniFLEX diskblock and extract the file node
 // convert it immediately to a Linux format
 //
-static int fs_readfdn(uint16_t d_ino, LINODE* linoptr)
+static int32_t fs_readfdn(uint16_t d_ino, LINODE* linoptr)
 {
 	DINODE 	fdnbuf[8];					// temp for 8 disk inodes in buffer
 	DINODE uf_ino;
 	uint16_t i = (d_ino + 15) % 8;
 	uint16_t b = (d_ino + 15) / 8;
-	int l;
+	int32_t l;
 
 	if (fs_readblock(b, (uint8_t*)&fdnbuf) < 0)
 	{	
@@ -267,14 +267,14 @@ static int fs_readfdn(uint16_t d_ino, LINODE* linoptr)
 // and write it to the disk image
 //
 // flag: 1 = delete fdn, 0 = update fdn
-static int fs_writefdn(LINODE* linoptr, int flag)
+static int32_t fs_writefdn(LINODE* linoptr, int32_t flag)
 {
 	DINODE 	fdnbuf[8];					// temp for 8 disk inodes in buffer
 	DINODE uf_ino = {0};
 	uint16_t i = (linoptr->l_ino + 15) % 8;
 	uint16_t b = (linoptr->l_ino + 15) / 8;
 	uint8_t	 mtemp = 0, mmode;
-	int l;
+	int32_t l;
 
 	if (fs_readblock(b, (uint8_t*)&fdnbuf) < 0)
 	{
@@ -416,9 +416,9 @@ static int32_t fs_mapfile(LINODE* file, uint32_t relblock)
 //
 // free all blocks in indirect block(s) (recursive)
 // 
-static int fs_indirect(int depth, uint32_t blockno)
+static int32_t fs_indirect(int32_t depth, uint32_t blockno)
 {
-	int index;
+	int32_t index;
 	uint32_t myblock;
 	UDSKAD mybuf[UFINDBLKS+UFINDFILL];
 	
@@ -460,9 +460,9 @@ static int fs_indirect(int depth, uint32_t blockno)
 //
 // give back all blocks in file
 //
-static int	fs_freefile(LINODE* lin)
+static int32_t	fs_freefile(LINODE* lin)
 {
-	int index;	
+	int32_t index;	
 	uint32_t myblock;
 	
 	if (lin->f_ffmap[12])
@@ -493,7 +493,7 @@ static int	fs_freefile(LINODE* lin)
 //
 // give back relative block to free list
 //
-static int fs_fileblk2free(LINODE* file, uint32_t  relblock)
+static int32_t fs_fileblk2free(LINODE* file, uint32_t  relblock)
 {
 	UDSKAD mybuf[UFINDBLKS+UFINDFILL];
 	uint32_t ind1, ind2;
@@ -588,7 +588,7 @@ static int fs_fileblk2free(LINODE* file, uint32_t  relblock)
 //
 // allocate absblock to fdn[relblock]
 //
-static int fs_blk2file(LINODE* file, uint32_t relblock, uint32_t absblock)
+static int32_t fs_blk2file(LINODE* file, uint32_t relblock, uint32_t absblock)
 {
 	UDSKAD mybuf[UFINDBLKS+UFINDFILL];
 	int32_t ind1, ind2;
@@ -743,7 +743,7 @@ static int fs_blk2file(LINODE* file, uint32_t relblock, uint32_t absblock)
 //
 // truncate file
 //
-static int fs_truncate(LINODE* linoptr, size_t size)
+static int32_t fs_truncate(LINODE* linoptr, size_t size)
 {
 	uint32_t relblock = size / UFBLKSIZ;
 	uint32_t lstblock = linoptr->f_fsize / UFBLKSIZ;
@@ -810,7 +810,7 @@ static int fs_truncate(LINODE* linoptr, size_t size)
 //
 // read file
 //
-static int fs_readfile(uint64_t fh, char* buf, size_t size, off_t offset)
+static int32_t fs_readfile(uint64_t fh, char* buf, size_t size, off_t offset)
 {
 	LINODE fileino;
 	char* myptr = buf;
@@ -868,14 +868,14 @@ static int fs_readfile(uint64_t fh, char* buf, size_t size, off_t offset)
 //
 // write file
 //
-static int fs_writefile(uint64_t fh, const char* buf, size_t size, off_t offset)
+static int32_t fs_writefile(uint64_t fh, const char* buf, size_t size, off_t offset)
 {
 	LINODE fileino;
 	char* myptr = (char* )buf;
 	int32_t absblock = 0;
 	int32_t relblock = offset / UFBLKSIZ;
 	uint16_t i, buf_offset = offset % UFBLKSIZ;
-	int writtenbytes = 0;
+	int32_t writtenbytes = 0;
 
 	memset(&fileino, 0, sizeof(LINODE));
 
@@ -943,10 +943,10 @@ static int fs_writefile(uint64_t fh, const char* buf, size_t size, off_t offset)
 //
 // read UniFLEX SIR and convert data into Linux format
 //
-static int fs_readsir(void)
+static int32_t fs_readsir(void)
 {
 	UFSIR  ufsir  = {0};			// UniFLEX SIR
-	int i;
+	int32_t i;
 
 	if (fs_readblock(1, (uint8_t*)&ufsir) < 0)
 	{
@@ -964,6 +964,8 @@ static int fs_readsir(void)
 	lhdsir.ls_ssizfr = fs_uf3ll4(&ufsir.us_ssizfr.blkad_h);
 	lhdsir.ls_sfreec = fs_uf3ll4(&ufsir.us_sfreec.blkad_h);
 	lhdsir.ls_sfdnc  = fs_uf2ll2(&ufsir.us_sfdnc_h );
+	lhdsir.ls_sdenf = ufsir.us_sdenf;
+	lhdsir.ls_ssidf  = ufsir.us_ssidf;
 	strncpy((char*)&lhdsir.ls_sfname, (char*)&ufsir.us_sfname, 14);
 	strncpy((char*)&lhdsir.ls_spname, (char*)&ufsir.us_spname, 14);
 	lhdsir.ls_sswpbg = fs_uf3ll4(&ufsir.us_sswpbg.blkad_h );
@@ -984,10 +986,10 @@ static int fs_readsir(void)
 //
 // put Linux SIR info back in UniFLEX format and write it to image
 //
-static int fs_writesir(void)
+static int32_t fs_writesir(void)
 {
 	UFSIR  ufsir  = {0};			// UniFLEX SIR
-	int i;
+	int32_t i;
 
 	ufsir.us_supdt 	= lhdsir.ls_supdt;
 	ufsir.us_swprot = lhdsir.ls_swprot;
@@ -1006,6 +1008,9 @@ static int fs_writesir(void)
 	// swap info
 	fs_ll4uf3(&ufsir.us_sswpbg.blkad_h, lhdsir.ls_sswpbg);	
 	fs_ll2uf2(&ufsir.us_sswpsz_h, lhdsir.ls_sswpsz);
+	//
+	ufsir.us_sdenf = lhdsir.ls_sdenf;
+	ufsir.us_ssidf = lhdsir.ls_ssidf;
 	//
 	ufsir.us_snfdn = lhdsir.ls_snfdn;
     for(i = 0; i < CFDN; i++)
@@ -1052,7 +1057,7 @@ static void fs_ino2stat(LINODE* ino, struct stat* rstat)
 }
 
 //
-int fs_get_step(char *out, const char **cur, char sep, size_t max)
+int32_t fs_get_step(char *out, const char **cur, char sep, size_t max)
 {
 	int rc = 0;
 	if(**cur != '\0')
@@ -1077,13 +1082,13 @@ int fs_get_step(char *out, const char **cur, char sep, size_t max)
 //
 // search path until file is found, return the inode info
 //
-static int fs_searchpath(const char* path, LINODE* lin)
+static int32_t fs_searchpath(const char* path, LINODE* lin)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
 	int32_t index = 0;
 	uint8_t mapidx = 0;
 	uint16_t entries;
-	int i;
+	int32_t i;
 	char step[NAMELENGTH+2] = {0};
 	const char *curstep = path;
 
@@ -1197,13 +1202,13 @@ NEXTLEVEL: ;
 //
 //
 //
-static int fs_opendir(const char *path, LINODE* lin)
+static int32_t fs_opendir(const char *path, LINODE* lin)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
 	int32_t index = 0;
 	uint8_t mapidx = 0;
 	uint16_t entries;
-	int i;
+	int32_t i;
 	char step[NAMELENGTH+2] = {0};
 	const char *curstep = path;
 
@@ -1306,10 +1311,10 @@ OPENDIR: ;
 //
 // basic free blocks handler, return new free block (erased)
 //
-static int fs_getblk(void)
+static int32_t fs_getblk(void)
 {
 	uint8_t mybuf[UFBLKSIZ];
-	int myblock = 0, i;	
+	int32_t myblock = 0, i;	
 
 	fs_errno = ENOSPC;
 	// only at zero when disk is full
@@ -1355,10 +1360,10 @@ static int fs_getblk(void)
 //
 // return block back to free list
 //
-static int fs_putblk(int block)
+static int32_t fs_putblk(int32_t block)
 {
 	uint8_t mybuf[UFBLKSIZ];
-	int i;
+	int32_t i;
 
 	if (block != 0)
 	{
@@ -1396,9 +1401,9 @@ static int fs_putblk(int block)
 //
 // scan for SIR to allocate a fresh file node from list
 //
-static int fs_allfdn(LINODE* lin)
+static int32_t fs_allfdn(LINODE* lin)
 {
-	int i;
+	int32_t i;
 
 	if (lhdsir.ls_snfdn == 0)
 	{
@@ -1439,7 +1444,7 @@ static int fs_allfdn(LINODE* lin)
 //
 // put back file inode to SIR list of free nodes
 //
-static int fs_putfdn(uint16_t lin)
+static int32_t fs_putfdn(uint16_t lin)
 {
 	
 	lhdsir.ls_sfdnc++;
@@ -1460,11 +1465,11 @@ static int fs_putfdn(uint16_t lin)
 //
 // flag: 0 = file, 1 = dir
 //
-static int fs_cpname2dir(LINODE* dest, uint16_t target_lino, char * name, int flag)
+static int32_t fs_cpname2dir(LINODE* dest, uint16_t target_lino, char * name, int32_t flag)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
-	int mapidx = 0, dirent = 0;
-	int used = 0;
+	int32_t mapidx = 0, dirent = 0;
+	int32_t used = 0;
 
 	// we know all the details of the directory
 	for (mapidx = 0; mapidx < 10 ; mapidx++) // impose a maximum of 640 entries!
@@ -1550,10 +1555,10 @@ FOUNDSLOT:
 //
 // remove directory reference 
 //
-static int fs_rmlink(LINODE* dest, LINODE* target)
+static int32_t fs_rmlink(LINODE* dest, LINODE* target)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
-	int mapidx = 0, dirent;
+	int32_t mapidx = 0, dirent;
 
 	for (mapidx = 0 ; mapidx < 10; mapidx++)
 	{
@@ -1592,14 +1597,14 @@ static int fs_rmlink(LINODE* dest, LINODE* target)
 //
 // create new directory
 //
-static int fs_mkdir(const char* path, mode_t mode)
+static int32_t fs_mkdir(const char* path, mode_t mode)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
 	LINODE mydp , pardir ;
 	char mydirname[NAMELENGTH + 1];
 	char *parpath = NULL;
 	int32_t myblock;
-	int res;
+	int32_t res;
 	
 	memset(&mydp, 0, sizeof(LINODE));
 	memset(&pardir, 0, sizeof(LINODE));
@@ -1661,12 +1666,12 @@ static int fs_mkdir(const char* path, mode_t mode)
 //
 // remove directory
 //
-static int fs_rmdir(const char* path)
+static int32_t fs_rmdir(const char* path)
 {
 	UDIRENT	dirbuf[32];					// temp for name scanning
 	LINODE mydp, pardir;
 	char *parpath = NULL;
-	int used = 0, res;
+	int32_t used = 0, res;
 	uint8_t mapidx, dirent;
 
 	memset(&mydp, 0, sizeof(LINODE));
@@ -1751,12 +1756,12 @@ static int fs_rmdir(const char* path)
 //
 // create file
 //
-static int fs_create(const char* path, LINODE* lin, int flags, mode_t mode)
+static int32_t fs_create(const char* path, LINODE* lin, int32_t flags, mode_t mode)
 {
 	static LINODE pardir;
 	char *parpath = NULL;
 	char myfilename[NAMELENGTH + 1];
-	int res;
+	int32_t res;
 	
 	memset(&pardir, 0, sizeof(LINODE));
 
@@ -1815,18 +1820,18 @@ static int fs_create(const char* path, LINODE* lin, int flags, mode_t mode)
 	return 0;
 }
 
-static int fs_close(LINODE* lin)
+static int32_t fs_close(LINODE* lin)
 {
 	
 	return fs_writefdn(lin, 0);
 }
 
-static int fs_link(const char* from, const char* to)
+static int32_t fs_link(const char* from, const char* to)
 {
 	LINODE myfrom, myto, pardir;
     char *parpath = NULL;
     char myfilename[NAMELENGTH + 1];
-    int res;
+    int32_t res;
     
 	memset(&myfrom, 0, sizeof(LINODE));
 	memset(&myto, 0, sizeof(LINODE));
@@ -1873,10 +1878,10 @@ static int fs_link(const char* from, const char* to)
 //
 // remove file reference and delete it when it was the last one
 //
-static int fs_unlink(LINODE* lin)
+static int32_t fs_unlink(LINODE* lin)
 {
 	LINODE mydir;
-	int res = EINVAL;
+	int32_t res = EINVAL;
 	uint16_t ino = lin->l_ino;
 
 	memset(&mydir, 0, sizeof(LINODE));
@@ -1907,11 +1912,11 @@ static int fs_unlink(LINODE* lin)
 	return 0;
 }
 
-static int fs_makdev(const char* path, mode_t mode, dev_t devtyp)
+static int32_t fs_makdev(const char* path, mode_t mode, dev_t devtyp)
 {
 	LINODE mydevice;
-	int res = EINVAL;
-	int flags = 0;
+	int32_t res = EINVAL;
+	int32_t flags = 0;
 	uint32_t temp = 0;
 	
 	memset(&mydevice, 0, sizeof(LINODE));
