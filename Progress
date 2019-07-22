@@ -52,3 +52,10 @@ can switch the supply voltages and the programming voltages. It works with a nor
 dongles. I made a separate GitHub archive for it. 
 In the near future I will post both hardware and software on GitHub.
 
+2019-07-22:
+
+I believe the CPU09MMU board reached it's final revision. The current version, with minor corrections works as expected.
+The second version of the CPU09MON board also works as designed, only have to wait the HD63B21 devices to complete all tests.
+The CPU09IDE current version works, with to much wires, as desired. It does DMA very well, can cope with special behaveour of some
+IDE disks. Now it is time to complete the unibug rom version for this hardware and try to bring up a (very small) filesystem.
+
