@@ -65,3 +65,17 @@ I am able to (try) to boot from an empty filesystem. After it returns back to Un
 on the disk, so that the user can enter a figure from 0 up to 9 after the D command within 2 seconds. 
 It allowes for to boot different kernels, to experiment. If nothing is entered, then after 2 seconds the standard 'uniflex' is 
 booted.
+
+2019-08-23:
+
+The CPU09MMU board is needing an extra chip. I ran into somthing that I could not solve by changing the GAL logic. It came to light when I started 
+to run UniFLEX on an IDE disk and starting to build my custom UniFLEX kernel with it. After adding the new chip everything works like a charm.
+The CPU board, the MONitor board and the IDE controller. Yes I can build my own UniFLEX from the original TSC sources.
+Along the way I changed a few things though. I took out the 'install' function, it is not longer relevant. The Rom boot code alolows 
+for to choose IDE disk 0 or IDE disk 1. The disk boot code displays:  image: uniflex, after which you have about 2 seconds to type
+an CR or a figure from 0 up to 9. This figure is appended to the boot name and will be tried to boot. This way it is very easy
+to test various kernel code versions fast. I bought a USB<->IDE dongle and under Linux I can easy dump an image.dsk onto the IDE
+drive and test it directly under UniFLEX after. The LED's on the MONitor board are nicely updated from the kernel from the
+LIGHTS location.
+
+The other two boards have been as from 2019-07-22. No changes yet.
