@@ -88,7 +88,7 @@ issues, but most of the times I could fix that by changing the GAL logic on the 
 So I believe there will be no showstoppers left in the design's for the moment.
 Next step is ordering the latest revisions of the boards, including the backplane now. But this all is a matter of time 
 (I have a job too) and money (while cheap it is not for free :-) ). So I have to have little patience. 
-On the IDE board there are 2 74LS462 IC's and while I could find and buy them on the Internet easily that may not be true 
+On the IDE board there are 2 74LS461 IC's and while I could find and buy them on the Internet easily that may not be true 
 for everyone. If that proves to be troublesome, I will design a simple small drop-in board for those two components. 
 It will be with SMT components though.
 
