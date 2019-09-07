@@ -79,3 +79,22 @@ drive and test it directly under UniFLEX after. The LED's on the MONitor board a
 LIGHTS location.
 
 The other two boards have been as from 2019-07-22. No changes yet.
+
+2019-09-07:
+
+The USB<->IDE dongle (Euro 4.00) is priceless, it is a snap to put an UniFLEX filesystem onto the IDE disk and sometimes dump
+the IDE UniFLEX filesystem back into a Linux file and access it with Fuse. I have been running stress tests and found a few
+issues, but most of the times I could fix that by changing the GAL logic on the CPU board or making small changes to drivers.
+So I believe there will be no showstoppers left in the design's for the moment.
+Next step is ordering the latest revisions of the boards, including the backplane now. But this all is a matter of time 
+(I have a job too) and money (while cheap it is not for free :-) ). So I have to have little patience. 
+On the IDE board there are 2 74LS462 IC's and while I could find and buy them on the Internet easily that may not be true 
+for everyone. If that proves to be troublesome, I will design a simple small drop-in board for those two components. 
+It will be with SMT components though.
+
+Next board that I will build and test will be the CPU09SR4 with four serial ports. Each port has it's own baudrate setting from
+software. 38400/19200/9600/4800/2400/1200/600/300 baud. I need to adapt the serial drivers in the kernel for this too.
+
+The plan is that this board can also be used with the CPU09IOP, the serial IO Processor. It has it's own 6309 CPU and relieves
+the main CPU from all the IO interrupts.
+
