@@ -4,3 +4,5 @@ over the backplane as common clock for other serial boards and it provides the 1
 3 16V8 GAL's serve as glue logic. The board also holds the logic for the BLACKHOLE and WHITEHOLE memory blocks. In this system
 BLACKHOLE reads as $3F and triggers a trap when accessed (read or write) in User mode. The WHITEHOLE memory is read-only and
 reads as $00. The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
+
+All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019.
