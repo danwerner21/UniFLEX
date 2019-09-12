@@ -3,3 +3,5 @@ It has a 40 pin connector that directly interfaces to the disk drive. The memory
 correspond to the 8 registers that an IDE/PATA disk exposes. The access is 16 bits, but in PIO mode the upper 8 bits are discarded.
 The upper 16 bytes hold the 16 bit address register, the extended address and control register and a status register. 
 The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
+
+All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019
