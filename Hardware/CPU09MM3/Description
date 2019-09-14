@@ -6,4 +6,8 @@ it has hardware to establish if the CPU entered the recent interrupt in 6309 or 
 if a user task modifies the CPU mode, the kernel can take correct action when an interrupt occurs.
 The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
 
+U6 = CPU, U8 = DATBOX(MMU), U17 = TASKLATCH, U9+U19 = STACKCOUNT, U13 = SYSTEM/USER , U18 = KERNEL/USER MAP U16 = INTERRUPT TIMEOUT,
+U7 = RESET CIRCUIT/LOGIC, U10/U12/U14 = GAL LOGIC, U1/U2/U3/U4/U5 = BUS BUFFERS, 
+
+
 All design data is released under GPL V3, copyrights (c) C. Schoenmakers 2019
