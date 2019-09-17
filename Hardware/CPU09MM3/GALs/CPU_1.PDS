@@ -15,7 +15,7 @@ PIN  1          C_BA                            ; IN CPU BA
 PIN  2          C_BS                            ; IN CPU BS
 PIN  3		C_Q				; IN CPU Q clock	
 PIN  4		C_E				; IN CPU E clock
-PIN  5		RSO_				; IN PART of RESET
+PIN  5		B_NMI_				; IN BUS NMI-
 PIN  6		C_W_				; IN CPU READ /WRITE
 PIN  7		EWR_				; IN DMA WRITE in
 PIN  8		IVMA				; IN LOCAL selected items
@@ -31,7 +31,7 @@ PIN  17		U19B_C				; OUT CLEAR FF
 PIN  18		DB_BA_				; OUT enable for databus buffer
 PIN  19		O_VMA_				; OUT BUS /VMA out
 PIN  20		C_WT_				; OUT BUS write out
-PIN  21		CRES_				; OUT CPU RESET
+PIN  21		CNMI_				; OUT CPU NMI-
 PIN  22		QE_				; OUT inverted and combined Q+E signal
 PIN  23		IACK_				; OUT /IACK
 
@@ -44,8 +44,8 @@ EQUATIONS
 ; VMA signal generation, disable above FE00 (includes FFFF)
 O_VMA_  =   EVMA_ * /IVMA
 
-; RESET to processor, only in USER state
-/CRES_  =    /RSO_ + (ONESHOT * SYS_)
+; NMI to processor, from external or from timeout 
+/CNMI_  =    /B_NMI_ + (ONESHOT * SYS_)
 
 ; enable data buffer, always EXCEPT datram access and local IO access and non DMA
 DB_BA_   =    C_BA + /LCLIO_ + /DAT_ER_
