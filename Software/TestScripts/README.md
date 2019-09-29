@@ -15,3 +15,4 @@ crash4.t  test handling of memory protection and more specifically the user proc
 CPU09 UniFLEX inhibits access to memory $fe00-$ffff in user process context. If the data _could_ be modified,
 the whole OS could crash.
 
+All files ar in UniFLEX text format.
