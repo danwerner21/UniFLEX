@@ -1,4 +1,6 @@
-Here are some handy tools for interaction with the UniiFlex files
+Here are some handy tools for interaction with the UniFLEX files
+
+Shell scripts that ease life.
 
 
 
