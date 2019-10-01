@@ -19,3 +19,7 @@ c 2 2   random read pseudo random numbers, no write
 c 3 x   wcx   character drivers for IDE disks 0...7
 
 b 0 x   wx    block device  for IDE disks 0...7
+
+
+All files are in UniFLEX text format, use 'ufless' to access them from linux.
+The .tar image contains the whole source for the CPU09 UniFLEX kernel, in UniFLEX text format
