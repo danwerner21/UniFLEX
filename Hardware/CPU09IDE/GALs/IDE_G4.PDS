@@ -22,10 +22,10 @@ PIN  8	        BRDSEL_                         ; IN
 PIN  9		BA3                             ; IN
 PIN  10         L_CSEL                          ; IN    
 PIN  11         L_DMAR_                         ; IN
-PIN  13 ;
+;PIN  13 ;
 PIN  14         LDMAR                           ; OUT
-PIN  15 ;
-PIN  16 ;
+;PIN  15 ;
+;PIN  16 ;
 PIN  17         IDE_CSEL                        ; OUT
 PIN  18         DBIW_                           ; OUT
 PIN  19         DBEN                            ; OUT     
