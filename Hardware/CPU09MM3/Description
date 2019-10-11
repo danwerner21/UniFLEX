@@ -11,3 +11,6 @@ U7 = RESET CIRCUIT/LOGIC, U10/U12/U14 = GAL LOGIC, U1/U2/U3/U4/U5 = BUS BUFFERS,
 
 
 All design data is released under GPL V3, copyrights (c) C. Schoenmakers 2019
+
+
+2019-10-11:  CPU09MM3 (Rev 1.0) board received, populated and tested. It runs smoothly. No anomalies found.
