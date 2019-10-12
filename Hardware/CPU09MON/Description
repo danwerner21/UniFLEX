@@ -6,3 +6,12 @@ BLACKHOLE reads as $3F and triggers a trap when accessed (read or write) in User
 reads as $00. The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
 
 All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019.
+
+2019-10-12:
+
+I got the rev 1.0 of the MON board, populated it and tested it. Initially it would not work :-(. But after some serious
+debugging it came out that the low bank of the 512x8 memory chip was faulty. It had an address line error inside.
+After replacement the board works fine!. 
+
+That makes me wonder if I need to revive the famous SWTPC pathalogic memory test version (ROM) for my system. 
+It may avoid a lot of troubel...
