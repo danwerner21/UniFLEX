@@ -5,3 +5,10 @@ The upper 16 bytes hold the 16 bit address register, the extended address and co
 The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
 
 All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019
+
+2019-10-14: populated and tested the board (rev 1.o), found 2 incorrect things. 
+1) the text irq and firq at the jumper location are exchanged. For correct operation the jumper should sit on 'firq' (= irq).
+2) due to a labeling error on a pin a connection is missing, a wire between pin 6 of G4 to pin 15 of G3. This is easy to
+apply.
+
+I will place rev 1.0.1 soon where these things are corrected.
