@@ -12,22 +12,39 @@ df may give:  fuse_uf   14586  2432  12154  17% /home/kees/fuse/UF
 ls -l UF may give you:
 
 total 0
+
 drwx---r-x 2 root   root      48 Mar  8  1990 act
+
 drwx---r-x 2 daemon daemon  1008 Mar  8  1990 bin
+
 -rw----r-- 1 root   root    4608 Mar 10  1990 core
+
 drwx---r-x 2 root   root     560 Mar  8  1990 dev
+
 drwx---r-x 3 root   root     512 Mar  8  1990 etc
+
 drwx---r-x 4 daemon daemon    64 Mar  8  1990 gen
+
 drwx---r-x 3 daemon daemon   624 Jun 11  1986 include
+
 drwx---rwx 2 root   root       0 Mar  8  1990 kees
+
 drwx---r-x 3 daemon daemon   240 Mar  8  1990 lib
+
 drwx---r-x 2 root   root      32 Mar  8  1990 lost+found
+
 drwx---rwx 2 root   root       0 Mar 10  1990 mnt
+
 drwx---rwx 4 root   root      64 Mar  8  1990 src
+
 drwx---rwx 2 daemon daemon    80 Mar  8  1990 tmp
+
 -rw------- 1 root   root   25999 Mar  8  1990 uniflex
+
 drwx---r-x 6 daemon daemon   112 Mar  8  1990 usr
+
 drwx---rwx 2 root   root       0 Mar  8  1990 usr0
+
 drwx---rwx 2 root   root      32 Mar  8  1990 usr3
 
 You can add/delete files, create/remove directories, change permissions, change owner,
