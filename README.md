@@ -51,4 +51,4 @@ As more people get involved we could add some simple networking, SD card interfa
 I hope I get enough years to complete this project :-))
 
 
-
+One last word of advise: If you plan to build this project, invest in a good soldering iron, if you have it not already!!
