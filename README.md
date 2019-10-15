@@ -1,8 +1,8 @@
 # UniFLEX
 an UniFLEX  compatible hardware/software project on Eurocards
 
-Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. Because
-the SWTPC hardware was not suitable for 24-7 I got to design an Eurocard based system (CS System) that was influenced for a part on the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
+Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. The
+SWTPC hardware proved not to be suitable for 24-7, mainly due to the Molex connectors. I got to design an Eurocard based system (CS System) that was influenced for a part on the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
 
 The resulting hardware has run UniFLEX for many years without failure, that is the hardware never failed but the 5 1/4 Winchester disks did, they barely reached one year with 24-7 operation.
 In that time the SASI interface was used but now we have/had IDE/PATA and SATA.
@@ -30,14 +30,14 @@ That floppy controller with WD2793 and 68B44 will enable to read (and write) a l
 in various sides and densities. The kernel (mine) driver is clever enough to detect most of the formats (even 40 track in an 80 track dive with double step)
 
 I think of building an harddisk-image file that one can drop on an IDE disk and after that would be able to boot UniFLEX.
-2019-04-22: I have a working implementation of 'Fuse' under Linux, where I can mount an UniFLEX disk image and access everything with commandline tools ans with 'mc' (midnight commander clone). In Fuse I can create, read, write files and also create directories. Next will be rmdir. It has NO protection to concurrent access however, but for building/maintaining a UniFLEX filesystem under Linux it is sufficient. Another tool is makeuffs, that create a valid UniFLEX diskimage under Linux.
+2019-04-22: I have a working implementation of 'Fuse' under Linux, where I can mount an UniFLEX disk image and access everything with commandline tools and with 'mc' (midnight commander clone). In Fuse I can create, read, write files and also create directories. Next will be rmdir. It has NO protection to concurrent access however, but for building/maintaining a UniFLEX filesystem under Linux it is sufficient. Another tool is makeuffs, that create a valid UniFLEX diskimage under Linux.
 
 In the various archives there is still a lot of software for UniFLEX available. A 2MHz system can deliver a nice performance and digging into the corners of software and hardware has learned me so much about OS and hardware solutions.
 I am very curious how the 4MHz HD63C09 in native mode would do. :-)
 
 With my system in the 80s and 90's we had ported OS9 level1 to UniFLEX :-) It would run as a task. Also Motorola MDOS from the Exorciser was ported and would run under UniFLEX.
 
-We ported the FLEX 6809 debugger to UniFLEX and gave it some extra features like a system-call trap. It is in my archives.
+We ported the FLEX 6809 debugger to UniFLEX and gave it some extra features like a system-call trap. After invocation it would move itself to the top of the 64K space. I tried it recently and it was pleasure working with it.
 A number of Unix utilities were ported too (with adaptations for i.e permissions) at, atrun, basename, cat, cmp, cron, crypt, ls, pstat, cu, login, su, find, grep, uniq, units, and a lot more ran very well. One guy here made a port of C-Kermit, it is in my archives.
 
 #############################################################################################
