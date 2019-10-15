@@ -44,8 +44,13 @@ and 7 slots for boards. It could fit in an 19" rack. I expect soon to order the 
 On the software side I am thinking about how to bring up a simple system. With a minimal filesystem and programs.
 On Linux I can create a fresh UniFLEX filesystem as a file. I used Evenson's SWTPC emulator to check my results and that helped me.
 Sad thing is that the Evenson's Emulator sometimes just dies.....
+
+Edit: Around April 2019 I got in touch with Mike. I spent a few days in figuring out why it died and found that the memory
+allocation table contained erroneous pages. After changing the switch settings on the CPU board _and_ modifying the UniBUG
+ROM image, the problem went away. Now it runs as it should!
+
 As I can mount this or any UniFLEX filesystem with FUSE on Linux, the building process can be automated with scripts. The biggest hurdle
-is to get it on the IDE disk easily. But I have a few ways to try. 
+is to get it on the IDE disk easily. But I have a few ways to try. (The USB<->IDE dongle is the easiest way)
 
 I have a LOT of fun with my GAL programming hardware and software. I rewrote the GALBLAST.C code in PERL and designed hardware that
 can switch the supply voltages and the programming voltages. It works with a normal PC parallel port and also with _SOME_ USB<->IEE1284
@@ -98,3 +103,8 @@ software. 38400/19200/9600/4800/2400/1200/600/300 baud. I need to adapt the seri
 The plan is that this board can also be used with the CPU09IOP, the serial IO Processor. It has it's own 6309 CPU and relieves
 the main CPU from all the IO interrupts.
 
+2019-10-15:
+
+The final vesion of the CPU/MON/IDE boards populated and tested. Some did immediately, but some after some debugging, all is 
+OK now.
+The first version of the back-plane boards and the CPU09SR4 are in the mail.
