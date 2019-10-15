@@ -29,7 +29,7 @@ drwx---rwx 2 daemon daemon    80 Mar  8  1990 tmp
 drwx---r-x 6 daemon daemon   112 Mar  8  1990 usr
 drwx---rwx 2 root   root       0 Mar  8  1990 usr0
 drwx---rwx 2 root   root      32 Mar  8  1990 usr3
-<\pre>
+</pre>
 
 You can add/delete files, create/remove directories, change permissions, change owner,
 create device files (but _only_ if mounted as root and run mknod as root!)
