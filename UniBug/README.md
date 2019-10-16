@@ -17,6 +17,6 @@ D, disk boot. After typing the 'D', the program waits for about 2 seconds, In th
 
 The ROM code provides the context switching between processes and kernel on interrupt.
 
-UNIBUG.S1 if the hex file as it comes from the assembler, but in Linux text format
+UNIBUG.S1 if the hex file as it comes from the assembler, but in Linux text format. 
 UBUG_H.S1 is the same file but gaps in the code are filled with FF, so this is the exact
 code what should go into the (E)PROM.
