@@ -6,4 +6,6 @@ An ATX power supply can deliver enough current in the 5 Volt to create fireworks
 2019-10-22
 WARNING: The first version of the backplane has an error, The connector sits at the other side from the silk image!!!!!
 
-I will correct it soon.
+2019-10-22:
+Revision 1.1 of the backplane has the power connector corrected. The old version is deleted.
+
