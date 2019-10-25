@@ -108,3 +108,18 @@ the main CPU from all the IO interrupts.
 The final vesion of the CPU/MON/IDE boards populated and tested. Some did immediately, but some after some debugging, all is 
 OK now.
 The first version of the back-plane boards and the CPU09SR4 are in the mail.
+
+20190-10-25:
+
+I must have smoked something bad when I was doing the CPU09SR4 board. While the resulting board was "useable", a lot
+had gone wrong. Missing connections on the MAX233 devices, wrong baudrate division, inverse board selection. 
+So I redid the board and I ordered samples again. I believe this one will do well.
+Also the CPU09IOP came in the mail, that one proved to be much better than the above board. I populated the board, 
+programmed the GAL and made a short ribbon cable (40 pole, about 20 cm).An old IDE cable will do well. I put the IOP
+in the backplane, made the bus selection wire and yes the UniFLEX side was working like a charm. On de IOP side I created
+a monitor ROM, took a second backplane, hooked the cable extension into it as a CPU09SR4 board. Yes, I can talk both sides
+now. The interrupt signals in the dualported RAM work too. So that is a big progress.
+
+
+
+
