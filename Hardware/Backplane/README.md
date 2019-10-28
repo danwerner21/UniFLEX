@@ -4,8 +4,8 @@ It has a ATX style power connector. Remote reset button, local fuse as the board
 An ATX power supply can deliver enough current in the 5 Volt to create fireworks on errors.
 
 2019-10-22
-WARNING: The first version of the backplane has an error, The connector sits at the other side from the silk image!!!!!
+WARNING: The first version of the backplane has an error, (CPU09BP_190920). The connector sits at the other side from the silk image!!!!!
 
 2019-10-22:
-Revision 1.1 of the backplane has the power connector corrected. The old version is deleted.
+Revision 1.1 of the backplane has the power connector corrected (CPU09BP_20191022). The old version is deleted.
 
