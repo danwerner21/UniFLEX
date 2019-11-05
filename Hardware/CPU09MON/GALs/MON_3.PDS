@@ -22,7 +22,7 @@ PIN  8          B_A3                             ; IN
 PIN  9          B_A2                             ; IN     
 PIN  11         DBUFS                            ; IN data buffer active       
 PIN  12         DBDIR                            ; OUT data buffer control      
-PIN  13         DIV3                             ; OUT       
+PIN  13         DIV3                             ; OUT $F008-$F07F    
 PIN  14		SYSTEM_				 ; IN
 PIN  15         DBEN_				 ; OUT
 PIN  16         BHIRQ_				 ; OUT
