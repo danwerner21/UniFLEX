@@ -14,4 +14,9 @@ debugging it came out that the low bank of the 512x8 memory chip was faulty. It 
 After replacement the board works fine!. 
 
 That makes me wonder if I need to revive the famous SWTPC pathalogic memory test version (ROM) for my system. 
-It may avoid a lot of troubel...
+It may avoid a lot of trouble...
+
+I have uploaded a jumper description for this board and photo's. A last hint is, that if you don't use full hardware handshake
+on the serial connector, jumper pin 7 and 8 somehow together. Otherwise the output may not appear at all.
+
+The board is not very complicated.
