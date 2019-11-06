@@ -9,3 +9,5 @@ WARNING: The first version of the backplane has an error, (CPU09BP_190920). The 
 2019-10-22:
 Revision 1.1 of the backplane has the power connector corrected (CPU09BP_20191022). The old version is deleted.
 
+2019-11-06:
+Revision 1.2. Disturbing silk error  corrected, holes for power connector upped to 1.5mm. Copper was/is correct. 
