@@ -38,7 +38,7 @@ dual-port RAM. When it is time for it I will order the proto version.
 
 CPU09BP
 The design for the backplane is ready. As I have a compatible backplane from the 80's I can wait for the first proto version.
-During the last months a few times the design had improved and reworked. It is place for a ATX style power connector
+During the last months a few times the design had improved and reworked. It has place for a ATX style power connector
 and 7 slots for boards. It could fit in an 19" rack. I expect soon to order the prototypes.
 
 On the software side I am thinking about how to bring up a simple system. With a minimal filesystem and programs.
@@ -47,7 +47,7 @@ Sad thing is that the Evenson's Emulator sometimes just dies.....
 
 Edit: Around April 2019 I got in touch with Mike. I spent a few days in figuring out why it died and found that the memory
 allocation table contained erroneous pages. After changing the switch settings on the CPU board _and_ modifying the UniBUG
-ROM image, the problem went away. Now it runs as it should!
+ROM image, the problem went away. Now it runs as it should and don't crash any longer!
 
 As I can mount this or any UniFLEX filesystem with FUSE on Linux, the building process can be automated with scripts. The biggest hurdle
 is to get it on the IDE disk easily. But I have a few ways to try. (The USB<->IDE dongle is the easiest way)
