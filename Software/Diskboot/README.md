@@ -6,7 +6,7 @@ I made a few changes in the code with respect to the SWTPC/GIMIX versions from t
 1)   I moved the bootsector code to $0800 in kernel space, that is well above the initial tables that the ROM
      have set up. This area is wiped as soon as the kernel code is started.
      
-2)   I added provisions for a delay in the boot process (~ 1.5 sec) In this time one can enter a figure of 0 up to 9
+2)   I added provisions for a delay in the boot process (~ 1.5 sec) In this time one can enter a single digit from 0 to 9
      or give CR or just wait. The entered figure is appended to the basic boot filename. That allows for to boot
      and test different kernel versions quickly.
      
