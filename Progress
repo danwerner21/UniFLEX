@@ -3,14 +3,14 @@
 Status of project is as follows:
 
 CPU09MM3
-First design version of CPU board works but lacks HD6309/6809 detection. E clock at 4 MHz. All signals are is expected.
+First design version of CPU board works but lacks HD6309/6809 detection. E clock at 4 MHz. All signals are as expected.
 Second design version is finished and ready, I will order them in the coming days. 
 The card provides the normal bus signals, DATA and ADDRESS and CONTROL and additionally /VMA, /XFEXX
 The memory mapper can store 64 maps of 16 memory pages each.
 
 CPU09MON
 First design version of MONitor board showed some weaknesses in the design. Made a second design version which is in the mail.
-I dropped the parallel port and used it for the 'LIGHTS' function, 8 LEDS that are togled in various parts of the kernel code.
+I dropped the parallel port and used it for the 'LIGHTS' function, 8 LEDS that are toggled in various parts of the kernel code.
 I placed the master baudrate clock on this board, it can be transferred over the backplane to i.e. CPU09SR4.
 It has two RAM chips 512Kx8, one ROM 8Kx8, an ACIA, a PIA for timer control and 'LIGHTS', Xtal clock for baudrate(s), hardware
 for BLACKHOLE and WHITEHOLE. In user mode any access to this memory region results in a trap and end of user process.
