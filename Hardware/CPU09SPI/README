@@ -1,0 +1,20 @@
+2019-11-10
+
+I have designed, made, populated the CPU09SPI board. As it is my first in-depth encounter with the SPI interface I don't expect
+it to be right first time. But I am suprised how well things come together. The unused pins of GAL4 (SPI hardware) start to get 
+their final pupose. GAL3 (SPI hardware) proved to be almost 100% correct.
+
+The SPI interface is designed to handle 16 bit and 8 bit data, I use 74HC299 shift registers for the serial/parallel/serial 
+conversion. GAL3 controls all the hardware signals for the 74HC299 and does the decoding for the IO. GAL4 controls the clocks
+for the shift registers, the state counter and the SPI clock. 
+
+One extra chalenge was, how to use a monitor program on this board. As it has no provision for a serial port.
+The final solution was: use the duap-port RAM. On the UniFLEX side, a special driver was created that copies the receive data
+from an ACIA to the dual-port ram and on the 10mS timer tick, check and copy data from the dual-port RAM and write it to the
+same ACIA. That proves to work well and can be used in the future when need arise.The effective baudrate is around 1200 baud
+and that is OK for now.
+
+I am trying to connect with SPI to the W5500 network component, and I am not yet sure I have everything correct, hardware wise.
+One other candidate for the SPI board is an SD-card reader. I learned that I need to be able to lower the  SPI clock below 400 kHz.
+So a programmable SPI clock divider/generator is missing at this moment and the board needs one revision at least. :-)
+
