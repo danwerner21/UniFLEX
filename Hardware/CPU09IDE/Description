@@ -19,3 +19,8 @@ A short word about the jumpers. The interrupt jumper should be in the position a
 The jumpers A/B/C determine the board base address. With all jumpers placed the address is $XX00. As the address size of
 the board is $20 we can place an IDE board at addresses XX00/XX20/XX40/XX60/XX80/XXA0/XXC0/XXE0. UniFLEX, as the kernel
 sources are at this moment, expects the board to respond at $F100.
+
+
+About (suitable) disks:  
+* the drive _must_ support LBA
+
