@@ -10,3 +10,6 @@ The hardware has also provisions to handle changes in the 6309 operation mode bu
 
 All processes are fully protected from each other and from the kernel space.
 
+2019-11-18: Fix in idedrvr.t  Some (MAXTOR) drives raise DRQ whil accessed in PIO mode. Result is that when serviceing 
+the  ide interrupt, getting the drive status results in a (unscheduled) DMA cycle. This may erase things like
+IRQ vector in the kernel. resulting ultimately in a TRAP. Now disable all DMA when entering IDE interrupt handler.
