@@ -25,3 +25,4 @@ the kernel driver accepts such a partition but _only_ for the first partition on
 error on access.
 
 
+2019-11-18: correction in diskboot code. First disable DMA before asking drive status.
