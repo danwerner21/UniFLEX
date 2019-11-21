@@ -1,0 +1,66 @@
+;PALASM Design Description
+
+;---------------------------------- Declaration Segment ------------
+TITLE    SPI_G4 U7
+PATTERN
+REVISION
+AUTHOR   CS
+COMPANY  CS
+DATE     06/14/19
+
+CHIP  _SPI_GAL4  PALCE22V10
+
+;---------------------------------- PIN Declarations ----------
+PIN  1          QA
+PIN  2          QB
+PIN  3	        QC
+PIN  4	        QD
+PIN  5	        8BIT
+PIN  6	        C_E
+PIN  7	        CLK_FF1
+PIN  8	        Q_FF1
+PIN  9	        SH_HOLD
+PIN  10	        SPI_INTE
+PIN  11	        SPI_INT_
+
+PIN  13         U9Q7
+PIN  14         SPI_INT      
+PIN  15         SPI_MOSI           ; OUT
+PIN  16	        SPICLK             ; IN
+PIN  17	        SPICPOL            ; IN
+PIN  18	        U12_CLK            ; OUT     
+PIN  19	        CLKENB             ; IN
+PIN  20	        SPICLK_
+PIN  21         U12_LD_       
+PIN  22	        SHCLK
+PIN  23	        SPI_CLK
+
+;----------------------------------- Boolean Equation Segment ------
+EQUATIONS
+
+; inverse clock
+/U12_CLK = (C_E * /CLK_FF1) + (SPICLK  * Q_FF1 *CLKENB);
+
+/SPICLK_ = SPICLK;
+
+;
+/U12_LD_ =  (8BIT * QA * QB * QC)  + (/8BIT * QA * QB * QC * QD)
+
+
+
+/SHCLK   =   (/CLK_FF1 * C_E) + (/SH_HOLD * Q_FF1 * SPICLK * CLKENB) ;
+;/SHCLK   =   (/CLK_FF1 + (/SH_HOLD * Q_FF1)) * C_E ;
+
+
+;
+SPI_CLK =  (/SH_HOLD * Q_FF1 * (SPICLK :+: SPICPOL) * CLKENB);
+;SPI_CLK =  (/SH_HOLD * Q_FF1) * C_E;
+
+
+;
+SPI_MOSI = U9Q7 + /Q_FF1
+
+;----------------------------------- Simulation Segment ------------
+SIMULATION
+
+;-------------------------------------------------------------------
