@@ -12,3 +12,8 @@ It has one GAL which does everything what is needed.
 
 I need to adapt the UniFLEX kernel drivers for the baudrate select. The same for the IOP code.
  
+2019-11-21:
+
+Today the latest revision (rev 0.8) of the board was in the mail. I have put the components on one and made the GAL.
+I'm happy now, as everything works as designed. 4 ports with an baudrate select each. Finally!!! :-)
+
