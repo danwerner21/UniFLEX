@@ -48,7 +48,10 @@ software.
 
 As more people get involved we could add some simple networking, SD card interface and so on. And yes the boards will have GAL's to minimize discrete logic. That was the reason for my Perlblast project. I will make all design files for the GAL's available too.
 
-I hope I get enough years to complete this project :-))
-
+I hope I get enough years to complete this project :-)) It would be a nice learning tool for CS education. The boards are robust
+against careless handling which makes it very suitable for handling by students. The whole system, as everything and anything
+is open, can be thouroughly examined, modified and extended. It contains many aspects of computing: virtual memory, DMA, IO,
+process protection, Interrupts.
+It worked for me and others very well in that sense.
 
 One last word of advise: If you plan to build this project, invest in a good soldering iron, if you have it not already!!
