@@ -114,11 +114,25 @@ The first version of the back-plane boards and the CPU09SR4 are in the mail.
 I must have smoked something bad when I was doing the CPU09SR4 board. While the resulting board was "useable", a lot
 had gone wrong. Missing connections on the MAX233 devices, wrong baudrate division, inverse board selection. 
 So I redid the board and I ordered samples again. I believe this one will do well.
+
 Also the CPU09IOP came in the mail, that one proved to be much better than the above board. I populated the board, 
 programmed the GAL and made a short ribbon cable (40 pole, about 20 cm).An old IDE cable will do well. I put the IOP
 in the backplane, made the bus selection wire and yes the UniFLEX side was working like a charm. On de IOP side I created
 a monitor ROM, took a second backplane, hooked the cable extension into it as a CPU09SR4 board. Yes, I can talk both sides
 now. The interrupt signals in the dualported RAM work too. So that is a big progress.
+
+2019-11-22:
+
+The CPU09SR4 board in it's revision 0.8 is fine. :-) Everything works as it should. While testing it, I was surprised how well
+UniFLEX, probably due to the efficient context switching on the CPU09MM3 board, can handle 3 serial outputs on high baudrate.
+When my last MAX233 chips arrive I will attempt to fully load all 5 ACIA's and see how that goes.
+
+In the mean time I have been playing with the first version of the CPU09SPI board. For a first shot it proved to be not bad
+at all. Of course I had expected some things not right yet. Missing is a variable SPI clock rate generator. But the serialiser/
+de-serialyser hardware does it job well and after some wiring on the board it did synchronize well with a-synchronous clocks.
+
+I ran into an issue with ^C in 'basic'. I see that after giving control C it core dumps. I suspect the SIGNAL handling in the
+kernel in relation to a larger stack with the 6309. Next days I will try to locate and solve it.
 
 
 
