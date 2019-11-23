@@ -132,7 +132,8 @@ at all. Of course I had expected some things not right yet. Missing is a variabl
 de-serialyser hardware does it job well and after some wiring on the board it did synchronize well with a-synchronous clocks.
 
 I ran into an issue with ^C in 'basic'. I see that after giving control C it core dumps. I suspect the SIGNAL handling in the
-kernel in relation to a larger stack with the 6309. Next days I will try to locate and solve it.
+kernel in relation to a larger stack with the 6309. Careful inspection of the kernel source revealed 2 incorrectly modified
+lines. After correction, building and running the kernel it showed the problem is solved.
 
 
 
