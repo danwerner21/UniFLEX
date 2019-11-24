@@ -1,11 +1,23 @@
 2019-11-10
 
 The CPU09IOP is in it's early stage. The board has been designed, made, populated and has undergone preliminary tests. So far so good.
-No real errors found yet. I am waiting my programmer board and components that allows me to program my 28C64 PROM for this board. 
+No real errors found yet. 
+
+The board has it's own 63C09 CPU, running on 4MHz busclocks, a CY7C130 dual-port ram, a 32Kx8 RAM, two 8Kx8 ROM sockets,GAL's
+and buffers.
+
+I am waiting my programmer board and components that allows me to program my 28C64 PROM for this board. 
 I have assembled the IOP code already and the hex file is waiting. On the kernel side, I created a special kernel version for the
 IOP board with the proper driver. I also created the extra device entries in the /dev directory.
 
 I made a special version of a monitor program for the IOP. I used my test board for the CU09SR4 to give it a serial port. 
 So I could test both sides of the dual-port RAM that connects the two worlds together. And yes, the interrupt from the dual-port 
 RAM works for both cpu's
+
+For compatibillity with the TSC IOP code, the dual-port ram addressing is (hardware) limited to the upper 256 bytes of the device,
+this holds the two signalling locations that trigger interrupts when written. FF for kernel->IOP, FE for IOP->kernel. For the 
+kernel the dual-port ram sits at F200. On the IOP side the dual-port ram is at 0000.
+
+The board has all the hardware for it's function and has a breakable part that holds the complementary flatcable connector and
+the DIN41612 connector for the IOP back-plane. This back-plane provides place for additional IO boards, i.e. multiple CPU09SR4.
 
