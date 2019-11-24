@@ -14,6 +14,8 @@ I need to adapt the UniFLEX kernel drivers for the baudrate select. The same for
  
 2019-11-21:
 
+All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019
+
 Today the latest revision (rev 0.8) of the board was in the mail. I have put the components on one and made the GAL.
 I'm happy now, as everything works as designed. 4 ports with an baudrate select each. Finally!!! :-)
 
