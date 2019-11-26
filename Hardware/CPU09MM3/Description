@@ -14,3 +14,7 @@ All design data is released under GPL V3, copyrights (c) C. Schoenmakers 2019
 
 
 2019-10-11:  CPU09MM3 (Rev 1.0) board received, populated and tested. It runs smoothly. No anomalies found.
+
+2019-11-26:  CPU09MM3 (Rev 1.0.1) errata: pin 1 U18 was dangling. No effect noticed but it should be connected
+to either pin 8 U7 (RSO-) (or to VCC). The UniBUG rom takes care of the proper state, but we don't want it inadvertently be
+reset at the wrong moment.
