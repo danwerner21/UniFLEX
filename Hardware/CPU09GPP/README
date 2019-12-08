@@ -9,12 +9,12 @@ UniFLEX ever to have 2 separate block device drivers. All systems from the past 
 
 One can create relatively simple pop-up boards for this generic IO processor for functions like Network over SPI, SD card over SPI 
 and of course a floppy interface. Cost will be low as well. Yes you can have more than one CPU09GPP with a specific pop-up board
-in a system (I will). But a single GPP with multiple pup-up boards is another way. Yes, you must swap the PROM as well.
+in a system (I will). But a single GPP with multiple pup-up boards is another way. And yes, you must swap the PROM as well.
 The memory map has the dual-port ram from 0000-03FF, the system ram from 0400 to 7FFF, the IO map from 8000-83FF and PROM from
 8400-FFFF. Plenty of space for code and data.
 
 On the OS side one GPP can be mapped to X000-X3FF/X400-X7FF/X800-XBFF/XC00-XFFF in pages F8/F9/FA/FB or FE. We can share the
-current FIFO driver (TSC) with some changes for this purpose.
+current FIFO driver code (TSC) with some changes for this purpose. I spotted already a few bugs there :-).
 
 And when one creates his own pop-up board for his decicated purpose, nothing will hold him/her back.
 
@@ -24,5 +24,8 @@ yet a few pins to spare.
 This means that I (for the time being) will not continue any longer on the CPU09SPI board.
 
 One final remark for those who want to run FLEX on the CPU09 hardware _and_ with floppy interface. Create a very simple
-CPU09GPP replacement without CPU but with own PROM address decoding and databus buffer. 
+ (read cheap) CPU09GPP replacement without CPU but with own PROM address decoding and databus buffer. 
 The floppy driver would sit in FLEX OS space but in a PROM @ i.e. E800-EFFF.
+
+In the works are a 09FLP (floppy controller) pop-up and a 09SPI (for SD card or W5500 network module) pop-up.
+A pop-up board is 100 x 100 mm in size.
