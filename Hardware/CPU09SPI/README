@@ -18,3 +18,6 @@ I am trying to connect with SPI to the W5500 network component, and I am not yet
 One other candidate for the SPI board is an SD-card reader. I learned that I need to be able to lower the  SPI clock below 400 kHz.
 So a programmable SPI clock divider/generator is missing at this moment and the board needs one revision at least. :-)
 
+2019-12-12: As of now I will not continue with this board. The approach will become with the CPU09GPP board and
+pop-up boards for that. One of the future pop-up's will be the 09SPI.
+
