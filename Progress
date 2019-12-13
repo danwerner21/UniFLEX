@@ -135,6 +135,16 @@ I ran into an issue with ^C in 'basic'. I see that after giving control C it cor
 kernel in relation to a larger stack with the 6309. Careful inspection of the kernel source revealed 2 incorrectly modified
 lines. After correction, building and running the kernel it showed the problem is solved.
 
+2019-12-13:
+Current status: CPU09MM3,CPU09MON,CPU09IDE, CPU09BP and CPU09SR4 are all working well and have no known issues.
+I know at least two other people who build the boards and have their systems running.
 
+I have started with the CPU09GPP. This is a general purpose (io) processor. It talks to the main CPU (OS) via a dualport RAM
+of 1Kx8. It also has an expansion connector with the local data bus, the lower local address bits, local control and local
+interrupt signals. It supports up to 32K RAM and 32K PROM. Via this expansion connection I have planned for a floppy controller 
+pop-up board and a SPI controller pop-up board. Some of us want still use floppies (me too) but there is no 4 MHz 6844 or 6344 
+on the planet. As the GPP CPU at 4Mhz busclock can handle the floppy data rate easily this is a nice approach.
+
+The proto version of the CPU09GPP and the 09FLP are in the mail. It is a nice X-mas project. :-)
 
 
