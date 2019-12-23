@@ -15,6 +15,11 @@ I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (un
 build and experiment with the hard- and software, I feel it is better not to challenge soldering skills too much.
 (OK, only very very few ones, which you normally would not need to have ;-( )
 
+UniFLEX features include: fully separated kernel/process space (depending on hardware), multi-tasking, multi-process, 
+hierachical filesystem, virtual memory in 4K pages (process close to 64K), swapping, interrupt driven IO, DMA, pipes,
+an extensive set of systemcalls via SWI3, user process traps (illegal memory, interrupt blocking, illegal instruction) HW
+dependent, drivers for serial port, parallel port, floppy, WD1002 and IDE, kernel source available.
+
 A friend gave me his CS System that he ran professionally up to 1995! It still works, even the SASI Hard disk and it helps me now to recover the missing pieces in knowledge and it is fun to use it again.
 
 I will post all design files and schematics for the boards in the near future when I have completed the tests. 
