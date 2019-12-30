@@ -139,6 +139,9 @@ lines. After correction, building and running the kernel it showed the problem i
 Current status: CPU09MM3,CPU09MON,CPU09IDE, CPU09BP and CPU09SR4 are all working well and have no known issues.
 I know at least two other people who build the boards and have their systems running.
 
+The Floppy/DMA card and the SPI card in their original form are off the table, I decided to take a different route, 
+use a CPU09GPP as the base for those.
+
 I have started with the CPU09GPP. This is a general purpose (io) processor. It talks to the main CPU (OS) via a dualport RAM
 of 1Kx8. It also has an expansion connector with the local data bus, the lower local address bits, local control and local
 interrupt signals. It supports up to 32K RAM and 32K PROM. Via this expansion connection I have planned for a floppy controller 
@@ -146,5 +149,8 @@ pop-up board and a SPI controller pop-up board. Some of us want still use floppi
 on the planet. As the GPP CPU at 4Mhz busclock can handle the floppy data rate easily this is a nice approach.
 
 The proto version of the CPU09GPP and the 09FLP are in the mail. It is a nice X-mas project. :-)
+I am waiting the tantalium caps still..  :-(
+
+
 
 
