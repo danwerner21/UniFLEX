@@ -31,6 +31,20 @@ CPU09IOP
 First design version of the serial character devices IOP (IOprocessor) is ready. When it is time for it I will order the proto version.
 When finished the IOP should be able to control a couple of CPU09SR4 boards.
 
+2020-01-14: Good progress. The initial board version needed some small tweaks but in general it was good. I found that I had to 
+(re-)buffer master baud clock in order not to load the bus line too much. Furthermore I was struck with the fact that the ribbon 
+cable between the IOP and the IOP backplane had the secundary A7 line at the pin which is normally absent, because it is 
+the lock pin for a 40 pole (IDE type) ribbon cable, so that line had to move. The software was a different story however.
+At the start I had a prototype from an old SR4 board in the IOP backplane, modified a monitor program so that the debugger IO
+was passed via the dual-port ram and a special debug driver on the kernel side. This way I could have the IOP under control.
+After I made the kernel drivers working I could test them by 'simulating' a normal IOP operation by putting the correct responses
+in the dual-port ram. The IOP cpu software was prepared next, CLOCK, PPR and NEC drivers were stripped. Slowly things started
+to work. But I kept struggling with the handling of the ACIA's. After adding some debug sessions, were intermediate data was
+written to the debug port as well, I found that amazingly, the TSC code for the ACIA's had stupid bugs. After correcting those
+it works. Minor problems need to be solved: the extended shell does not pass the ++ prompt to the ports on the IOP and 
+I can't create termcap entries for the ports on the IOP yet. Next I need to modify the tspddrvr to allow control of the port
+baudrates for the IOP ports too as they are initialized at 300 baud :-) But I believe that I can release the design soon.
+
 CPU09SPI
 First design version of the SPI board is ready. It can be used with the W5500 network component or with a SD card reader.
 The SPI interface is to work with DMA to a local processor (HD63C09) and the data can be transferred to the OS via a 1Kx8 
@@ -150,6 +164,9 @@ on the planet. As the GPP CPU at 4Mhz busclock can handle the floppy data rate e
 
 The proto version of the CPU09GPP and the 09FLP are in the mail. It is a nice X-mas project. :-)
 I am waiting the tantalium caps still..  :-(
+
+I can use a lot of the IOP driver basics for the GPP driver. As the IOP starts to work well, I expect to have the GPP working
+quicker.
 
 
 
