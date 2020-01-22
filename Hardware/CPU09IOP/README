@@ -23,14 +23,15 @@ the DIN41612 connector for the IOP back-plane. This back-plane provides place fo
 
 2020-01-21:
 
-The CPU09IOP has reached the final design stage. The prototype worked byond expectation, very few tweaks needed. Added a provision
+The CPU09IOP has reached the final design stage. The prototype worked beyond expectation, very few tweaks needed. Added a provision
 to reset the IOP CPU locally on the bus connector and also an extra connector to allow for local NMI interrupts. I connected the
 busy lines of the CY7C130 on both sides via a link (component), just a simple wire. This way in case of debugging one can isolate
 these signals. The drivers are in a shape that I can release them to. Two driver parts for the kernel and a whole set of software
 blocks on the IOP side. The mdevtab.t file needs to match the hardware layout of the machine.Many variations are possible, i.e.
 only the console port on the OS side and multiple of 4 ports on the IOP side, console and 4 extra ports on the OS side and 
 multiple of 4 ports on the IOP side. I dropped suport for the timer, tod, pia and 8274 devices on the IOP side. They can be added
-back later if needed but I expect that it will not be the case.
+back later if needed but I expect that it will not be the case. I have the kernel drivers and the IOP board drivers in a good 
+shape.
 
 Certain applications/utilities has to be modified to work well via the IOP. It depends all on how they establish the knowlegde
 whether or not they are connected to a tty device. The shell does this much different than the use editor :-(. 
