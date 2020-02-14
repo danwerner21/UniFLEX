@@ -10,6 +10,7 @@ Further more I found my crossassemblers back, for 6800, 6801, 6502, 8085. I am s
 me to assemble code for the SC/MP with the 6809 relasmb. It produced very nice and correct code for this chip. 
 I know, the SC/MP is no longer around, but it gives a good insight in the power that the macro assembler provides.
 
+</pre>
 ls.c
 tar.c
 pstat.c
@@ -37,4 +38,4 @@ to name a few.
 Further more other assembly and C programs that we made and used for various purposes. As I can go thru these I will post 
 them here too.
 
-
+<\pre>
