@@ -59,4 +59,7 @@ is open, can be thouroughly examined, modified and extended. It contains many as
 process protection, Interrupts.
 It worked for me and others very well in that sense.
 
+!!! For those who can't program their own GAL's and/or EPROM's: I am able and willing to help here,but only for this project. 
+Drop me an email and we will see how to arrange things.
+
 One last word of advise: If you plan to build this project, invest in a good soldering iron, if you have it not already!!
