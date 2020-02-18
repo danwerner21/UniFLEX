@@ -41,4 +41,8 @@ In /dev there is a new device entry:   c 5 x  tty09...ttyxx
 
 The IOP can handle up to 8 CPU09SR4 boards, so that is far more then plenty.
 
+2020-02-18: I uploaded a photo of the _proto-type_ version. Between the 2 40-pole connector goes an (old) ide cable.
+I use a cable of about 35 cm and have not any reliabillity issues and the oscilloscope shows very nice waveforms on
+the secondary (IO) backplane.
+
 
