@@ -1,3 +1,14 @@
+CPU09IDE
+
+Provides:
+* full DMA at 4 MHz busclock with no waitstates
+* single-word DMA and multi-word DMA
+* PIO mode
+* can serve up to 2 IDE drives
+* 16 bit data in DMA mode
+* end of command interrupt capability 
+
+Description:
 The CPU09IDE card serves as a DMA driven interface for the CPU09 system with a IDE/PATA disk. 4 22V10 GAL's serve as glue logic.
 It has a 40 pin connector that directly interfaces to the disk drive. The memory map of the card is 32 bytes of which the first 16
 correspond to the 8 registers that an IDE/PATA disk exposes. The access is 16 bits, but in PIO mode the upper 8 bits are discarded.
