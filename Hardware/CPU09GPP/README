@@ -29,3 +29,6 @@ The floppy driver would sit in FLEX OS space but in a PROM @ i.e. E800-EFFF.
 
 In the works are a 09FLP (floppy controller) pop-up and a 09SPI (for SD card or W5500 network module) pop-up.
 A pop-up board is 100 x 100 mm in size.
+
+2020-0308:  the CPU09GPP and the 09FLP boards are populated. I am starting tests and writing software now.
+
