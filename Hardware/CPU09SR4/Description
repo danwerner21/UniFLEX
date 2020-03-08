@@ -1,0 +1,9 @@
+CPU09SR4
+
+Provides:
+* up to 4 serial ports, HD63B50 at 4MHz busclock with no wait states
+* each port has a programmable baudrate setting 38k4,19k2,9k6,4k8,2k4,1k2,0k6,0k3
+* full interrupt capability
+* LED which signals on board selection
+* RTS output, CTS input handshake
+
