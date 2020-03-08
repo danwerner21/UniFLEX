@@ -1,3 +1,15 @@
+CPU09MM3
+
+Provides:
+* HD63C09 running at a 4 MHz busclock with no wait states
+* Fully buffered bus IO signals
+* a MMU which can hold up to 64 process maps at one time, context switching is setting a latch value
+* Full kernel isolation, no user process can access or disrupt OS data
+* Full interrupt protection, no user process can disrupt the interrupts in the system
+* DMA mode for specialized fast IO controllers
+* a Supervisor/User state signal and status
+
+Description:
 This CPU card is driven by a HD63C09 running at 4 MHz bus clocks. The card has extra hardware for System/User state distinction,
 a DATBOX that can hold the maps for up to 64 processes (each 16 x 4K), a task latch that can be set for the active task and
 a single bit Kernel/Usertask selection. This results in a very efficient context switching. 3 22V10 GAL's are used for glue logic.
