@@ -1,0 +1,23 @@
+CPU09IOP
+
+Provides:
+Dedicated HD63C09 at 4 MHz busclock with no wait states
+IO address region of 256 bytes
+Can drive multiple CPU09SR4 boards on a separate backplane
+Serial port interrupt off-load for main CPU
+Extendable with other IO boards
+32 KB of RAM
+up to 16 KB of (E)(P()ROM
+LED's that signal access from main CPU and IO access
+
+
+Description:
+The CPU09IOP has a 256 byte dual-port RAM interface with the main CPU.The upper two locations are postboxes with interrupt
+generation when written. One is for main CPU to IOP CPU, the other is for IOP CPU to main CPU.
+The 32KB of RAM holds all data structures, buffers and stack for the IOP. The IOP firmware is slightly over 4 KByte and
+fit's easily in an 8KB (E)(P)ROM. The other socket is for a debug ROM.
+The IOP drives the IO backplane via a 40 wire flatcable. An old IDE cable will fit nicely here. The max cable length is about 40 cm.
+For UniFLEX a dedicated driver is available. The basic version allows up to 4 CPU09SR4 boards but this can be changed at will.
+
+The firmware and driver has undergone long tests and is to be considered stable and very capable.
+
