@@ -48,4 +48,7 @@ the secondary (IO) backplane.
 2020-02-29: The second board version is in the make. Yet to see how much the virus outbreak affects manufacturing time and
 delivery time, from China, the price had been increased by about 30% though....
 
+2020-03-09: Populated and tested the board. It is OK. Uploaded the design to this archive. Soon I will upload the 
+UniFLEX driver and the IOP firmware files.
+
 
