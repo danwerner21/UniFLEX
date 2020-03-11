@@ -15,13 +15,14 @@ PIN  1          QA                              ; IN
 PIN  2          QB                              ; IN
 PIN  3          QC                              ; IN 
 PIN  4          IRES_                           ; IN 
-PIN  5          QC_RC                           ; IN 
+;PIN  5          
 PIN  6          QE_                             ; IN 
 PIN  7          IOEN_                           ; IN 
 PIN  8          DACK_                           ; IN 
 PIN  9          IW_                             ; IN 
 PIN  10		BA0                             ; IN
 PIN  11		DMAR0                           ; IN drive DMA request
+;PIN 13
 PIN  14         E_ID8D15                        ; OUT
 PIN  15         E_ID0D7                         ; OUT
 PIN  16         C_ID0D15                        ; OUT
@@ -58,7 +59,7 @@ C_CD8D15	=   (/IOEN_ * /QE_ * /IW_ *  /BA0) + (/ADEN_ * /QE_ * IW_ * /BA0)
 R161_ = IRES_ * /(QA * QB) * (DMAR0 + QA + QB) * (QA + QB + /DACK_)
 
 ; active DMA _word_ cycle
-/ADEN_ =   (QA*/QB)+(/QA*QB)
+/ADEN_ =   ((QA*/QB)+(/QA*QB)) * /DACK_  
 
 ;----------------------------------- Simulation Segment ------------
 SIMULATION
