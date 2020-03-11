@@ -20,14 +20,14 @@ Time & date:  22:35  Mar. 9, 2020
                                                                 C10                                
   1 CER.CAP             470P                CAP5                C11                                
   1 CY7C130             CY7C130             DIP48               U1                                 
-  2 DIN_64AC                                DIN41612AC          J1                                 
+  2 DIN_64AC            DIN41612-AC         DIN41612AC          J1                                 
                                                                 J2                                 
   2 DIODE.SCHOTT        BAT42               DIO_DO35            D3                                 
                                                                 D4                                 
   2 FC_40VF             40 Pole Male        FC40VF              J3                                 
                                                                 J4                                 
   1 GAL16V8             GAL16V8             DIP20               U2                                 
-  1 GAL16V8             GAL22V10            SDIP24              U10                                
+  1 GAL22V10            GAL22V10            SDIP24              U10                                
   1 HD63C09             HD63C09             DIP40               U3                                 
   1 HDR_3               straight            HDR3                J5                                 
   1 HDR_3               90 degr. bend       HDR1X3              J6                                 
