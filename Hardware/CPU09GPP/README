@@ -6,6 +6,9 @@ I long wanted to have a floppy interface as well. But there is no 68C44 nor a 63
 double-dennsity with 'the fingers in the nose'. So a dedicated CPU for this would solve a lot of problems.
 Most of the driver code would sit in a ROM for the dedicated CPU. The driver for the OS would be compact and allow for the first
 UniFLEX ever to have 2 separate block device drivers. All systems from the past shared one block device driver over HD/FD and tape.
+Another possibility now is "Read Track". This reads a whole floppy track in a buffer and returns that data to the caller. 
+The buffer data contains _all_ the bytes from one track including address marks, gap bytes, data marks, data and crc.
+In the past you could do a "write Track" but never a "read Track".
 
 One can create relatively simple pop-up boards for this generic IO processor for functions like Network over SPI, SD card over SPI 
 and of course a floppy interface. Cost will be low as well. Yes you can have more than one CPU09GPP with a specific pop-up board
