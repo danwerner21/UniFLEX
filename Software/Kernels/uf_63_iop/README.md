@@ -17,3 +17,8 @@ After changes in the IOP firmware code, kill the binary 'iop' and run umake
 CPU09_UF_IOP.dsk.zip: diskimage with sources. 
 On the root of the image are prebuild kernels: uniflex4 (IDE only) and uniflex5 (IDE + IOP)
 
+The IOP processor firmware, in it's current state, builds for use in RAM. I'm waiting my prom programmer and soon
+I will be able to test a full (E)(P)ROM version. I will publish all the modifification in the driver files. Currently I have an extra ACIA on the IOP side which is not found and initialised  by the IOP. It serves a MikBug type monitor program and the
+monitor can accept an S1 hex file with the (RAM) firmware. Next the monitor should start it.
+
+All the files for a UniFLEX with full IOP support arenow uploaded to this archive
