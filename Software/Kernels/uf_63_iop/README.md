@@ -22,3 +22,20 @@ I will be able to test a full (E)(P)ROM version. I will publish all the modififi
 monitor can accept an S1 hex file with the (RAM) firmware. Next the monitor should start it.
 
 All the files for a UniFLEX with full IOP support arenow uploaded to this archive
+
+Steps for building a complete kernel:
+in mach_iop run umake
+in kernel   run do_kernel
+in mach_m1  run do_iop
+copy the new kernel to the root where it can be bootted
+
+in iop_cpu  kill iop and run umake
+s1 iop >IOPHEX
+copy IOPHEX to a PC (kermit) and list it back into the monitor ACIA on the IOP side.
+
+After RESET: start the iop firmware first, currently @405a
+next boot the IOP compatible kernel
+edit ttylist to enable the ttys on the IOP
+
+NOTE: if you have enabled tty's 9 and above and you boot a non_IOP kernel, init will keep trying
+to get those working (need to fix /etc/init). Edit /etc/ttylist to switch of those tty's and reboot.
