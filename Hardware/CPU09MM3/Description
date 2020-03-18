@@ -8,7 +8,7 @@ Provides:
 * Full interrupt protection, no user process can disrupt the interrupts in the system
 * DMA mode for specialized fast IO controllers
 * a Supervisor/User state signal and status
-* supercedes the SWTPC MPU-1 CPU board in features, as thus it runs UniFLEX-II and beyond 
+* surpasses the SWTPC MPU-1 CPU board in features, as thus it runs UniFLEX-II and beyond 
 
 Description:
 This CPU card is driven by a HD63C09 running at 4 MHz bus clocks. The card has extra hardware for System/User state distinction,
