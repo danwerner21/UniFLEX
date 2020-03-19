@@ -39,3 +39,8 @@ edit ttylist to enable the ttys on the IOP
 
 NOTE: if you have enabled tty's 9 and above and you boot a non_IOP kernel, init will keep trying
 to get those working (need to fix /etc/init). Edit /etc/ttylist to switch of those tty's and reboot.
+
+IOPHEX_N is the 'latest' version that works corrctly. In RAM, that is. You need to use a monitor ROM in the IOP board and load
+this hexfile via the monitor serial device.
+
+
