@@ -49,9 +49,10 @@ the secondary (IO) backplane.
 delivery time, from China, the price had been increased by about 30% though....
 
 2020-03-09: Populated and tested the board. It is OK. Uploaded the design to this archive. Soon I will upload the 
-UniFLEX driver and the IOP firmware files.
+UniFLEX driver and the IOP firmware files. Photo's are from the FINAL version. The proto type photo's are gone.
 
 2020-03-14: Uploaded the current state of drivers and firmware for the IOP as well at least one kernel version for IOP.
+Everything works like it should. Nice waveforms at the IObus.
 
 
 
