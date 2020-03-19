@@ -15,7 +15,7 @@ g: got address
 The others commands may not work. I believe they are left-overs.  For the intended application of this monitor
 program they are irrelevant. I ignored them. The command prompt is '***'.
 
-The IOP application hex image should be prceeded by a 'l' character, this places the monitor in the
+The IOP application hex image should be preceeded by a 'l' (ell) character, this places the monitor in the
 'load' program mode, it stays there until an S9 record is read.
 
 The IOP applcaition is started with:
@@ -25,7 +25,7 @@ If a register dump is shown there is an interrupt active. To overcome this look 
 Do m <stackpointervalue>   and give SPACE 'd0' thsi should change the CC value in DO.
 Check with the 'r' command if this is right. Next, g 405a should now work, that is, no reaction any further.
   
-The monitor ACIA is expected to be at $8000, thus the first acia in the first CPU09SR4 via the IO processor.
-Badurate is preset at 38400.
+The monitor ACIA is expected to be at $8000, thus the first ACIA in the first CPU09SR4 via the IO processor.
+Baudrate is preset at 38400.
 
   
