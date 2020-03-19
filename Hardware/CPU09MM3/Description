@@ -14,10 +14,10 @@ Description:
 This CPU card is driven by a HD63C09 running at 4 MHz bus clocks. The card has extra hardware for System/User state distinction,
 a DATBOX that can hold the maps for up to 64 processes (each 16 x 4K), a task latch that can be set for the active task and
 a single bit Kernel/Usertask selection. This results in a very efficient context switching. 3 22V10 GAL's are used for glue logic.
-It has a timer that expires when interrupts stop coming and that will end the running task and recover the OS from it. At last
-it has hardware to establish if the CPU entered the recent interrupt in 6309 or 6809 mode, so the OS can run in 6309 mode and
-if a user task modifies the CPU mode, the kernel can take correct action when an interrupt occurs.
-The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
+It has a timer that expires when interrupts stop coming and that will end the running task and recover the OS from it with _ALL_ 
+the CPU registers saved. At last it has hardware to establish if the CPU entered the recent interrupt in 6309 or 6809 mode, 
+so the OS can run in 6309 mode and if a user task modifies the CPU mode, the kernel can take correct action when an interrupt 
+occurs. The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
 
 U6 = CPU, U8 = DATBOX(MMU), U17 = TASKLATCH, U9+U19 = STACKCOUNT, U13 = SYSTEM/USER , U18 = KERNEL/USER MAP U16 = INTERRUPT TIMEOUT,
 U7 = RESET CIRCUIT/LOGIC, U10/U12/U14 = GAL LOGIC, U1/U2/U3/U4/U5 = BUS BUFFERS, 
