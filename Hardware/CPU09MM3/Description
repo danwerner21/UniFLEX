@@ -5,6 +5,7 @@ Provides:
 * 20 bit address, 8 bit data and all control lines, all full buffered
 * a MMU which can hold up to 64 process maps at one time, context switching is setting a latch value
 * Full kernel isolation, no user process can access or disrupt OS data
+* Maximum per process memory space is 65024 bytes, only the upper 512 bytes are void. The CPU09 UniFLEX provides that too
 * Full interrupt protection, no user process can disrupt the interrupts in the system
 * DMA mode for specialized fast IO controllers
 * a Supervisor/User state signal and status
