@@ -22,7 +22,7 @@ Time & date:  20:46  Sep. 19, 2019
   3 CER.CAP             100N                CAP5                C8                                 
                                                                 C13                                
                                                                 C14                                
-  1 CER.CAP             470P                CAP5                C15                                
+  1 CER.CAP             1N                  CAP5                C15                                
   1 CER.CAP             CDLY                CAP5                C1                                 
   1 CON9                HDR1x9              HDR1X9              CON1                               
   1 DIN_64AC            DIN41612AC          DIN41612AC          J1                                 
