@@ -35,5 +35,5 @@ on the serial connector, jumper pin 7 and 8 somehow together. Otherwise the outp
 
 The board is not very complicated.
 
-2020-02-12: The CPU09MON is in a good shape. The capacitor (470P) over the resistor in the 1.MHz baudclock should better 
+2020-02-12: The CPU09MON is in a good shape. The capacitor (470P) [C15] over the resistor in the 1.MHz baudclock should better 
 be 1 nF. If you experience weird characters with the CPU09SR4 characters, this change will solve that.
