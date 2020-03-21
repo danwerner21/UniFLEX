@@ -2,7 +2,7 @@ Here are the UniFLEX kernel versions.
 
 uf_63_1 is the first kernel in native 6309 mode. Some functions use 6309 instructions, but there is a lot to win.
 
-uf_63_1 supports the following devices:
+Your kernel may support the following devices:
 
 c 0 x   ttyxx  tty ports 00...08
 
