@@ -1,6 +1,6 @@
 2019-06-03.
 
-Status of project is as follows:
+Status of project is as followes:
 
 CPU09MM3
 First design version of CPU board works but lacks HD6309/6809 detection. E clock at 4 MHz. All signals are as expected.
