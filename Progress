@@ -1,6 +1,6 @@
 2019-06-03.
 
-Status of project is as followes:
+Status of project is as follows:
 
 CPU09MM3
 First design version of CPU board works but lacks HD6309/6809 detection. E clock at 4 MHz. All signals are as expected.
@@ -31,7 +31,7 @@ CPU09SR4
 First design version of the 4 port serial card is ready. It has place  for 4 ACIA devices. Each ACIA have a software controllable
 baudrate selection: 38k4, 19k2, 9k6, 4k8, 2k4, 1k2, 0k6 and 0k3. When it is time for it I will order the proto version.
 2020-02-12: The current version of the CPU09SR4 is in a good shape. No issues known. Also I completed the driver and utility
-to read (ans set) the baudrates for the CPU09SR4 ports.
+to read (and set) the baudrates for the CPU09SR4 ports.
 
 CPU09IOP
 First design version of the serial character devices IOP (IOprocessor) is ready. When it is time for it I will order the 
@@ -183,6 +183,13 @@ I am waiting the tantalium caps still..  :-(
 I can use a lot of the IOP driver basics for the GPP driver. As the IOP starts to work well, I expect to have the GPP working
 quicker. 2020-02-12: I have build the proto version and it appears to work. I am still waiting the very last components from
 China, not sure how long that will take. Also populated the 09FLP pop-up board. The only thing I need is time :-).
+
+2020-03-21:
+Made a monitor ROM for the CPU09GPP, build a new kernel with de debug ACIA at the right address and fired it up. AT first it 
+not work. The oscilloscope showed that the GPP CPU A13 was always low. Removed the IC's from their sockets. A13 had about
+3.5 Ohm  resistance to ground. No visible causes. I put 5 Volt from a power supply on the A13 line and hey the problem got away.
+Put everything back in, fired the OS back on and yes I got the monitor prompt on the debug ACIA. Now we can explore everything
+further.
 
 
 
