@@ -20,14 +20,14 @@ Today the latest revision (rev 0.8) of the board was in the mail. I have put the
 I'm happy now, as everything works as designed. 4 ports with an baudrate select each. Finally!!! :-)
 
 About Jumpers:
-    J5
+    J6
 [o][o][o][o]
 [o][o][o][o]
     J7
  A  B  C  D  (position)
     
 They are for board select, where the board should appear in the address range. Assume we wired the /sel pin of the board
-to DIV3 (F008-F07F). Jumpers are to be placed between the J5 and J5 strip, thus 4 max.
+to DIV3 (F008-F07F). Jumpers are to be placed between the J6 and J5 strip, thus 4 max.
 
 D  C  B  A     Address select   Where 'V' is jumper present and '-' jumper absent
 V  V  V  V     XX00             should not be used on the main CPU side, conflicts with ACIA on MON board.
@@ -40,5 +40,8 @@ V  -  -  V     XX60
 V  -  -  -     XX70
 -  X  X  X     XX80...XXFF      only for use with the CPU09IOP board.
 
+
+With the UniBug monitor it is easy to check if you did the right selection, e f000-f07f. You should see the
+MONitor ACIA and the PIA and the ACIA's on the SR4 board(s).
 
 
