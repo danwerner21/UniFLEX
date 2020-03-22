@@ -33,5 +33,18 @@ The floppy driver would sit in FLEX OS space but in a PROM @ i.e. E800-EFFF.
 In the works are a 09FLP (floppy controller) pop-up and a 09SPI (for SD card or W5500 network module) pop-up.
 A pop-up board is 100 x 100 mm in size.
 
-2020-0308:  the CPU09GPP and the 09FLP boards are populated. I am starting tests and writing software now.
+2020-03-08:  the CPU09GPP and the 09FLP boards are populated. I am starting tests and writing software now.
+
+2020-03-22:  I created a special kernel with the debug-acia driver present and the IOP. Additional I created a monitor ROM
+for the CPU09GPP. With a special ACIA in kernel IO space I can communicate with the GPP monitor ROM. 
+I entered simple code, for reading a sector from diskette, in RAM and yes, it works. I can read data from floppies who
+are written in 1993!. I have a 33 diskette large backup of a whole UniFLEX system from that time, so I expect a few surprises
+to be on those disks. Now it is time for some serious driver coding :-). I need to study the(my) driver from the past because
+at that time it was so clever that it could work with: 3/5/8 inch, each FM and MFM. Also double-step, that is a 40 
+track diskette in a 80 track drive and biased and un-biased sectors on tracks. The latter more important for MSDOS disks
+which UniFLEX could handle with uos2pc and pc2uos etc.Bottom line is we are on track (!)
+
+
+
+
 
