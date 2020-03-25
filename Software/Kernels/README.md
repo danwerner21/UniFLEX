@@ -27,3 +27,12 @@ b 0 x   wx    block device  for IDE disks 0...7
 
 All files are in UniFLEX text format, use 'ufless' to access them from linux.
 The .tar image contains the whole source for the CPU09 UniFLEX kernel, in UniFLEX text format
+
+On the image CPU09_UF_IOP.dsk.zip there are 3 bootable kernels. 'uniflex' and 'uniflex4' are kernels for SR4 IO.
+'uniflex5' support SR4 IO _and_ the IOP. If you boot the last one without the CPU09IOP hardware present, the kernel may hang
+in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to reset it.
+
+
+
+
+
