@@ -192,8 +192,8 @@ Put everything back in, fired the OS back on and yes I got the monitor prompt on
 further.
 
 2020-04-09:
-Made progress with 'portbaud'. Now it can (re)set baudrate's for CPU09SR4 which are on teh main CPU side _and_ on the IOP side.
-I will update the source tree on thsi archive soon and also create an disk image.
+Made progress with 'portbaud'. Now it can (re)set baudrate's for CPU09SR4 which are on the main CPU side _and_ on the IOP side.
+I will update the source tree on thsi archive soon and also create an disk image for it.
 
 
 
