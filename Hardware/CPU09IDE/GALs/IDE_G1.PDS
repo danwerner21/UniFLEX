@@ -38,8 +38,8 @@ PIN  23         IDE_IOR_                        ; OUT
 EQUATIONS
 
 ; IDE strobes , read latch @hibyte, write latch @lobyte
-/IDE_IOR_	=	(/IOEN_ * IW_ * /BA0 * /QE_  ) + (/ADEN_ * /IW_  )
-/IDE_IOW_	=	(/IOEN_ * /IW_  * BA0 * /QE_) + (/ADEN_ * IW_  )
+/IDE_IOR_	=	(/IOEN_ * IW_ * /BA0 * /QE_  ) + (((QA*/QB)+(/QA*QB)) * /DACK_ * /IW_  )
+/IDE_IOW_	=	(/IOEN_ * /IW_  * BA0 * /QE_) + (((QA*/QB)+(/QA*QB)) * /DACK_ * IW_  )
 
 ; IDE data in, clock @hibyte 
 C_ID0D15	=  (/IOEN_ * /QE_ *  IW_  * /BA0) + (/ADEN_ * /QE_ * /IW_ * /BA0)	; clock 16b
