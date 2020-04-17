@@ -27,7 +27,7 @@ About Jumpers:
  A  B  C  D  (position)
     
 They are for board select, where the board should appear in the address range. Assume we wired the /sel pin of the board
-to DIV3 (F008-F07F). Jumpers are to be placed between the J6 and J5 strip, thus 4 max.
+to DIV3 (F008-F07F). Jumpers are to be placed between the J6 and J7 strip, thus 4 max.
 
 D  C  B  A     Address select   Where 'V' is jumper present and '-' jumper absent
 V  V  V  V     XX00             should not be used on the main CPU side, conflicts with ACIA on MON board.
