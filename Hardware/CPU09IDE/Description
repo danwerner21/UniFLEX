@@ -35,3 +35,12 @@ sources are at this moment, expects the board to respond at $F100.
 About (suitable) disks:  
 * the drive _must_ support LBA
 
+2020-04-18:
+
+Just discovered after some serious research tha an UniFLEX disk partition/image _MUST_ have a .badblocks file as fdn #2 !!
+It is that fdn #2 get some special treatment in the kernel code.
+
+My initial problem was, I copy a directory tree from one disk tp another with copy-dir +dolP and that this action predictably
+freezes at some point in the transfer, same file each time!. Finally I found that the newly created directory got fdn #2 and
+that was why these strange things happened. The process would sleep on a fdn update but was never awakened again.
+
