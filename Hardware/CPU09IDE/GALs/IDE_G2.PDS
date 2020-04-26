@@ -47,11 +47,10 @@ B_O  = B_I * ADEN_ * /IDE_DMARQ
 /DACK_ = B_I * B_BA * B_BS
 
 ; CLOCK for FF
-U1B_CLK = B_I * IDE_DMARQ * /(C_E + C_Q)
-;;U1B_CLK = B_I * IDE_DMARQ 
+U1B_CLK = B_I * IDE_DMARQ * /(C_E)
 
 ; CLEAR FF
-U1B_CLR_ = IRES_ * (IDE_DMARQ + U1AQ_ + ADEN_)
+U1B_CLR_ = IRES_ * (IDE_DMARQ + ADEN_)
 
 ; OUTgoing IRQ
 /IRQ_ = IDE_INTRQ  * L_INTEN

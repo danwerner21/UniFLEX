@@ -37,7 +37,7 @@ PIN  23         IDE_IOR_                        ; OUT
 ;----------------------------------- Boolean Equation Segment ------
 EQUATIONS
 
-; IDE strobes , read latch @hibyte, write latch @lobyte
+; IDE strobes , read latch @hibyte, write latch @lobyte, BA0 in PIO access is a MUST!
 /IDE_IOR_	=	(/IOEN_ * IW_ * /BA0 * /QE_  ) + (((QA*/QB)+(/QA*QB)) * /DACK_ * /IW_  )
 /IDE_IOW_	=	(/IOEN_ * /IW_  * BA0 * /QE_) + (((QA*/QB)+(/QA*QB)) * /DACK_ * IW_  )
 
