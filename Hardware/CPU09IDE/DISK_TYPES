@@ -9,5 +9,5 @@ SEAGATE DB35.3            success                                               
 
 
 HITACHI DESKSTAR          Fail,                can read but can't format it             CS
-HITACHI DESKSTAR          success,             after minor modification to IDE board.   CS
+HITACHI DESKSTAR          success,             after minor modification to IDE board.   CS  but only as a slave drive :-(
 
