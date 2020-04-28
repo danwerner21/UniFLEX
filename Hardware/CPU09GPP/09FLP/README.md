@@ -1,3 +1,4 @@
+<pre>
 In the past the my UniFLEX driver could handle a multitude of floppy-disk formats.
 
 FD-SS,  8", 77 track, 8 sectors,  single dens, single side (250kBit)
@@ -26,3 +27,4 @@ F3-SD80,  3", 80 track, 18 sectors, double density, single side (500kBit)
 F3-DD80,  3", 80 track, 18 sectors, double density, double side
 F3-SH80,  3", 80 track, 20 sectors, double density, single side
 F3-DH80,  3", 80 track, 20 sectors, double density, double side
+</pre>
