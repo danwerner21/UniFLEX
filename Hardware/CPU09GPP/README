@@ -44,7 +44,22 @@ at that time it was so clever that it could work with: 3/5/8 inch, each FM and M
 track diskette in a 80 track drive and biased and un-biased sectors on tracks. The latter more important for MSDOS disks
 which UniFLEX could handle with uos2pc and pc2uos etc.Bottom line is we are on track (!)
 
+2020-05-01: I am opening a time capsule by restoring 34 floppies of a backup I made in 1992 (or so). This means that a few 
+things start to work well. First, I created a second block device driver for the CPU09GPP/09FLP combo. 
 
+This is the first UniFLEX kernel ever to have two separate block devices! 
+
+Second, the driver on the 09FLP side start to work too. At this moment it supports restore,seek and read but that is 
+enough for the moment. By restoring the backup a lot of programs in /bin and /usr/bin are overwritten. 
+But as it turns out these new (old) versions work better than the ones I used up to now.
+
+So I need to complete the second block device driver with the character device drivers yet, but that will be done in
+small steps. I also came accross the floppy format program from the early years, together with a proper driver, which I had in
+the 90's, it did support almost any format present. 3.5 inch, 5 inch and 8 inch. In single/double side and density. The
+largest UniFLEX diskette I have holds up to 1600 KB. Also it could handle 40 tracks diskettes in an 80 track drive. 
+It did figure it out automatically! Most of this intelligence I can use again for the CPU09GPP/09FLP project. 
+O yeah, it could work with 'un-biased' sector ID's. So the kernel did handle floppies where the sector ID on side one 
+started with 1 instead of (the last sector ID on side zero) plus one. Those disks would be accessible i.e. on Linux too.
 
 
 
