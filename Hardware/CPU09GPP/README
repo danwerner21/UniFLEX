@@ -44,7 +44,7 @@ at that time it was so clever that it could work with: 3/5/8 inch, each FM and M
 track diskette in a 80 track drive and biased and un-biased sectors on tracks. The latter more important for MSDOS disks
 which UniFLEX could handle with uos2pc and pc2uos etc.Bottom line is we are on track (!)
 
-2020-05-01: I am opening a time capsule by restoring 34 floppies of a backup I made in 1992 (or so). This means that a few 
+2020-04-29: I am opening a time capsule by restoring 34 floppies of a backup I made in 1992 (or so). This means that a few 
 things start to work well. First, I created a second block device driver for the CPU09GPP/09FLP combo. 
 
 This is the first UniFLEX kernel ever to have two separate block devices! 
