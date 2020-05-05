@@ -4,10 +4,10 @@ The CPU09GPP provides:
 * 1Kx8 dual port RAM between host CPU and local CPU with interrupt flags and arbritration logic
 * up to 32KB of local RAM
 * up to 16KB of (E)EPROM
-* up to 256 Bytes of dedicated IO space
+* up to 1K Bytes of dedicated IO space (A0...A9)
 * local periodic timer interrupt circuitry (6.7, 13, 26 mS)
 * LED which show host CPU access and local CPU access
 * local CPU can be indivudiably reset from bus pin
-* the CPU09GPP has it own address decoding for the system bus. Provision for up to 4 GPP boards in one 4 KB block (FE)
-
+* the CPU09GPP has it own address decoding for the system bus. (Page select for F8,F9,FA,FB or FE) Cardselect 0...3
+* 40 pin IO expansion connector with local Data, Address and Control signals. Can handle DMA.
 
