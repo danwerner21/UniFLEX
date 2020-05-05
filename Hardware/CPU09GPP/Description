@@ -8,5 +8,6 @@ The CPU09GPP provides:
 * local periodic timer interrupt circuitry ()
 * LED which show host CPU access and local CPU access
 * local CPU can be indivudiably reset from bus pin
+* the CPU09GPP has it own address decoding for the system bus. Provision for up to 4 GPP boards in one 4 KB block (FE)
 
 
