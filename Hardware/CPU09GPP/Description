@@ -1,0 +1,12 @@
+The CPU09GPP provides:
+
+* local HD63C09 CPU at 4MHz clocks
+* 1Kx8 dual port RAM between host CPU and local CPU with interrupt flags and arbritration logic
+* up to 32KB of local RAM
+* up to 16KB of (E)EPROM
+* up to 256 Bytes of dedicated IO space
+* local periodic timer interrupt circuitry ()
+* LED which show host CPU access and local CPU access
+* local CPU can be indivudiably reset from bus pin
+
+
