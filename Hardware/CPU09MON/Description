@@ -4,10 +4,10 @@ Provides:
 * up to 960KB of user RAM
 * up to 8 KB of user (E)(P)ROM, in 2K pages f800-ffff
 * a serial console port, (HD63B50 running at 4MHz busclock with no waitstates) baud rates 19k2,9k6,4k8,2k4,1k2
-* hardware BLACKHOLE and WHITEHOLE detection and generation
+* hardware BLACKHOLE and WHITEHOLE memory detection and generation
 * central baudrate generator for the whole system, 1.2288MHz over the system bus
-* 8 status LED's for kernel flagging
-* periodic timer interrupt
+* 8 status LED's for kernel flagging, the 'LIGHTS' feature as coded in the kernel
+* periodic timer interrupt, 100 Hz
 * IO decoding for most devices in the area f000-f3ff
 * dual interrupt vectors, depending on supervisor/user state
 
