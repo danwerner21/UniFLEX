@@ -42,5 +42,5 @@ It is that fdn #2 get some special treatment in the kernel code.
 
 My initial problem was, I copy a directory tree from one disk tp another with copy-dir +dolP and that this action predictably
 freezes at some point in the transfer, same file each time!. Finally I found that the newly created directory got fdn #2 and
-that was why these strange things happened. The process would sleep on a fdn update but was never awakened again.
+that was why these strange things happened. The process would sleep on a fdn update but entered a dead-lock here.
 
