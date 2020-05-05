@@ -11,3 +11,5 @@ The CPU09GPP provides:
 * the CPU09GPP has it own address decoding for the system bus. (Page select for F8,F9,FA,FB or FE) Cardselect 0...3
 * 40 pin IO expansion connector with local Data, Address and Control signals. Can handle DMA.
 
+The schematic diagram is the first (proto) version of the design
+
