@@ -8,3 +8,5 @@ The 09FLP support board provides:
 *) test jumper, variable capacitor and 2 potentiometers to adjust various settings for the WD2793
 *) local 2MHz oscillator for the WD2793
 *) 40 pin IO connector and form factor that fits on a CPU09GPP
+
+The schematic is the first (proto) version of the design
