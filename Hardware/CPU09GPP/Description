@@ -5,7 +5,7 @@ The CPU09GPP provides:
 * up to 32KB of local RAM
 * up to 16KB of (E)EPROM
 * up to 256 Bytes of dedicated IO space
-* local periodic timer interrupt circuitry ()
+* local periodic timer interrupt circuitry (6.7, 13, 26 mS)
 * LED which show host CPU access and local CPU access
 * local CPU can be indivudiably reset from bus pin
 * the CPU09GPP has it own address decoding for the system bus. Provision for up to 4 GPP boards in one 4 KB block (FE)
