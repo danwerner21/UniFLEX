@@ -1,0 +1,10 @@
+The 09FLP support board provides:
+
+*) WD2793 controller 
+*) 50 pin connector for 8" drives, 36 pin connector for 5.25" / 3.5" drives
+*) control latch: drive select, side select, SD/DD select, 8"/5" mode select
+*) status port: FDC DRQ, FDC INT, 
+*) motor-on timer
+*) test jumper, variable capacitor and 2 potentiometers to adjust various settings for the WD2793
+*) local 2MHz oscillator for the WD2793
+*) 40 pin IO connector and form factor that fits on a CPU09GPP
