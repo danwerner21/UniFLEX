@@ -32,6 +32,9 @@ On the image CPU09_UF_IOP.dsk.zip there are 3 bootable kernels. 'uniflex' and 'u
 'uniflex5' support SR4 IO _and_ the IOP. If you boot the last one without the CPU09IOP hardware present, the kernel may hang
 in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to reset it.
 
+UF_IOP_200509.dsk.zip is the recent status. It has the most recent driver source tree in it as the latest version of portbaud.
+bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
+
 
 
 
