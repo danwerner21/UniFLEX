@@ -35,7 +35,9 @@ in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to 
 UF_IOP_200509.dsk.zip is the recent status. It has the most recent driver source tree in it as the latest version of portbaud.
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
-
+uf_200509.tar is a tar archive with the recent state of the drivers tree. I changed the build in mach_m1 somewhat. Now there
+is only one build command: do_make. Check the settings in sysconfig.h first and adapt them if applicable.
+Maybe it is good to set FLP to zero. :-)
 
 
 
