@@ -4,7 +4,7 @@ tar   a very capable tar utility, it does NOT support compression however
 use2  a slightly modified version of the use screen editor, this one runs also via th IOP.
 
 MON6809 is a MikBug(r) derivate which can be used in the CPU09 system. It lacks diskboot functionalty
-but can load and 'punch' S1 records. Initila DATRAM map is
+but can load and 'punch' S1 records. Initial DATRAM map is
 
 0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
 00 XX XX XX XX XX XX XX XX XX XX XX XX XX XX FF
