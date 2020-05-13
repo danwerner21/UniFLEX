@@ -44,3 +44,7 @@ My initial problem was, I copy a directory tree from one disk tp another with co
 freezes at some point in the transfer, same file each time!. Finally I found that the newly created directory got fdn #2 and
 that was why these strange things happened. The process would sleep on a fdn update but entered a dead-lock here.
 
+
+DISK_TYPES gives an overview of disks that work (don't work) with the IDE interface. A lot of them do. Thanks to C.d.Jong for 
+his many test attempts in tropical heat :-). Thank you.
+
