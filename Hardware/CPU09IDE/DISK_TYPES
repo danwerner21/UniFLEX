@@ -11,3 +11,72 @@ SEAGATE DB35.3            success                                               
 HITACHI DESKSTAR          Fail,                can read but can't format it             CS
 HITACHI DESKSTAR          success,             after minor modification to IDE board.   CS  but only as a slave drive :-(
 
+
+MAXTOR DiamndMax Plus 9   Fail,                120GB ATA/133 pin29 ADEN-                CJ
+MAXTOR DiamndMax Plus 9   success,             120GB ATA/133 pin29 DACK-                CJ
+MAXTOR DiamndMax Plus 9   Fail,                200GB ATA/133 pin29 ADEN-                CJ
+MAXTOR DiamndMax Plus 9   success,             200GB ATA/133 pin29 DACK-                CJ
+MAXTOR DiamndMax Plus 10  Fail,                200GB PATA133 pin29 ADEN-                CJ
+MAXTOR DiamndMax Plus 10  success,             200GB PATA133 pin29 DACK-                CJ 
+
+WD WD3200AAJB             Fail,                pin29 ADEN-                              CJ
+WD WD3200AAJB             Fail,                pin29 DACK-                              CJ
+
+HITACHI DESKSTAR          Fail,                HDS728080PLAT20 pin29 ADEN-              CJ  also as slave
+HITACHI DESKSTAR          Fail,                HDS728080PLAT20 pin29 DACK-              CJ  also as slave
+
+FUJISTSU MHT2060AT        success,             pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+FUJISTSU MHT2060AT        success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+FUJISTSU MHV2040AH        success,             pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+FUJISTSU MHV2040AH        success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+WD WD1200BEVE             success,             pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+WD WD1200BEVE             success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+KingSpec SSD PA25-8       Fail,                pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+KingSpec SSD PA25-8       success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+KingSpec SSD PA25-16      Fail,                pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+KingSpec SSD PA25-16      success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+Toshiba MK4309MAT         success,             pin29 ADEN-                              CJ  GC100 HDD Gender Changer
+Toshiba MK4309MAT         success,             pin29 DACK-                              CJ  GC100 HDD Gender Changer
+
+
+
+Hitachi HDP725032GLA360   success,             pin29 ADEN-                              CJ  JP103 IDE => SATA converter
+Hitachi HDP725032GLA360   Fail,                pin29 DACK-                              CJ  JP103 IDE => SATA converter
+
+TOSHIBA DT01ACA100        success,             pin29 ADEN-                              CJ  JP103 IDE => SATA converter
+TOSHIBA DT01ACA100        Fail,                pin29 DACK-                              CJ  JP103 IDE => SATA converter
+
+Kingston SUV400S37/480G   Fail,                pin29 ADEN-                              CJ  JP103 IDE => SATA converter
+Kingston SUV400S37/480G   Fail,                pin29 DACK-                              CJ  JP103 IDE => SATA converter
+
+SanDisk SDSSDA-480G       Fail,                pin29 ADEN-                              CJ  JP103 IDE => SATA converter
+SanDisk SDSSDA-480G       Fail,                pin29 DACK-                              CJ  JP103 IDE => SATA converter
+
+GALAX GAMER SSD L 120G    success,             pin29 ADEN-                              CJ  JP103 IDE => SATA converter
+GALAX GAMER SSD L 120G    Fail,                pin29 DACK-                              CJ  JP103 IDE => SATA converter
+
+
+
+SanDisk SDSSDA-480G       Fail,                pin29 ADEN-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+SanDisk SDSSDA-480G       Fail,                pin29 DACK-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+
+Kingston SUV400S37/480G   Fail,                pin29 ADEN-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+Kingston SUV400S37/480G   Fail,                pin29 DACK-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+
+GALAX GAMER SSD L 120G    success,             pin29 ADEN-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+GALAX GAMER SSD L 120G    success,             pin29 DACK-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+
+Hitachi HDP725032GLA360   success,             pin29 ADEN-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+Hitachi HDP725032GLA360   success,             pin29 DACK-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+
+TOSHIBA DT01ACA100        success,             pin29 ADEN-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+TOSHIBA DT01ACA100        success,             pin29 DACK-                              CJ  ST-106-2 (Conrad) A1062-00A (Taiwan) IDE => SATA converter
+
+
+
+
