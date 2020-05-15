@@ -13,4 +13,5 @@ You can boot 3 different kernels:
 * uniflex9, thsi one drops directly into a shell, no /etc/init involved
 
 Booting a kernel without the corresponding hardware may hang the boot as the kernel believes to see interrupts
-from non-existent locations an keep servicing those......
+from non-existent locations an keep servicing those...... i.e. booting a IOP-aware kernel without IOP present.
+
