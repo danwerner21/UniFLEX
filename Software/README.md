@@ -11,3 +11,6 @@ You can boot 3 different kernels:
 * uniflex, an IDE kernel that supports tty00 up to tty08, and drives w0 up to w7
 * uniflex2, same a above but additionally handles an IOP and tty09 up totty16
 * uniflex9, thsi one drops directly into a shell, no /etc/init involved
+
+Booting a kernel without the corresponding hardware may hang the boot as the kernel believes to see interrupts
+from non-existent locations an keep servicing those......
