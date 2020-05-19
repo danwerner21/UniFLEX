@@ -2,14 +2,14 @@ Adding new devices to your machine and make your kernel work with them is an int
 
 For a multi-user/multi-tasking operating sytem like UniFLEX you need to consider a couple of things.
 1) The device sould show up in the designated IO space. In the CPU09 system this area is at $F000-$F3FF. The MONitor board 
-already has split this up in smaller parts. While I have 'assigned' some aera's to certain targets, you are free to do otherwise.
+already has split this up in smaller parts. While I have 'assigned' some area's to certain targets, you are free to do otherwise.
 
 2) Interaction between kernel and device should be so efficient as possible. The driver should be able exchange its data fast
 with the device. The device should be able to signal the kernel with interrupt(s). 'POLLING' is possible but the price is
-loss of overall efficiency and responseness. It should be avoided at all cost.
+loss of overall efficiency and responsiveness. It should be avoided at all cost.
 
 Depending on the data structure you could use a 'block' driver or a 'character' driver. Block drivers handle large chunks
-of data per session while Character drivers may handle a byte value as minimum. Block drivers should preferably use DMA to
+of data per session while Character drivers may handle a byte value as minimum. Block drivers should preferably use DMA(*) to
 transfer their data. Examples of block devices: harddisk, floppy disk. Examples of Character devices: terminal, clock, printer.
 
 The kernel has for both types tables to locate the devices and drivers.
@@ -31,4 +31,10 @@ of caller parameters. It should return an error on any faulty input. Ther could 
 <ptr_to_special> points to a function that can read/write 6 special bytes, these can be used to change settings in hardware or
 drivers. i.e. ttyset/ttyget for terminals. density/side flags for floppy.
 
+Which pointer-set the kernel picks from the table depends on the 'device major' value. If you look into the /dev directory 
+there are all sorts of entries which start with 'c'. Those are character type devices. 
+
 to be cont'd
+
+
+* The HD63X09 has block transfer instructions that qua efficiency comes close to of that of DMA.
