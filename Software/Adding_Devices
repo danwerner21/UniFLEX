@@ -84,7 +84,7 @@ device, i.e. tty00...tty08, wc0...wc7. A driver _should_ check to minor values f
 
 The next thing is assign an interrupt to a driver. This method may vary. For the tty's the kernel consult a table with bitmask,
 device address and service routine address. If such is not possible then individual tests may be done. Interrupt handling is
-done in minthan.t. Lastly, some hardware needs to be initialized before the kernel starts. This is a hmisc.t task. Add calls
+done in minthan.t. Lastly, some hardware needs to be initialized before the kernel starts. This is a mach.t task. Add calls
 to initializing routines in your driver from here.
 
 
