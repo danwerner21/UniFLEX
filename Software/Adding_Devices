@@ -34,6 +34,60 @@ drivers. i.e. ttyset/ttyget for terminals. density/side flags for floppy.
 Which pointer-set the kernel picks from the table depends on the 'device major' value. If you look into the /dev directory 
 there are all sorts of entries which start with 'c'. Those are character type devices. 
 
+++ ls -l /dev
+total 63
+drwxr-x 2 root        976 May 10 01:14 .
+drwxrwx27 root        704 May 01 14:58 ..
+brw-r-- 1 root      1,  0 May 01 13:52 fd0
+crw-r-- 1 root      6,  0 Apr 29 23:27 fdc0
+crw-r-- 1 root      4,  0 Nov 29 15:54 hwgetset
+crw-rwx 1 root      2,  0 Dec 31  1979 null
+crw---- 1 root      1,  1 Dec 31  1979 pmem
+cr--r-- 1 root      2,  2 Sep 24  2019 random
+brw-r-- 1 root      0,  0 May 01 13:50 root
+crw---- 1 root      1,  0 Dec 31  1979 smem
+brw-r-- 1 root      0,  0 May 01 13:50 swap
+crw--w- 1 root      0,  0 May 11 20:21 tty00
+crw-r-- 1 root      0,  1 May 01 18:07 tty01
+crw-r-- 1 root      0,  2 May 01 18:07 tty02
+crw-r-- 1 root      0,  3 May 01 18:07 tty03
+crw-r-- 1 root      0,  4 May 01 18:07 tty04
+crw-r-- 1 root      5,  9 May 10 02:58 tty09
+crw-r-- 1 root      5, 10 May 01 13:48 tty10
+crw-r-- 1 root      5, 11 May 01 13:48 tty11
+crw-r-- 1 root      5, 12 May 10 02:58 tty12
+crw-r-- 1 root      5, 15 Mar 25 02:12 tty15
+crw-r-- 1 root      5, 16 Mar 25 02:07 tty16
+brw---- 1 root      0,  0 May 01 06:31 w0
+brw---- 1 root      0,  1 Sep 24  2019 w1
+brw---- 1 root      0,  2 Sep 24  2019 w2
+brw---- 1 root      0,  3 Apr 15 06:32 w3
+brw---- 1 root      0,  4 May 10 04:05 w4
+brw---- 1 root      0,  5 Apr 16 16:08 w5
+brw---- 1 root      0,  6 Dec 30 12:10 w6
+brw---- 1 root      0,  7 Sep 24  2019 w7
+crw---- 1 root      3,  0 Sep 24  2019 wc0
+crw---- 1 root      3,  1 Sep 24  2019 wc1
+crw---- 1 root      3,  2 Sep 24  2019 wc2
+crw---- 1 root      3,  3 Sep 24  2019 wc3
+crw---- 1 root      3,  4 Sep 24  2019 wc4
+crw---- 1 root      3,  5 Sep 24  2019 wc5
+crw---- 1 root      3,  6 Sep 24  2019 wc6
+crw---- 1 root      3,  7 Sep 24  2019 wc7
+cr--r-- 1 root      2,  1 Sep 24  2019 zero
+++ 
+
+Those line which start with 'c' are character devices and the ones with 'b' are block drivers. Instead of the file size
+device entries show 2 numbers separated by a comma. These are the 'major'(left) and 'minor'(right) numbers.
+The kernel use the major as index into the character device table. The minor is used within the driver to identify a specific
+device, i.e. tty00...tty08, wc0...wc7. A driver _should_ check to minor values for correctness and return an error if faulty.
+
+The next thing is assign an interrupt to a driver. This method may vary. For the tty's the kernel consult a table with bitmask,
+device address and service routine address. If such is not possible then individual tests may be done. Interrupt handling is
+done in minthan.t. Lastly, some hardware needs to be initialized before the kernel starts. This is a hmisc.t task. Add calls
+to initializing routines in your driver from here.
+
+
 to be cont'd
 
 
