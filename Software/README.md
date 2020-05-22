@@ -13,5 +13,20 @@ You can boot 3 different kernels:
 * uniflex9, this one drops directly into a shell, no /etc/init involved
 
 Booting a kernel without the corresponding hardware may hang the boot as the kernel believes to see interrupts
-from non-existent locations an keep servicing those...... (i.e. booting a IOP-aware kernel without IOP present.)
+from non-existent locations and can't reset these so it is stuck in this loop ...... 
+(i.e. booting a IOP-aware kernel without IOP present.)
+
+2020-05-22
+I am researching the concept of 'user-IO'. This is a solution where one can add/remove IO boards to a designated backplane and 
+this without desturbing the running kernel. My idea is having a hardware setup as is for the IOP. So a (second) CPU09IOP, but
+with completely different ROM and a matching driver in the kernel. The IO side is, for now, completely without interrupts.
+The swapping of IO boards is a kind of hot-swap.
+
+From the UniFLEX side a process can open '/dev/userio' for read or read/write. As the IO range is 256 bytes (00-FF) the process
+should 'seek' to the desired location and then 'read' or 'write' bytes of data. Of course the speed of response will not be 
+very high, but suitable for most control purposes. The other response factor is how busy the kernel is at that moment.
+
+When I have progressed I will publish some numbers here. At this moment the kernel driver begins to function.
+
+
 
