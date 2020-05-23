@@ -16,7 +16,7 @@ Booting a kernel without the corresponding hardware may hang the boot as the ker
 from non-existent locations and can't reset these so it is stuck in this loop ...... 
 (i.e. booting a IOP-aware kernel without IOP present.)
 
-2020-05-22
+[USERIO]   2020-05-22
 I am researching the concept of 'user-IO'. This is a solution where one can add/remove IO boards to a designated backplane and 
 this without desturbing the running kernel. My idea is having a hardware setup as is for the IOP. So a (second) CPU09IOP, but
 with completely different ROM and a matching driver in the kernel. The IO side is, for now, completely without interrupts.
