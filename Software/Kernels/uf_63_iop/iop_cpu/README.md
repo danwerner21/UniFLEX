@@ -10,4 +10,5 @@ a few on the last line: tasks, terminals and transactions.
 Next boot an IOP capable kernel. Before enable the ports with editing /etc/ttylist, one can do
 ls -lR / >/dev/tty09 or any port via the IOP. This would prove that the IOP is working properly. Now, by default, all IOP port are initialised @ 38400 baud. I yet need to develop code for the IOP and for 'portbaud', to change the ports baudrate settings.
 
+[2020-05-01] As of now the portbaud utitility can also read/set ports that are on the IOP side of the system.
 
