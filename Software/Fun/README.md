@@ -5,5 +5,5 @@ Written by  People Computer Company, P.O. Box 310, Menlo Park, Ca 94025    (415)
 
 Number guessing games, Word games, Hide & Seek games, Pattern Games, Board games, Caves, Simulations, Star Trader, etc
 
-I bought in the 70's when I joined a computer fare. I believe it was at HP's stand.
+I bought in the 70's when I joined a computer fair. I believe it was at HP's stand.
 
