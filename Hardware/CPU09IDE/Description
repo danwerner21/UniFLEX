@@ -17,8 +17,8 @@ The card format is Eurocard (160x100mm) and has a DIN41612 a-c connector.
 
 All design data is released under GPL V3. Copyright (c) C. Schoenmakers 2019
 
-2019-10-14: populated and tested the board (rev 1.o), found 2 incorrect things. 
-1) the text irq and firq at the jumper location are exchanged. For correct operation the jumper should sit on 'firq' (= irq).
+2019-10-14: populated and tested the board (rev 1.0), found 2 incorrect things. 
+1) the text irq and firq at the jumper location are swapped. For correct operation the jumper should sit on 'firq' (= irq).
 2) due to a labeling error on a pin a connection is missing, a wire between pin 6 of G4 to pin 15 of G3. This is easy to
 apply.
 
@@ -37,7 +37,7 @@ About (suitable) disks:
 
 2020-04-18:
 
-Just discovered after some serious research tha an UniFLEX disk partition/image _MUST_ have a .badblocks file as fdn #2 !!
+Just discovered after some serious research that an UniFLEX disk partition/image _MUST_ have a .badblocks file as fdn #2 !!
 It is that fdn #2 get some special treatment in the kernel code.
 
 My initial problem was, I copy a directory tree from one disk tp another with copy-dir +dolP and that this action predictably
