@@ -5,42 +5,42 @@ This is the newer version of the kernel files. They support the CPU09IOP IO proc
 
 It is assumed that the utility 'update_all" is copied/linked to the name 'umake'
 
-This kernel code can build for a kerel with IDE only with the script "do_ide", result is uniflex-IDE
-it can also build a kernel with IDE and IOP with the script "do_iop", result is uniflex-IOP.
-Next copy uniflex-IOP to /uniflexX where X represents a decimal digit.
+This kernel code can build for a kerel with IDE only with the script "do_make", result is uniflex-IDE
+it can also build a kernel with IDE and IOP , provided you set the options in sysconfig.h correct, result is also uniflex-IDE.
 
-After changes in the kernel iop driver code, first run umake in the ./mach_iop directory and next "do_iop"
-in the ./mach_m1 directory
-
-After changes in the IOP firmware code, kill the binary 'iop' and run umake
+After changes in the IOP ROM firmware code, kill the binary 'iop' and run umake
 
 CPU09_UF_IOP.dsk.zip: diskimage with sources. 
 On the root of the image are prebuild kernels: uniflex4 (IDE only) and uniflex5 (IDE + IOP)
 
-The IOP processor firmware, in it's current state, builds for use in RAM. I'm waiting my prom programmer and soon
-I will be able to test a full (E)(P)ROM version. I will publish all the modifification in the driver files. Currently I have an extra ACIA on the IOP side which is not found and initialised  by the IOP. It serves a MikBug type monitor program and the
-monitor can accept an S1 hex file with the (RAM) firmware. Next the monitor should start it.
-
-All the files for a UniFLEX with full IOP support arenow uploaded to this archive
+All the files for a UniFLEX with full IOP support are now uploaded to this archive
 
 Steps for building a complete kernel:
+in mach_m1/sysconfig.h  set IDE 1, and IOP 1, no need to have others set
 in mach_iop run umake
 in kernel   run do_kernel
-in mach_m1  run do_iop
-copy the new kernel to the root where it can be bootted
+in mach_m1  run do_make
+look at the result, on screen should not be any error
+copy the new kernel to the root where it can be bootted, i.e. cp uniflex-IDE /uniflex2
 
 in iop_cpu  kill iop and run umake
 s1 iop >IOPHEX
-copy IOPHEX to a PC (kermit) and list it back into the monitor ACIA on the IOP side.
 
-After RESET: start the iop firmware first, currently @405a
-next boot the IOP compatible kernel
+upload this HEX file (Kermit)
+srec2bin hexfile into binfile (Linux) for the programmer
+
+After reset: look with Unibug at memory locations F200-F2FF, they should be mostly 00 except a few locations at the end.
+
+Boot the IOP capable kernel, i.e. uniflex2. 
+
+Try ttyset for the IOP serial ports, tty09 and up.
+
+Try cat >/dev/tty09, type something  and look if data appears on that port.
+
 edit ttylist to enable the ttys on the IOP
 
-NOTE: if you have enabled tty's 9 and above and you boot a non_IOP kernel, init will keep trying
+NOTE: if you have enabled tty's 9 and above and you boot a non_IOP kernel, 'init' will keep trying
 to get those working (need to fix /etc/init). Edit /etc/ttylist to switch of those tty's and reboot.
 
-IOPHEX_N is the 'latest' version that works corrctly. In RAM, that is. You need to use a monitor ROM in the IOP board and load
-this hexfile via the monitor serial device.
 
 
