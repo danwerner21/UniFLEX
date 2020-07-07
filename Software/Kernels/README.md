@@ -1,7 +1,5 @@
 Here are the UniFLEX kernel versions.
 
-uf_63_1 is the first kernel in native 6309 mode. Some functions use 6309 instructions, but there is a lot to win.
-
 Your kernel may support the following devices:
 
 c 0 x   ttyxx  tty ports 00...08
@@ -35,9 +33,13 @@ in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to 
 UF_IOP_200509.dsk.zip is the recent status. It has the most recent driver source tree in it as the latest version of portbaud.
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
-uf_200509.tar is a tar archive with the recent state of the drivers tree. I changed the build in mach_m1 somewhat. Now there
-is only one build command: do_make. Check the settings in sysconfig.h first and adapt them if applicable.
-Maybe it is good to set FLP to zero. :-)
+
+2020-07-07:  usrc_63 is the most recent kernel tree. By settings options in .../mach_m1/sysconfig.h the user can select
+             the desired kernel version. i.e. with or without IOP. 
+
+It is advised to only boot a kernel which your hardware configuration (at boot time) supports,  other the boot may
+'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
+
 
 
 
