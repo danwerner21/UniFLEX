@@ -1,0 +1,1 @@
+kill *.r *IDEcp ../kernel/TTYdrvr.t .umake idemakehead uni.map
