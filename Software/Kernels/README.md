@@ -41,12 +41,12 @@ It is advised to only boot a kernel which your hardware configuration (at boot t
 'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
 
 uf20200707.dsk.zip contains a few bootable kernels:
-uniflex               IDE kernel, supports CPU09SR4 boards
-uniflex1              same, backup of former
-uniflex2              IDE kernel with IOP support, IOP supports CPU09SR4 boards
-uniflex9              IDE kernel which drops straight in /bin/sh
+- uniflex               IDE kernel, supports CPU09SR4 boards
+- uniflex1              same, backup of former
+- uniflex2              IDE kernel with IOP support, IOP supports CPU09SR4 boards
+- uniflex9              IDE kernel which drops straight in /bin/sh
 
-
+Note: edit /ect/ttylist after booting, disable tty09...tty12 if you don't have IOP and reboot after
 
 
 
