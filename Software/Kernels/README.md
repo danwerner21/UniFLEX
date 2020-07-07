@@ -40,6 +40,13 @@ bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 It is advised to only boot a kernel which your hardware configuration (at boot time) supports,  other the boot may
 'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
 
+uf20200707.dsk.zip contains a few bootable kernels:
+uniflex               IDE kernel, supports CPU09SR4 boards
+uniflex1              same, backup of former
+uniflex2              IDE kernel with IOP support, IOP supports CPU09SR4 boards
+uniflex9              IDE kernel which drops straight in /bin/sh
+
+
 
 
 
