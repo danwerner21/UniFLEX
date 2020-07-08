@@ -34,13 +34,13 @@ UF_IOP_200509.dsk.zip is the recent status. It has the most recent driver source
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
 
-2020-07-07:  usrc_63 is the most recent kernel tree. By settings options in .../mach_m1/sysconfig.h the user can select
+2020-07-08:  usrc_63 is the most recent kernel tree. By settings options in .../mach_m1/sysconfig.h the user can select
              the desired kernel version. i.e. with or without IOP. 
 
 It is advised to only boot a kernel which your hardware configuration (at boot time) supports,  other the boot may
 'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
 
-uf20200707.dsk.zip contains a few bootable kernels:
+uf20200708.dsk.zip contains a few bootable kernels:
 - uniflex               IDE kernel, supports CPU09SR4 boards
 - uniflex1              same, backup of former
 - uniflex2              IDE kernel with IOP support, IOP supports CPU09SR4 boards
