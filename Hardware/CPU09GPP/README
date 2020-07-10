@@ -53,13 +53,25 @@ Second, the driver on the 09FLP side start to work too. At this moment it suppor
 enough for the moment. By restoring the backup a lot of programs in /bin and /usr/bin are overwritten. 
 But as it turns out these new (old) versions work better than the ones I used up to now.
 
-So I need to complete the second block device driver with the character device drivers yet, but that will be done in
-small steps. I also came accross the floppy format program from the early years, together with a proper driver, which I had in
-the 90's, it did support almost any format present. 3.5 inch, 5 inch and 8 inch. In single/double side and density. The
-largest UniFLEX diskette I have holds up to 1600 KB. Also it could handle 40 tracks diskettes in an 80 track drive. 
-It did figure it out automatically! Most of this intelligence I can use again for the CPU09GPP/09FLP project. 
-O yeah, it could work with 'un-biased' sector ID's. So the kernel did handle floppies where the sector ID on side one 
-started with 1 instead of (the last sector ID on side zero) plus one. Those disks would be accessible i.e. on Linux too.
+2020-07-10:
+In the mean time I indeed got the second block device driver working. It is a milestone in UniFLEX world as the kernel
+now handles 2 completely independent block device drivers.
+
+The floppy driver code that runs on the GPP CPU, is still somewhat experimental, but tests have shown that without DMA
+the hardware can handle High Denisty floppy disks (500 kbit) with ease. 
+
+The GPP code should be completed and matured. When finished it will support 512 bytes sectors initially but later I plan
+to add 128 Byte sectors and 256 Bytes sectors as well. In the past (80's-90's) my kernel/floppy driver could also handle
+FLEX Double sided Double density disks, something the original TSC version could not. That driver could figure out which
+data rate the floppy had, single or double sided, single or double denisty, 5 inch mode or 8 inch mode and lastly did
+support 40 tarck disks in a 80 tarck drive. Another thing the GPP/FLP combo will be capable off is 'read track'. 
+'Write track' was used to put the basic format onto the diskettes and could be done because of the 
+sys cbreak call that would issue the process memory contineously so that the DMA could transfer a whole track
+from process memory to the disk. Read track was not allowed because there was no guarantee that the memory was properly
+sorted in advance. For Write track this was not a big issue, if the memory was not sorted, the diskette would not be
+readable as result, but no further harm to the system was done.
+
+
 
 
 

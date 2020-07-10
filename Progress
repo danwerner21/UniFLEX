@@ -193,7 +193,17 @@ further.
 
 2020-04-09:
 Made progress with 'portbaud'. Now it can (re)set baudrate's for CPU09SR4 which are on the main CPU side _and_ on the IOP side.
-I will update the source tree on thsi archive soon and also create an disk image for it.
+
+2020-07-10:
+While the driver for the 09FLP pop-up board is still experimental it allowed me to restore a 25 floppy large backup from the 
+early 90's without any difficulty or even read-error! Next I am going to add the write sector code.
+
+I ordered a prototype version (0.1) for my video board. My aim is 512x512 pixel B/W. I have a few unknowns for the moment,
+can the HD63B45 handle a 4 MHz busclock, how to enable the video memory to a process.
+
+Updated the kernel source tree at GitHub to the latest state of things. Includes some experimental drivers too.
+
+
 
 
 
