@@ -15,7 +15,8 @@ The schematic diagram is the first (proto) version of the design
 
 For the proto board version a minor change is needed. Pin 20 of G1 is to be completely free, so 2 cuts at each side of that pin.
 A new wire from pagesel2 at the jumper block to pin 3 of G1 and next to pin 5 of array RA2. Of course the final version will
-have these things resolved. 
+have these things resolved. Originally pin 3 of G1 served for B_Q. We can miss that here, but we need to cut the track for this
+signal. (on the Top side, close to the bus connector and jumpers) 
 
 The photo's are taken from the proto board Rev 0.2. 
 
