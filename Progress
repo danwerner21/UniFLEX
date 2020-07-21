@@ -203,8 +203,17 @@ can the HD63B45 handle a 4 MHz busclock, how to enable the video memory to a pro
 
 Updated the kernel source tree at GitHub to the latest state of things. Includes some experimental drivers too.
 
+2020-07-21:
+For some time I am thinking about a video board. A simple straight forward design, 512x512 B/W pixels and a VGA connector. 
+An extra connector provides a composite video signal for a video monitor. 
+So recently I started with the board layout and while the board is nowhere to a completed design I wanted to know of 
+some basic assumptions would work. So I ordered the board and started putting components on it. Step by step I tested 
+what I had added and it started to work. With this approach it is easy to find oversights in the plan, but they are 
+corrected easily with some wires. The board has a HD63B45 for video signals and a HD63B21 for address selection purposes 
+and a 128Kx8 RAM as video buffer. 512x512 pixels translates to 32 KByte of RAM, so 128KB provides multiple display pages.
+In the CPU09XXX system it sits on page F8/F9/FA/FB. Due course I keep the design files for the board up-to-date, 
+so a next version is expected to be without errors.
 
-
-
+I will explore the possibillity for a (PS2) mouse. 
 
 
