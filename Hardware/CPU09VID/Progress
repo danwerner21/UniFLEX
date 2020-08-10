@@ -19,7 +19,7 @@ get the 32 MHz pixel clock rock solid synced to the CPU 16 MHz oscillator signal
 for the video shift register, memory access signals and such.
 
 Playing with my W1934S monitor I learned I had to give in a bit on vertical resolution. A workable
-result is 512 X 471 pixels. The HD63B45 seems to accept the 4 MHz clocks without malfunction.
+result is 512 X 472 pixels. The HD63B45 seems to accept the 4 MHz clocks without malfunction.
 
 I used 'debug' to play with the video buffer contents. The video memmory can be mapped to:
 F8, F8-F9, F8-FB. At first I work with the F8 page. So start 'debug' on one terminal, it moves itself
