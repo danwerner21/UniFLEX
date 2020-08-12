@@ -1,0 +1,593 @@
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    1           Module: mon6809
+
+0001                           nam      mon6809
+0002                           opt      nop
+0003                 *
+0004                 * monitor program for 6809
+0005                 *
+0006                 * REV 3.0 DATE 12 11 83
+0007                 *
+0008                 * C.SCHOENMAKERS
+0009                 *
+0010                 *
+0011                 * PROGRAM ASSUMES A 2 KBYTE PROM !!..
+0012                 *
+0013                 *
+0014                           OPT      PAG
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    2           Module: mon6809
+
+0015                           PAG
+0016                 *
+0017                 * SYSTEM EQUATES
+0018                 *
+0019                 
+0020 03FC            SPI0TUF   equ      $03fc
+0021 03FD            SPI0FUF   equ      $03fd
+0022                 
+0023                 
+0024 0000            FIFO      EQU      $0000
+0025                 
+0026                 
+0027 7F00            RAMBASE   EQU      $7f00
+0028 7F00                      ORG      RAMBASE
+0029 7F00            IOVR      RMB      2         IRQ RAM VECTOR
+0030 7F02            NIOR      RMB      2         NMI RAM VECTOR
+0031 7F04            SWIVEC    RMB      2         SWI RAM VECTOR
+0032 7F06            FIRQVC    rmb      2         firq vector
+0033 7F08            SW2VEC    rmb      2         swi 2 ram vector
+0034 7F0A            SW3VEC    rmb      2         swi 3 ram vector
+0035 7F0C            TRAPVC    rmb      2         trap vector
+0036 7F0E            BEGA      RMB      2         BEGIN ADDRESS
+0037 7F10            ENDA      RMB      2         END ADDRESS
+0038 7F12            INVEC     RMB      2         INPUT CHAR VECTOR
+0039 7F14            OUTVEC    RMB      2         OUTPUT CHAR VECTOR
+0040 7F16            TW        RMB      2         TEMP WORK REG
+0041 7F18            BYTEC1    RMB      1         BYTE COUNT
+0042 7F19            XTEMP3    RMB      2         TEMP FOR X
+0043 7F1B            CKSM      RMB      1         CHECKSUM
+0044 7F1C            XHI       RMB      1         ADDRESS BUILD
+0045 7F1D            XLO       RMB      1
+0046 7F1E            TEMP1     RMB      1         SCRATCH
+0047 7F1F            TSP       RMB      2         USER STACK SAVE
+0048 7F21            MCONT     RMB      1         COUNTER
+0049 7F22            STATUS    RMB      1         ECHO / NOECHO FLAG
+0050 7F23            CPUMOD    rmb      1         6809/6309
+0051                 
+0052                 
+0053 7F68            TSTACK    EQU      RAMBASE+$80-24 USER STACK
+0054 7F7F            CSTACK    EQU      RAMBASE+$7F MONITOR STACK
+0055                 
+0056 F800            ROMBASE   EQU      $F800
+0057 F800                      ORG      ROMBASE
+0058                 *
+0059                 * PROGRAM STARTS HERE
+0060                 *
+0061 F800 F8C5                 FDB      PDATA1    printstring (X)
+0062 F802 F929                 FDB      HEXBYT    print one hex byte (A)
+0063 F804 F941                 FDB      OUTS
+0064 F806 FB2F                 FDB      OTCAR     write char to terminal
+0065 F808 FA36                 FDB      TINIT
+0066 F80A FB40                 FDB      INCAR
+0067                 
+0068 F80C 7EF82B     REENT     JMP      CONREN    JUMP INTO WARM MONITOR
+0069 F80F 6E9F7F00   IOV       JMP      [IOVR]    RAM VECTOR IRQ
+0070 F813 6E9F7F02   POWDWN    JMP      [NIOR]    RAM VECTOR NMI
+0071 F817 6E9F7F04   SWIV      JMP      [SWIVEC]  RAM VECTOR SWI
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    3           Module: mon6809
+
+0072 F81B 6E9F7F06   FIRQV     jmp      [FIRQVC]  ram firq vector
+0073 F81F 6E9F7F08   SWI2V     jmp      [SW2VEC]
+0074 F823 6E9F7F0A   SWI3V     jmp      [SW3VEC]
+0075 F827 6E9F7F0C   TRAP      jmp      [TRAPVC]
+0076                 
+0077 F82B 347F       CONREN    PSHS     CC,D,DP,X,Y,U SAVE REMAINDER OF REGS
+0078 F82D 10FF7F1F             STS      TSP
+0079 F831 7EF993               JMP      CONTRL
+0080                 
+0081 F834            RDRON
+0082 F834 B67F22     NOECHO    LDAA     STATUS    UPDATE FLAG
+0083 F837 8A80                 ORAA     #$80
+0084 F839 7EFA49               JMP      ECHO1     STORE AND RETURN
+0085                 
+0086 F83C            LOAD      EQU      *
+0087 F83C 8DF6                 BSR      RDRON     PUT READER ON
+0088 F83E BDF886     LOAD3     JSR      INCH      READ CHAR
+0089 F841 8153                 CMPA     #'S       START OF RECORD?
+0090 F843 26F9                 BNE      LOAD3     NO
+0091 F845 BDF886               JSR      INCH
+0092 F848 8139                 CMPA     #'9       END RECORD?
+0093 F84A 2726                 BEQ      LOAD21    YES
+0094 F84C 8131                 CMPA     #'1       DATA RECORD?
+0095 F84E 26EE                 BNE      LOAD3     TRY AGAIN
+0096 F850 7F7F1B               CLR      CKSM      CLEAR CHECKSUM
+0097 F853 8D4C                 BSR      INBYTE    READ COUNT
+0098 F855 8002                 SUBA     #2
+0099 F857 B77F18               STAA     BYTEC1    KEEP COUNT
+0100 F85A 8D2D                 BSR      BADDR     READ ADDRESS
+0101 F85C 8D43       LOAD11    BSR      INBYTE    DATA
+0102 F85E 7A7F18               DEC      BYTEC1    LAST BYTE OF RECORD?
+0103 F861 2708                 BEQ      LOAD15
+0104 F863 A780                 STAA     0,X+      PUT DATA IN MEM
+0105 F865 20F5                 BRA      LOAD11
+0106                 
+0107 F867 863F       OUTQM     LDAA     #'?       OUTPUT '?'
+0108 F869 2018                 BRA      OUTCH
+0109                 
+0110 F86B 7C7F1B     LOAD15    INC      CKSM      MUST BE ZERO
+0111 F86E 27CE                 BEQ      LOAD3     YES
+0112 F870 8DF5                 BSR      OUTQM     PUT MESSAGE
+0113                 
+0114 F872            LOAD21    EQU      *
+0115 F872 7EF993     C1        JMP      CONTRL    LEAVE LOADER
+0116                 
+0117 F875 44         OUTHL     LSRA
+0118 F876 44                   LSRA
+0119 F877 44                   LSRA
+0120 F878 44                   LSRA
+0121 F879 840F       OUTHR     ANDA     #%00001111 MASK BITS
+0122 F87B 8B30                 ADDA     #$30      CONVERT TO ASCII
+0123 F87D 8139                 CMPA     #$39
+0124 F87F 2302                 BLS      OUTCH
+0125 F881 8B07                 ADDA     #7        WAS ALPHA
+0126                 
+0127 F883 7EFB2B     OUTCH     JMP      OUTEE
+0128 F886 7EFB3C     INCH      JMP      INEEE
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    4           Module: mon6809
+
+0129                 
+0130 F889 8D16       BADDR     BSR      INBYTE    READ HIBYTE
+0131 F88B 250E                 bcs      OUTQA
+0132 F88D B77F1C               STAA     XHI
+0133 F890 8D0F                 BSR      INBYTE    READ LOBYTE
+0134 F892 2507                 bcs      OUTQA
+0135 F894 B77F1D               STAA     XLO
+0136 F897 BE7F1C     BADR1     LDX      XHI       ADDRESS > X
+0137 F89A 39                   RTS
+0138 F89B 8DCA       OUTQA     BSR      OUTQM
+0139 F89D BE7F1C               LDX      XHI
+0140 F8A0 39                   RTS
+0141                 
+0142 F8A1 8D69       INBYTE    BSR      INHEX     READ LEFT NIBBLE
+0143 F8A3 2518                 bcs      bytex
+0144 F8A5 48                   ASLA
+0145 F8A6 48                   ASLA
+0146 F8A7 48                   ASLA
+0147 F8A8 48                   ASLA
+0148 F8A9 1F89                 tfr      a,b
+0149 F8AB 8D5F                 BSR      INHEX     READ RIGHT NIBBLE
+0150 F8AD 250E                 bcs      bytex
+0151 F8AF 3404ABE0             ABA
+0152 F8B3 1F89                 tfr      a,b
+0153 F8B5 FB7F1B               ADDB     CKSM      UPDATE CHECKSUM
+0154 F8B8 F77F1B               STAB     CKSM
+0155 F8BB 1CFE                 clc
+0156 F8BD 39         bytex     RTS                CHAR IN A'
+0157                 
+0158 F8BE 8EFB8D     OUTSTG    LDX      #MCL1     CRLF
+0159 F8C1 2002                 BRA      PDATA1
+0160                 
+0161 F8C3 8DBE       PDATA2    BSR      OUTCH     PUT CHAR
+0162 F8C5 A680       PDATA1    LDAA     0,X+      READ CHAR
+0163 F8C7 8104                 CMPA     #4        EOT?
+0164 F8C9 26F8                 BNE      PDATA2    NO OUTPUT IT
+0165 F8CB 39                   RTS
+0166                 
+0167 F8CC            CHANGE    EQU      *
+0168 F8CC 8DBB                 BSR      BADDR     READ ADDRESS
+0169 F8CE 8D71                 BSR      OUTS      SEPARATE
+0170 F8D0 8D6D       CHA1      BSR      OUT2HS    OUTPUT DATA
+0171 F8D2 8DB2                 BSR      INCH      COMMAND
+0172 F8D4 810D                 CMPA     #$0D      CR?
+0173 F8D6 2731                 BEQ      C11       EXIT
+0174 F8D8 815E                 CMPA     #'^       PREV.?
+0175 F8DA 2726                 BEQ      CHA11
+0176 F8DC 1CFE                 clc
+0177 F8DE 8D2F                 BSR      INHEX+3
+0178 F8E0 2511                 BCS      CHA12     NO CHANGE
+0179 F8E2 8DBF                 BSR      INBYTE+2
+0180 F8E4 250D                 BCS      CHA12     NO CHANGE
+0181 F8E6 301F                 DEX                ADJUST POINTER
+0182 F8E8 A784                 STAA     0,X       PUT DATA
+0183 F8EA A184                 CMPA     0,X       CHECK DATA
+0184 F8EC 2703                 BEQ      CHA14
+0185 F8EE BDF867               JSR      OUTQM     WARN USER
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    5           Module: mon6809
+
+0186 F8F1 3001       CHA14     INX                ADJUST POINTER
+0187 F8F3 BF7F1C     CHA12     STX      XHI       SAVE X
+0188 F8F6 8DC6                 BSR      OUTSTG    PUT CRLF
+0189 F8F8 8E7F1C               LDX      #XHI      OUTPUT NEW ADDRESS
+0190 F8FB 8D40                 BSR      OUT4HS
+0191 F8FD BE7F1C               LDX      XHI       RESTORE POINTER
+0192 F900 20CE                 BRA      CHA1
+0193 F902 301E       CHA11     leax     -2,x
+0194 F904 20ED                 BRA      CHA12
+0195 F906 17FF5E     C3        LBSR     OUTQM
+0196 F909 7EF993     C11       JMP      CONTRL
+0197                 
+0198 F90C 17FF77     INHEX     LBSR     INCH      GET CHAR
+0199 F90F 8A20                 oraa     #$20      make lower
+0200 F911 8030                 SUBA     #$30      CHECK IF VALID
+0201 F913 2B11                 BMI      C8
+0202 F915 8109                 CMPA     #$09      NUMERAL?
+0203 F917 230A                 BLS      IN1HG     YES
+0204 F919 8131                 CMPA     #$31      ALPHA
+0205 F91B 2509                 BLO      C8
+0206 F91D 8136                 CMPA     #$36
+0207 F91F 2205                 BHI      C8        NO
+0208 F921 8027                 SUBA     #$27
+0209 F923 1CFE       IN1HG     clc
+0210 F925 39                   RTS
+0211 F926 1A01       C8        sec
+0212 F928 39                   rts
+0213                 
+0214 F929 3402       HEXBYT    PSHS     A
+0215 F92B BDF875               JSR      OUTHL
+0216 F92E 3502                 PULS     A
+0217 F930 7EF879               JMP      OUTHR
+0218                 
+0219 F933 A684       OUT2H     LDAA     0,X       GET CHAR
+0220 F935 BDF875     OUT2HA    JSR      OUTHL     LEFT NIBBLE
+0221 F938 A680                 LDAA     0,X+
+0222 F93A 7EF879               JMP      OUTHR     RIGHT NIBBLE
+0223                 
+0224 F93D 8DF4       OUT4HS    BSR      OUT2H     LEFT BYTE
+0225 F93F 8DF2       OUT2HS    BSR      OUT2H     RIGHT BYTE
+0226 F941 8620       OUTS      LDAA     #'        SPACE
+0227 F943 7EF883               JMP      OUTCH
+0228                 
+0229 F946            START     EQU      *
+0230 F946 10CE7F68             LDS      #TSTACK   LOAD STACK POINTER
+0231 F94A 10FF7F1F             STS      TSP       SAVE IT
+0232 F94E 4F                   CLRA
+0233 F94F 1F8B                 TFR      A,DP
+0234 F951 113D03               FCB      $11,$3D,$03 set 6309
+0235                 *
+0236                 
+0237 F954 86D0                 LDA      #$D0      SET DP REG
+0238 F956 A7E4                 STA      0,S
+0239 F958 6F65                 clr      5,s       set dp
+0240 F95A 8EFA04               LDX      #SFE      SOFTWARE INTERR. ENTRY
+0241 F95D BF7F04               STX      SWIVEC
+0242 F960 8EFA0C               LDX      #HWE      HARD WARE INTERRUPT
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    6           Module: mon6809
+
+0243 F963 BF7F00               STX      IOVR
+0244 F966 BF7F02               STX      NIOR      NMI VECTOR
+0245 F969 BF7F08               STX      SW2VEC
+0246 F96C BF7F0A               STX      SW3VEC
+0247 F96F BF7F0C               STX      TRAPVC
+0248 F972 8EFB40               LDX      #INCAR    SET INPUT SWITCH
+0249 F975 BF7F12               STX      INVEC
+0250 F978 8EFB2F               LDX      #OTCAR    SET OUTPUT SWITCH
+0251 F97B BF7F14               STX      OUTVEC
+0252 F97E 7F7F22               CLR      STATUS    ENABLE ECHO
+0253 F981 BDFA36               jsr      TINIT
+0254 F984 8EF993               ldx      #CONTRL
+0255 F987 AF6C                 stx      12,s      set default go
+0256                 * clear FIFO
+0257 F989 8E0000               ldx      #0
+0258 F98C 6F80       cl0001    clr      0,x+
+0259 F98E 8C0400               cpx      #$400
+0260 F991 25F9                 blo      cl0001
+0261                 
+0262                 
+0263 F993 10CE7F7F   CONTRL    LDS      #CSTACK   MONITOR STACK
+0264 F997 BDFA44               JSR      RDROFF
+0265 F99A BDFA43               JSR      PNHOFF
+0266                 
+0267 F99D 8EFB85               LDX      #MCL0     PROMPT
+0268 F9A0 BDF8C5               JSR      PDATA1
+0269 F9A3 BDFB24               JSR      INCMD     WAIT FOR ALPHA
+0270 F9A6 1F894D               TAB                SAVE CHAR
+0271 F9A9 17FF95               LBSR     OUTS      SEPARATE
+0272 F9AC CA20                 orab     #$20
+0273 F9AE C163                 CMPB     #'c       CALL FUNCTION
+0274 F9B0 102701B3             LBEQ     MCALL
+0275 F9B4 C170                 CMPB     #'p       PRINT/PUNCH
+0276 F9B6 2743                 BEQ      CL1
+0277 F9B8 C16C                 CMPB     #'l       LOAD FILE?
+0278 F9BA 2603                 BNE      *+5
+0279 F9BC 7EF83C               JMP      LOAD      YES
+0280 F9BF C16D                 CMPB     #'m       CHANGE?
+0281 F9C1 2603                 BNE      *+5
+0282 F9C3 7EF8CC               JMP      CHANGE    YES
+0283 F9C6 C172                 CMPB     #'r       PRINT REG?
+0284 F9C8 2746                 BEQ      PRNTRG
+0285 F9CA C162                 cmpb     #'b
+0286 F9CC 2606                 bne      contr1
+0287 F9CE 8EFA0C               ldx      #HWE
+0288 F9D1 BF7F04               stx      SWIVEC
+0289 F9D4 C167       contr1    CMPB     #'g       GO?
+0290 F9D6 26BB                 BNE      CONTRL    NO
+0291                 * GO cmd
+0292 F9D8 BDF886               JSR      INCH      HOW?
+0293 F9DB 810D                 CMPA     #$0D      CR?
+0294 F9DD 2717                 BEQ      CONTIN    WITH CURRENT ADDRESS
+0295 F9DF BDF90F               JSR      INHEX+3   GET NEW ADDRESS
+0296 F9E2 25AF                 BCS      CONTRL
+0297 F9E4 BDF8A3               JSR      INBYTE+2
+0298 F9E7 25AA                 BCS      CONTRL
+0299 F9E9 BDF88B               JSR      BADDR+2
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    7           Module: mon6809
+
+0300 F9EC 25A5                 bcs      CONTRL
+0301 F9EE FC7F1C               LDD      XHI       TRANSFER ADDRESS
+0302 F9F1 BE7F1F               LDX      TSP       TO PSEUDO REGS
+0303 F9F4 ED0C                 STD      12,x
+0304 F9F6 10FE7F1F   CONTIN    LDS      TSP       RESTORE USER STACK
+0305 F9FA 3B                   RTI                AND RUN...
+0306                 
+0307 F9FB 8D40       CL1       BSR      INCH1     GET SUB COMM.
+0308 F9FD 8168                 CMPA     #'h       PUNCH?
+0309 F9FF 274C                 BEQ      PUNCH
+0310 FA01 7EFAE1               JMP      PRINT
+0311                 
+0312 FA04            SFE       EQU      *
+0313 FA04 6D6D                 tst      13,s
+0314 FA06 2602                 bne      *+4
+0315 FA08 6A6C                 dec      12,s
+0316 FA0A 6A6D                 dec      13,s
+0317                 
+0318 FA0C            HWE       EQU      *
+0319 FA0C 10FF7F1F             STS      TSP       SAVE STACK POINTER
+0320                 
+0321 FA10 8D03       PRNTRG    BSR      PRTREG    PRINT REGS
+0322 FA12 7EF993     C4        JMP      CONTRL
+0323                 
+0324 FA15 BE7F1F     PRTREG    LDX      TSP       GET REG AREA
+0325 FA18 BDF93F               JSR      OUT2HS    CC
+0326 FA1B BDF93D               JSR      OUT4HS    A,B
+0327 FA1E BDF93D               jsr      OUT4HS    wh/wl
+0328 FA21 BDF93F     PRT01     JSR      OUT2HS    DP
+0329 FA24 BDF93D               JSR      OUT4HS    X
+0330 FA27 BDF93D               JSR      OUT4HS    Y
+0331 FA2A BDF93D               JSR      OUT4HS    U
+0332 FA2D BDF93D               JSR      OUT4HS    PC
+0333 FA30 8E7F1F               LDX      #TSP
+0334 FA33 7EF93D               JMP      OUT4HS    SP  +RTS
+0335                 
+0336 FA36            TINIT
+0337 FA36 7F03FC               CLR      SPI0TUF
+0338 FA39 7F03FD               CLR      SPI0FUF
+0339 FA3C 39                   RTS
+0340                 
+0341 FA3D 7EFB3C     INCH1     JMP      INEEE
+0342 FA40 7EFB2B     OUTCH1    JMP      OUTEE
+0343                 
+0344 FA43 39         PNHOFF    RTS
+0345 FA44            RDROFF
+0346 FA44 B67F22     ECHO      LDAA     STATUS
+0347 FA47 847F                 ANDA     #$7F      RESET BIT
+0348 FA49 B77F22     ECHO1     STAA     STATUS    STORE RESULT
+0349 FA4C 39                   RTS
+0350                 
+0351 FA4D            PUNCH     EQU      *
+0352 FA4D 8D5F                 BSR      SADDR     GET BEGA ENDA
+0353 FA4F BDFB5B               JSR      PNCHHD    PU'CH LEADER
+0354 FA52 BE7F0E     PUN35     LDX      BEGA      MAKE TEMP POINTER
+0355 FA55 BF7F16               STX      TW
+0356 FA58 FC7F10     PUN11     LDD      ENDA      CALC. SIZE
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    8           Module: mon6809
+
+0357 FA5B B37F16               SUBD     TW
+0358 FA5E 10830018             CMPD     #24       STANDARD RECORD
+0359 FA62 2502                 BCS      PUN23
+0360 FA64 C617       PUN22     LDAB     #23
+0361 FA66 CB04       PUN23     ADDB     #4
+0362 FA68 F77F21               STAB     MCONT     FRAMES
+0363 FA6B C003                 SUBB     #3
+0364 FA6D F77F1E               STAB     TEMP1     DATA BYTES
+0365 FA70 8EFBA6               LDX      #MTAPE1   'S1'
+0366 FA73 8D0D                 BSR      PUN40
+0367 FA75 BE7F16     PUN50     LDX      TW        CHECK DONE
+0368 FA78 301F                 DEX
+0369 FA7A BC7F10               CPX      ENDA
+0370 FA7D 23D9                 BLS      PUN11
+0371 FA7F 7EFB5C               JMP      PNCHTR    PUNCH TRAILER
+0372                 
+0373 FA82 BDF8C5     PUN40     JSR      PDATA1    PUNCH STRING
+0374 FA85 5F                   CLRB               CLEAR CHECKSUM
+0375 FA86 8E7F21               LDX      #MCONT    PUNCH FRAMES
+0376 FA89 8D1E                 BSR      PUNT2
+0377 FA8B 8E7F16               LDX      #TW       PUNCH ADDRESS
+0378 FA8E 8D19                 BSR      PUNT2
+0379 FA90 8D17                 BSR      PUNT2
+0380 FA92 BE7F16               LDX      TW        DATA POINTER
+0381 FA95 8D12       PUN32     BSR      PUNT2     PUNCH DATA
+0382 FA97 7A7F1E               DEC      TEMP1
+0383 FA9A 26F9                 BNE      PUN32
+0384 FA9C BF7F16               STX      TW
+0385 FA9F 53                   COMB               PUNCH CHECKSUM
+0386 FAA0 3404                 PSHB
+0387 FAA2 1F41                 TSX
+0388 FAA4 8D03                 BSR      PUNT2
+0389 FAA6 3504                 PULB
+0390 FAA8 39                   RTS
+0391 FAA9 EB84       PUNT2     ADDB     0,X       UPDATE CHECKSUM
+0392 FAAB 7EF933               JMP      OUT2H
+0393                 
+0394 FAAE 8EFB92     SADDR     LDX      #STRG1    PUT BEGA HEADER
+0395 FAB1 BDF8C5               JSR      PDATA1
+0396 FAB4 8E7F0E               LDX      #BEGA     PUT OLD BEGA
+0397 FAB7 BDF93D               JSR      OUT4HS
+0398 FABA BDFB3C               JSR      INEEE     GET DATA
+0399 FABD 8120                 CMPA     #'        SPACE;ALTER?
+0400 FABF 2606                 BNE      SAD1      NO
+0401 FAC1 BDF889               JSR      BADDR     NEW ADDRESS
+0402 FAC4 BF7F0E               STX      BEGA
+0403 FAC7 8EFB9C     SAD1      LDX      #STRG2    ENDA HEADER
+0404 FACA BDF8C5               JSR      PDATA1
+0405 FACD 8E7F10               LDX      #ENDA     PUT OLD ENDA
+0406 FAD0 BDF93D               JSR      OUT4HS
+0407 FAD3 BDFB3C               JSR      INEEE
+0408 FAD6 8120                 CMPA     #'        SPACE;ALTER?
+0409 FAD8 2606                 BNE      SAD2      NO
+0410 FADA BDF889               JSR      BADDR     GET NEW ENDA
+0411 FADD BF7F10               STX      ENDA
+0412 FAE0 39         SAD2      RTS
+0413                 
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page    9           Module: mon6809
+
+0414 FAE1            PRINT     EQU      *
+0415 FAE1 8DCB                 BSR      SADDR     GET BEGA ENDA
+0416 FAE3 BE7F0E               LDX      BEGA      KEEP TEMP POINTER
+0417 FAE6 BF7F16               STX      TW
+0418 FAE9 BDF8BE     PRT3      JSR      OUTSTG    CRLF
+0419 FAEC 8E7F16               LDX      #TW       OUTPUT ADDRESS
+0420 FAEF BDF93D               JSR      OUT4HS
+0421 FAF2 BE7F16               LDX      TW        OUTPUT DATA
+0422 FAF5 C610                 LDAB     #16       BLOCK SIZE
+0423 FAF7 A684       PRT1      LDAA     0,X       GET DATA
+0424 FAF9 BDF93F               JSR      OUT2HS    OUTPUT IN HEX
+0425 FAFC 5A                   DECB
+0426 FAFD 26F8                 BNE      PRT1
+0427 FAFF BE7F16               LDX      TW        RESTORE POINTER
+0428 FB02 C610                 LDAB     #16       RESTORE SIZE
+0429 FB04 A680       PRT2      LDAA     0,X+      GET DATA
+0430 FB06 8D10                 BSR      SELCAR    OUTPUT IN ASCII
+0431 FB08 5A                   DECB
+0432 FB09 26F9                 BNE      PRT2
+0433 FB0B BF7F16               STX      TW        CHECK DONE
+0434 FB0E 301F                 DEX
+0435 FB10 BC7F10               CMPX     ENDA
+0436 FB13 25D4                 BLO      PRT3
+0437 FB15 7EF993               JMP      CONTRL    DONE
+0438                 
+0439 FB18 8120       SELCAR    CMPA     #$20      CHECK LITERAL
+0440 FB1A 2504                 BLO      PRT4      NO
+0441 FB1C 817F                 CMPA     #$7F      UPPER LIMIT
+0442 FB1E 2302                 BLS      PRT5
+0443 FB20 862E       PRT4      LDAA     #'.       NOT PRINTABLE
+0444 FB22 2007       PRT5      BRA      OUTEE
+0445                 
+0446 FB24 8D16       INCMD     BSR      INEEE     GET CHAR
+0447 FB26 8540                 BITA     #$40      ALPHA?
+0448 FB28 27FA                 BEQ      INCMD     WAIT UNTIL
+0449 FB2A 39                   RTS
+0450                 
+0451 FB2B 6E9F7F14   OUTEE     JMP      [OUTVEC]  USE RAM VECTOR
+0452                 
+0453 FB2F 3404       OTCAR     PSHB               SAVE B
+0454 FB31 F603FC     OT1       LDAB     SPI0TUF   interruptless tranfer
+0455 FB34 26FB                 BNE      OT1
+0456 FB36 B703FC               STAA     SPI0TUF
+0457 FB39 3504       EXIT1     PULB               RESTORE B
+0458                 
+0459 FB3B 39         EXIT      RTS
+0460                 
+0461 FB3C 6E9F7F12   INEEE     JMP      [INVEC]   USE RAM VECTOR
+0462                 
+0463 FB40 3404       INCAR     PSHB               SAVE B
+0464 FB42 F603FD     INC1      LDAB     SPI0FUF   interruptless transfer
+0465 FB45 27FB                 BEQ      INC1
+0466 FB47 B603FD               LDAA     SPI0FUF
+0467 FB4A 5F                   clrb
+0468 FB4B F703FD               STAB     SPI0FUF
+0469 FB4E 847F                 ANDA     #$7F
+0470 FB50 817F                 CMPA     #$7F      SKIP RUBOUT
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page   10           Module: mon6809
+
+0471 FB52 27EE                 BEQ      INC1
+0472 FB54 7D7F22               TST      STATUS    ECHO?
+0473 FB57 2BE0                 BMI      EXIT1
+0474 FB59 20D6                 BRA      OT1       ECHO
+0475                 
+0476                 
+0477 FB5B 39         PNCHHD    RTS
+0478                 
+0479 FB5C 8DFD       PNCHTR    BSR      PNCHHD    50 NULLS
+0480 FB5E 8EFBAD               LDX      #MTAPE3   S9
+0481 FB61 BDF8C5               JSR      PDATA1
+0482 FB64 7EF993     C5        JMP      CONTRL    EXIT
+0483                 
+0484 FB67 BDF889     MCALL     jsr      BADDR
+0485 FB6A 2516                 bcs      CON1
+0486 FB6C FC7F1C               LDD      XHI       TRANSFER ADDRESS
+0487 FB6F BE7F1F               LDX      TSP       TO PSEUDO REGS
+0488 FB72 ED0A                 STD      10,X
+0489 FB74 10FE7F1F             LDS      TSP       RESTORE USER STACK
+0490 FB78 357F                 PULS     CC,D,DP,X,Y,U
+0491 FB7A ADF1                 JSR      [0,S++]
+0492 FB7C 347F                 PSHS     CC,D,DP,X,Y,U
+0493 FB7E 10FF7F1F             STS      TSP
+0494 FB82 7EF993     CON1      JMP      CONTRL
+0495                 
+0496                 
+0497 FB85 0D0A00002A MCL0      FCB      $D,$A,0,0,'*','*','*',$20
+          2A2A20     
+0498 FB8D 0D0A000004 MCL1      FCB      $D,$A,0,0,4
+0499 FB92 0D0A000042 STRG1     FCB      $D,$A,0,0,'B','E','G','A',$20,4
+          4547412004 
+0500 FB9C 0D0A000045 STRG2     FCB      $D,$A,0,0,'E','N','D','A',$20,4
+          4E44412004 
+0501 FBA6 0D0A000053 MTAPE1    FCB      $D,$A,0,0,'S','1',4
+          3104       
+0502 FBAD 0D0A000053 MTAPE3    FCB      $D,$A,0,0,'S','9',0,0,4
+          39000004   
+0503                 
+0504                 
+0505 FFF0                      ORG      $FFF0
+0506 FFF0 F827                 FDB      TRAP      reserved
+0507 FFF2 F823                 FDB      SWI3V
+0508 FFF4 F81F                 FDB      SWI2V
+0509 FFF6 F81B                 FDB      FIRQV
+0510 FFF8 F80F                 FDB      IOV       IRQ INPUT
+0511 FFFA F817                 FDB      SWIV      SWI VECTOR
+0512 FFFC F813                 FDB      POWDWN    NMI
+0513 FFFE F946                 FDB      START     RESET VECTOR
+0514                 
+0515 0000                      END
+
+No Syntax Errors.
+
+
+Symbol table:
+
+FAC7 SAD1          FAE0 SAD2          F80F IOV           FA49 ECHO1         
+03FC SPI0TUF       7F1D XLO           F85C LOAD11        FAE1 PRINT         
+F86B LOAD15        FB31 OT1           7F00 IOVR          FA82 PUN40         
+     SPM09			 Wed Aug 12 21:42:49 2020
+         Page   11           Module: mon6809
+
+FA75 PUN50         F879 OUTHR         7F19 XTEMP3        FB92 STRG1         
+F8BD bytex         FA04 SFE           FB40 INCAR         F897 BADR1         
+F82B CONREN        FA4D PUNCH         FA43 PNHOFF        FB39 EXIT1         
+F81B FIRQV         F872 LOAD21        FA58 PUN11         FA36 TINIT         
+7F06 FIRQVC        FB9C STRG2         7F0E BEGA          7F10 ENDA          
+03FD SPI0FUF       F8F1 CHA14         FB82 CON1          F813 POWDWN        
+FB85 MCL0          FB8D MCL1          7F1C XHI           F83E LOAD3         
+F8A1 INBYTE        F875 OUTHL         7F23 CPUMOD        FB5C PNCHTR        
+FA64 PUN22         FA95 PUN32         FB24 INCMD         FAA9 PUNT2         
+F889 BADDR         F8BE OUTSTG        FB2B OUTEE         F923 IN1HG         
+F946 START         FB18 SELCAR        7F21 MCONT         F867 OUTQM         
+7F14 OUTVEC        FA66 PUN23         FA10 PRNTRG        7F18 BYTEC1        
+FAAE SADDR         F90C INHEX         7F04 SWIVEC        FA15 PRTREG        
+F941 OUTS          7F22 STATUS        F8D0 CHA1          7F1E TEMP1         
+7F08 SW2VEC        FB67 MCALL         FB42 INC1          F8C5 PDATA1        
+F8C3 PDATA2        F872 C1            F929 HEXBYT        F906 C3            
+FA12 C4            FB64 C5            F926 C8            F886 INCH          
+0000 FIFO          7F12 INVEC         7F7F CSTACK        F9F6 CONTIN        
+7F1F TSP           F81F SWI2V         F823 SWI3V         F817 SWIV          
+F834 RDRON         FAF7 PRT1          FB04 PRT2          FAE9 PRT3          
+FB20 PRT4          FB22 PRT5          F98C cl0001        FA44 RDROFF        
+FA52 PUN35         FB3C INEEE         FA0C HWE           F8CC CHANGE        
+F9D4 contr1        7F0A SW3VEC        FBA6 MTAPE1        FBAD MTAPE3        
+FA44 ECHO          F83C LOAD          FB5B PNCHHD        F834 NOECHO        
+F827 TRAP          F933 OUT2H         F80C REENT         F883 OUTCH         
+7F02 NIOR          F993 CONTRL        7F16 TW            F935 OUT2HA        
+FA40 OUTCH1        F93F OUT2HS        F93D OUT4HS        7F68 TSTACK        
+7F0C TRAPVC        7F00 RAMBASE       F902 CHA11         F800 ROMBASE       
+FB3B EXIT          F909 C11           FB2F OTCAR         FA3D INCH1         
+F89B OUTQA         7F1B CKSM          F9FB CL1           FA21 PRT01         
+
