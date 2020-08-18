@@ -48,3 +48,12 @@ that was why these strange things happened. The process would sleep on a fdn upd
 DISK_TYPES gives an overview of disks that work (don't work) with the IDE interface. A lot of them do. Thanks to C.d.Jong for 
 his many test attempts in tropical heat :-). Thank you.
 
+2020-08-17:
+
+Recent tests with TravelStart drives did not work well. The drives were not detected when used as single master. They _were_ 
+working when used as a slave drive with another 5" drive. After reading more recent ATA spec's and some testing I found it.
+On the IDE board the IDE_CS3FX- line is not used, left open. Most drives don't have a problem with that but some do.
+Adding a 10Kohm resistor between pin 38 of the IDE connector and the +5V elimnates this problem.
+In the next revision this will be added.
+
+
