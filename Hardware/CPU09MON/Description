@@ -1,18 +1,18 @@
 CPU09MON
 
 Provides:
-* up to 960KB of user RAM
-* up to 8 KB of user (E)(P)ROM, in 2K pages f800-ffff
+* up to 992KB of user RAM
+* up to 8 KB of user (E)(P)ROM, in 2K pages F800-FFFF
 * a serial console port, (HD63B50 running at 4MHz busclock with no waitstates) baud rates 19k2,9k6,4k8,2k4,1k2
 * hardware BLACKHOLE and WHITEHOLE memory detection and generation
 * central baudrate generator for the whole system, 1.2288MHz over the system bus
 * 8 status LED's for kernel flagging, the 'LIGHTS' feature as coded in the kernel
 * periodic timer interrupt, 100 Hz
-* IO decoding for most devices in the area f000-f3ff
+* IO decoding for most devices in the area F000-F3FF
 * dual interrupt vectors, depending on supervisor/user state
 
 Description:
-The CPU09MON card holds a special version of the UniBug ROM, up to 1 MByte of static RAM, an ACIA for system console, a PIA that is
+The CPU09MON card holds a special version of the UniBUG ROM, up to 1 MByte of static RAM, an ACIA for system console, a PIA that is
 serving as system timer/control and for the LIGHTS feature. The card holds a 4.9152 MHz baud rate oscillator, a /4 signal is fed
 over the backplane as common clock for other serial boards and it provides the 100 Hz signal for the system timer.
 3 16V8 GAL's serve as glue logic. The board also holds the logic for the BLACKHOLE and WHITEHOLE memory blocks. In this system
