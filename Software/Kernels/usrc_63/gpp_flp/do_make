@@ -1,1 +1,1 @@
-relasmb +o=gppflp  gppflp.t +b=GPPFLP
+relasmb +lsb=GPPFLP gppflpdrv.t >LISTgrep rror LIST
