@@ -1,53 +1,1 @@
-The 09FLP support board provides:
-
-*) WD2793 controller 
-*) 50 pin connector for 8" drives, 36 pin connector for 5.25" / 3.5" drives
-*) control latch: drive select, side select, SD/DD select, 8"/5" mode select
-*) status port: FDC DRQ, FDC INT, 
-*) motor-on timer
-*) test jumper, variable capacitor and 2 potentiometers to adjust various settings for the WD2793
-*) local 2MHz oscillator for the WD2793
-*) 40 pin IO connector and form factor that fits on a CPU09GPP
-
-The schematic is the final version of the design
-
-*******************************************************************************************
-*
-* The CPU09GPP/09FLP combo now works fully
-*
-*******************************************************************************************
-2020-09-29:
-
-I finally have the driver working. It handles all sorts of UniFLEX formats automatically. See list in spreadsheet.
-At this moment the 'double step' formats are not supported and they may be never again.
-
-'kformat' is a version of 'formatfd' which supports all these formats.
-
-Even 'pc2uos0' shows you the directory of an MSDOS diskette and can be used to transfer data from and to the diskette.
-
-The 09FLP board has minor tweeks to get it working. I will finalize the design soon.
-
-2020-10-12:
-
-The software for the CPU09GPP keeps throwing up obstacles. I have hunting an effect that I failed to
-understand for a couple of days. While my short test program gppflp would allow me to read a DS-DD disk
-without a problem, the full gppflpdrv software would not let that happen. 
-
-The kernel driver will test if it can read the SIR block with SD 8", DD 8", SD 5" and DD 5", in that
-order. When successful, the kernel will read and apply the 2 special bytes from the SIR as parameters
-for the driver, so the driver knows all it needs to know i.e: sectors/track, biased sectors, tracks etc.
-This way it can handle every UniFLEX disk thrown at it. 
-
-Futhermore,via the character device driver and a proper program it can handle every diskette with 
-128, 256 and 512 byte sectors. So even a DS-DD FLEX disk would be readable.
-
-Many hypothesis were recherched but none gave a real clue, until.... 
-I started to add debug statements in the code that would show settings of variables. 
-All of a sudden it worked, but disabling the debug calls brought back the problem.
-I nailed it down to the fact the de WD2793 controller needs some 'settling' time when the density setting
-is changed. And yes inserting a delay made everything working again.
-I could not find any documentation on that.
-
-Now I have to get down to the amount of minimal delay what is essential to keep it working.
-
-
+The 09FLP support board provides:*) WD2793 controller *) 50 pin connector for 8" drives, 36 pin connector for 5.25" / 3.5" drives*) control latch: drive select, side select, SD/DD select, 8"/5" mode select*) status port: FDC DRQ, FDC INT, *) motor-on timer*) test jumper, variable capacitor and 2 potentiometers to adjust various settings for the WD2793*) local 2MHz oscillator for the WD2793*) 40 pin IO connector and form factor that fits on a CPU09GPPThe schematic is the final version of the design********************************************************************************************* The CPU09GPP/09FLP combo now works fully********************************************************************************************2020-09-29:I finally have the driver working. It handles all sorts of UniFLEX formats automatically. See list in spreadsheet.At this moment the 'double step' formats are not supported and they may be never again.'kformat' is a version of 'formatfd' which supports all these formats.Even 'pc2uos0' shows you the directory of an MSDOS diskette and can be used to transfer data from and to the diskette.The 09FLP board has minor tweeks to get it working. I will finalize the design soon.2020-10-12:The software for the CPU09GPP keeps throwing up obstacles. I have hunting an effect that I failed tounderstand for a couple of days. While my short test program gppflp would allow me to read a DS-DD diskwithout a problem, the full gppflpdrv software would not let that happen. The kernel driver will test if it can read the SIR block with SD 8", DD 8", SD 5" and DD 5", in thatorder. When successful, the kernel will read and apply the 2 special bytes from the SIR as parametersfor the driver, so the driver knows all it needs to know i.e: sectors/track, biased sectors, tracks etc.This way it can handle every UniFLEX disk thrown at it. Futhermore,via the character device driver and a proper program it can handle every diskette with 128, 256 and 512 byte sectors. So even a DS-DD FLEX disk would be readable.Many hypothesis were recherched but none gave a real clue, until.... I started to add debug statements in the code that would show settings of variables. All of a sudden it worked, but disabling the debug calls brought back the problem.I nailed it down to the fact the de WD2793 controller needs some 'settling' time when the density settingis changed. And yes inserting a delay made everything working again.I could not find any documentation on that.Now I have to get down to the amount of minimal delay what is essential to keep it working.2020-10-10:It was not the WD2793, but it was the driver though. During testing it appeared to me that ONLY sector 1of track 0 was unreadable after fresh formatting. So I followed the formatting process very carefuly butfound no errors. Mmmm, track 0, sector 1, that is the _first_ write track action. What if the drive hadnot positioned well?? I put on a restore action in the write track function just before the write itselfand guess what?? That was the solution! I could strip all other (extra) code for which I thought it helped. Status: 1) I can format any format from the spreadsheet2) formatpc0 start to work too, I can format PC diskettes that I can handle under Linux with mtools3) pc2uos and uos2pc started to work too, I can transfer files from UniFLEX to MSDOS disks and vice versa.Now I have good confidence that the drivers are OK. O yes, I need to add ReadTrack still but that hasno priority now.I made component changes to 09FLP: T1 has been changed to BSS170, the K246 is wrong at that place.R1 has already been changed to 1K5 I believe.
