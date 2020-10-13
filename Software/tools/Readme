@@ -3,9 +3,39 @@ Here some native UniFLEX programs
 
 'use2'  a slightly modified version of the use screen editor, this one runs also via the IOP.
 
-'kformat' is a UniFLEX diskette formatter. It's capabilities should match that of the 
+'formatfd' is a UniFLEX diskette formatter. It's capabilities should match that of the 
 flpdrvr.t in the kernel tree and that of gppflpdrv.t in the gpp_flp branch
-It could be cpied/renamed to 'formatfd'.
+
+
+
+
+
+                                    format
+
+Format a disk for system use.
+
+SYNTAX
+
+     /etc/format [ +Bdfl LmMnPqrv J
+
+Options
+
+B              Write boot sector only. Do not format disk.
+d=<fil e name> Format the device file name>.
+f=blocs>       Establish blocks> fdn Blocks.
+1=file name>   Take bad sector addresses from file name>.
+L              Take bad sector addresses from terminal.
+m=<model code> Use <model code> for disk parameters.
+M              Take disk parameters from terminal.
+n              Do not prompt for information on disk volume.
+p              Prompt for disk parameters.
+q              Use quiet mode.
+r=(swap>       Reserve <swap> cylinders for swap space.
+V              Verify disk after fomnatting.
+D              Destroy, just erase the disk
+O              unbiased sectors, no filesystem (msdos exchange)
+S              unbiased sectors, UniFLEX filesystem
+I              Use Interleaved sector arrangement on track
 
 
 
