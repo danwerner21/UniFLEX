@@ -35,7 +35,7 @@ Time & date:  19:35  Sep. 30, 2020
   1 HDR_40              2x20PIN             HDR2Y20             J1                                 
   1 HTHSC2              2MHz                HTHSC2              X1                                 
   1 MFET.N              BS170               FET_TO92G           T2                                 
-  1 MFET.P              K246                FET_TO92F           T1                                 
+  1 MFET.N              BS170               FET_TO92G           T1                                 
   1 POL.CAP             1.0uF               ELCO                C11                                
   5 POL.CAP             22u                 ELKO5R5             C12                                
                                                                 C13                                
