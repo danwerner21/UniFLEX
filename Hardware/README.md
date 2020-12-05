@@ -2,7 +2,7 @@ This folder contains the hardware components of my CPU09 system.
 
 If you like to tinker with hardware and UniFLEX or FLEX this system
 may be attractive for you. The designs are made such that the boards
-will not get damaged quickly and the withstand some level of abuse :-)
+will not get damaged quickly and they withstand some level of abuse :-)
 
 For a minimal system you need:
 * CPU09BP       this is the system backplane and accomodates up to 7 slots
