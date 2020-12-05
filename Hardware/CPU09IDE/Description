@@ -56,4 +56,17 @@ On the IDE board the IDE_CS3FX- line is not used, left open. Most drives don't h
 Adding a 10Kohm resistor between pin 38 of the IDE connector and the +5V elimnates this problem.
 In the next revision this will be added.
 
+2020-11-29:
+
+I have ordered a reviewed design of the IDE board. When it arrives I will test it well and when found OK
+I will place the designfiles here with the modified GAL patterns too. I'll keep you posted!
+
+2020-12-05:
+
+The board works very nice. It provides better address decoding and also access to the CS3FX- registers.
+I added two LED's, one for DMA and one for IOP access. This version has all the known patches before this date 
+included.
+
+
+
 
