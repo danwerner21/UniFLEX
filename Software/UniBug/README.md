@@ -22,10 +22,11 @@ D, disk boot. After typing the 'D', the program waits for about 2 seconds, In th
    as drive select from which it will boot.
 </pre>
 
-The ROM code provides the context switching between processes and kernel on interrupt.
 
-UNIBUG.S1 if the hex file as it comes from the assembler, but in Linux text format. 
-UBUG_H.S1 is the same file but gaps in the code are filled with FF, so this is the exact
-code what should go into the (E)PROM.
+The ROM code also provides the context switching between processes and kernel on interrupt.
 
-The branch on equal @ $Fa03/$FA04 can be replaced by 2 NOP's  12 12  as some drives are too fast for this test.
+2020-12-19:
+
+Minor addition. The kernel debugger, when present, is initialized properly.
+
+
