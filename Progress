@@ -216,4 +216,13 @@ so a next version is expected to be without errors.
 
 I will explore the possibillity for a (PS2) mouse. 
 
+2020-12-19:
+A few things are worth mentioning. I am tesing the KDT (Kernel Debugger Tool). The first steps were made well over
+a year ago. It has been dormant for a while but now I am starting more and more to play with special drivers
+the need for the too grew. I have one populated board now. Features will be: single step (of kernel!), address trap,
+memory examine and change, memory dump, print registers and more. I learned that I have to initialize the hardware
+at 'RESET' time. It is realy amazing that you can interrupt (NMI) a running kernel safely and 'C'ontinue afterwards.
+
+Another project is the 09ECN popup board. This board has the hardware for the BBC/Acorn Econet. I am using it with
+a CPU09GPP. My idea is to create a network for it with UniFLEX and possibly also FLEX. It is just for fun.
 
