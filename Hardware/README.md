@@ -24,6 +24,7 @@ In development are:
 * CPU09GPP/09SPI    SD-card / W5500 network interface
 * CPU09KDB          kernel space debugger interface
 * CPUXXCMI          board for 6802/6809 CPU, 65K RAM, 2K ROM, console port (FLEX)
+* CPU09KDB          kernel debugger, fun to step a running kernel, trap on address etc.
 
 With a CPUXXCMI, CPU09FLX/09FLP you would have a simple full blown FLEX compatible system
 
