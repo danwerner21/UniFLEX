@@ -1,0 +1,1 @@
+kill *.r *IDE ../mach_iop/*.rkill ../kernel/Init.t.rcp ../kernel/TTYdrvr.t .umake idemakehead uni.map

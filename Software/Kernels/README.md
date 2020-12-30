@@ -48,5 +48,15 @@ uf20200708.dsk.zip contains a few bootable kernels:
 
 Note: edit /ect/ttylist after booting, disable tty09...tty12 if you don't have IOP and reboot after
 
+2020-12-30:
+
+Uploaded usrc_63A, this clean tree contains the most recent improvements as: 
+* partition table is now located in system tables space. Each partition table is
+(re) loaded when a drive/partition is opened the first time
+* creating a file always strips the s+ bit from the perms.
+* the idedrvr.t now supports 2 CPU09IDE boards (need the latest patches)
+* the build system got some improvements, all files touched when the sysconfig.h 
+has been changed will be rebuild now.
+
 
 
