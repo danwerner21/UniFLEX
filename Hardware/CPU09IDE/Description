@@ -67,6 +67,13 @@ The board works very nice. It provides better address decoding and also access t
 I added two LED's, one for DMA and one for IOP access. This version has all the known patches before this date 
 included.
 
+2021-01-01:
+
+Only, only when you want to cascade two CPU09ID6 boards it need a patch :-(
+The L_DMANEN signal is not included in the GAL logic to control DACK- and BO. 
+One small wire from U10 pin 16 to GAL2 pin 9 is all there is. And I created IDE_G2C 
+with the improvements.
+
 
 
 
