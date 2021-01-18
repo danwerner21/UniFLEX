@@ -48,6 +48,7 @@ uf20200708.dsk.zip contains a few bootable kernels:
 
 Note: edit /ect/ttylist after booting, disable tty09...tty12 if you don't have IOP and reboot after
 
+##############################################################################################################################
 2020-12-30:
 
 Uploaded usrc_63A, this clean tree contains the most recent improvements as: 
@@ -57,6 +58,22 @@ Uploaded usrc_63A, this clean tree contains the most recent improvements as:
 * the idedrvr.t now supports 2 CPU09IDE boards (need the latest patches)
 * the build system got some improvements, all files touched when the sysconfig.h 
 has been changed will be rebuild now.
+* the kernel interrupt-handler handles unused hardware somewhat better now
+
+The image "basic_uf_sys2A.dsk.zip" holds the lastest kernel sources in /src and has already prepared new
+boot images in the root directory. 
+
+'uniflex' and 'uniflex1' are identical and support IDE and extra serial ports via CPU09SR4.
+'uniflex2' supports IDE and IOP. So you can connect with serial ports via the CPU09IOP.
+'uniflex4' supports IDE/IOP and FLP. Here you can connect a floppy drive via CPU09GPP/09FLP.
+
+I have changed the naming of the hard disks:
+W00,W01,W02,W03 are the first master, W10,W11,W12,W13 are the first slave
+W20,W21,W22,W23 are the second master, W30,W31,W32,W33 are the second slave
+
+The same goes for the character devices: WC00,WC01,WC02......WC31,WC32,WC33
+
+
 
 
 
