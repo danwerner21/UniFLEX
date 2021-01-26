@@ -60,6 +60,8 @@ Uploaded usrc_63A, this clean tree contains the most recent improvements as:
 has been changed will be rebuild now.
 * the kernel interrupt-handler handles unused hardware somewhat better now
 
+2021-01-26:
+
 The image "basic_uf_sys2A.dsk.zip" holds the lastest kernel sources in /src and has already prepared new
 boot images in the root directory. 
 
