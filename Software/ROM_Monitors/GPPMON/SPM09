@@ -17,11 +17,15 @@
 * SYSTEM EQUATES
 *
 
-SPI0TUF equ $03fc
-SPI0FUF equ $03fd
+SPI0TUF equ $03fc         data from ROM
+SPI0FUF equ $03fd         data to ROM
 
 
 FIFO    EQU     $0000
+
+timstat equ     $8400       interrupt time and IRQ status
+timctl  equ     $8400       enable timer interrupt
+timrst  equ     $8401       reset IRQ from timer
 
 
 RAMBASE EQU    $7f00
@@ -48,6 +52,10 @@ TSP     RMB    2         USER STACK SAVE
 MCONT   RMB    1         COUNTER
 STATUS  RMB    1         ECHO / NOECHO FLAG
 CPUMOD	rmb		1		 6809/6309	
+milli0  rmb     2
+milli2  rmb     2
+milcor  rmb     1       correction count
+timcpy  rmb     1       copy of bits timctl
 
 
 TSTACK  EQU    RAMBASE+$80-24 USER STACK
@@ -58,13 +66,19 @@ ROMBASE EQU      $F800
 *
 * PROGRAM STARTS HERE
 *
+                FDB             CONTRL          warm entry
+                FDB             REENT           reentry
+		FDB		INCTST          input char tst
+		FDB		INCAR           get input char
+		FDB		OTCAR		write output char
 		FDB		PDATA1		printstring (X)
 		FDB		HEXBYT		print one hex byte (A)
-		FDB		OUTS
-		FDB		OTCAR		write char to terminal
-		FDB		TINIT
-		FDB		INCAR
-
+                FDB             MILLIS          return milliseconds sind start X:D
+                FDB             TSTIRQ          return IRQ status ne=IRQ
+                
+                
+		
+****************************************************************************************8		
 REENT   JMP     CONREN   JUMP INTO WARM MONITOR
 IOV     JMP    [IOVR]     RAM VECTOR IRQ
 POWDWN  JMP    [NIOR]     RAM VECTOR NMI
@@ -74,10 +88,18 @@ SWI2V   jmp     [SW2VEC]
 SWI3V   jmp     [SW3VEC]
 TRAP    jmp     [TRAPVC]
 
+
+TSTIRQ  PSHS    A
+        LDA     timstat
+        BITA    #%01000000                      shows status of IRQ line (0=IRQ)
+        PULS    A,PC
+
+*****************************************************************************************
 CONREN  PSHS   CC,D,DP,X,Y,U SAVE REMAINDER OF REGS
         STS     TSP
         JMP     CONTRL
 
+*****************************************************************************************
 RDRON
 NOECHO  LDAA   STATUS    UPDATE FLAG
         ORAA   #$80
@@ -114,6 +136,7 @@ LOAD15  INC    CKSM      MUST BE ZERO
 LOAD21  EQU    *
 C1      JMP    CONTRL    LEAVE LOADER
 
+*****************************************************************************************
 OUTHL   LSRA
         LSRA
         LSRA
@@ -124,9 +147,11 @@ OUTHR   ANDA   #%00001111 MASK BITS
         BLS    OUTCH
         ADDA   #7        WAS ALPHA
 
+*****************************************************************************************
 OUTCH   JMP    OUTEE
 INCH    JMP    INEEE
 
+*****************************************************************************************
 BADDR   BSR    INBYTE      READ HIBYTE
         bcs    OUTQA
         STAA   XHI
@@ -139,6 +164,7 @@ OUTQA   BSR     OUTQM
         LDX     XHI
         RTS
 
+*****************************************************************************************
 INBYTE    BSR    INHEX     READ LEFT NIBBLE
         bcs     bytex
         ASLA
@@ -158,12 +184,13 @@ bytex   RTS              CHAR IN A'
 OUTSTG  LDX    #MCL1     CRLF
         BRA    PDATA1
 
+****************************************************************************************
 PDATA2  BSR    OUTCH     PUT CHAR
 PDATA1  LDAA   0,X+      READ CHAR
-        CMPA   #4        EOT?
         BNE    PDATA2    NO OUTPUT IT
         RTS
 
+*****************************************************************************************
 CHANGE  EQU    *
         BSR     BADDR  READ ADDRESS
         BSR    OUTS      SEPARATE
@@ -195,6 +222,7 @@ CHA11   leax    -2,x
 C3      LBSR    OUTQM
 C11     JMP    CONTRL
 
+*****************************************************************************************
 INHEX   LBSR   INCH      GET CHAR
 		oraa	#$20     make lower
         SUBA   #$30      CHECK IF VALID
@@ -211,6 +239,7 @@ IN1HG   clc
 C8      sec
         rts
 
+*****************************************************************************************
 HEXBYT	PSHS	A
 		JSR    OUTHL
 		PULS	A
@@ -225,7 +254,8 @@ OUT4HS  BSR    OUT2H     LEFT BYTE
 OUT2HS  BSR    OUT2H     RIGHT BYTE
 OUTS    LDAA   #'        SPACE
         JMP    OUTCH
-
+        
+*******************************************************************************
 START   EQU    *
         LDS    #TSTACK   LOAD STACK POINTER
         STS    TSP       SAVE IT
@@ -239,8 +269,9 @@ START   EQU    *
         clr    5,s      set dp
         LDX    #SFE      SOFTWARE INTERR. ENTRY
         STX    SWIVEC
-        LDX    #HWE      HARD WARE INTERRUPT
+        LDX    #IRQHAN
         STX    IOVR
+        LDX    #HWE      HARD WARE INTERRUPT
         STX    NIOR       NMI VECTOR
         STX    SW2VEC
         STX    SW3VEC
@@ -255,11 +286,17 @@ START   EQU    *
         stx     12,s     set default go
 * clear FIFO
         ldx #0
+        stx     milli0   reset timer
+        stx     milli2
 cl0001  clr     0,x+
         cpx  #$400
         blo   cl0001
 
+        clra
+        sta     timctl   interrupt timer off
+        sta     timcpy
 
+*******************************************************************************
 CONTRL  LDS    #CSTACK   MONITOR STACK
         JSR    RDROFF
         JSR    PNHOFF
@@ -280,8 +317,12 @@ CONTRL  LDS    #CSTACK   MONITOR STACK
         CMPB   #'m       CHANGE?
         BNE    *+5
         JMP    CHANGE    YES
+        cmpb    #'i     toggle interrupt enable
+        beq    TOGINT
         CMPB   #'r       PRINT REG?
         BEQ    PRNTRG
+        CMPB    #'t     toggle timer IRQ
+        lbeq    togtim
         cmpb    #'b
         bne     contr1
         ldx     #HWE
@@ -304,6 +345,11 @@ contr1  CMPB   #'g       GO?
 CONTIN  LDS    TSP       RESTORE USER STACK
         RTI              AND RUN...
 
+TOGINT  tfr     cc,a
+        eora    #$50
+        tfr     a,cc
+        bra     CONTRL
+
 CL1     BSR    INCH1     GET SUB COMM.
         CMPA   #'h       PUNCH?
         BEQ    PUNCH
@@ -321,6 +367,7 @@ HWE     EQU    *
 PRNTRG  BSR    PRTREG    PRINT REGS
 C4      JMP    CONTRL
 
+*****************************************************************************************
 PRTREG  LDX    TSP       GET REG AREA
         JSR    OUT2HS    CC
         JSR    OUT4HS    A,B
@@ -333,11 +380,14 @@ PRT01   JSR    OUT2HS    DP
         LDX    #TSP
         JMP    OUT4HS    SP  +RTS
 
+*****************************************************************************************
+
 TINIT   
         CLR    SPI0TUF
         CLR    SPI0FUF
 		RTS
 
+*****************************************************************************************
 INCH1   JMP    INEEE
 OUTCH1  JMP    OUTEE
 
@@ -348,12 +398,15 @@ ECHO    LDAA   STATUS
 ECHO1   STAA   STATUS    STORE RESULT
         RTS
 
+*****************************************************************************************
 PUNCH   EQU    *
         BSR     SADDR  GET BEGA ENDA
         JSR    PNCHHD    PU'CH LEADER
 PUN35   LDX    BEGA      MAKE TEMP POINTER
         STX    TW
-PUN11   LDD    ENDA      CALC. SIZE
+PUN11   JSR    INCTST
+        BNE    PUN80
+        LDD    ENDA      CALC. SIZE
         SUBD   TW
         CMPD   #24       STANDARD RECORD
         BCS    PUN23
@@ -368,7 +421,7 @@ PUN50   LDX    TW        CHECK DONE
         DEX
         CPX    ENDA
         BLS    PUN11
-        JMP    PNCHTR    PUNCH TRAILER
+PUN80   JMP    PNCHTR    PUNCH TRAILER
 
 PUN40   JSR    PDATA1    PUNCH STRING
         CLRB   CLEAR CHECKSUM
@@ -391,6 +444,7 @@ PUN32   BSR    PUNT2     PUNCH DATA
 PUNT2   ADDB   0,X         UPDATE CHECKSUM
         JMP    OUT2H
 
+*****************************************************************************************
 SADDR   LDX    #STRG1    PUT BEGA HEADER
         JSR    PDATA1
         LDX    #BEGA     PUT OLD BEGA
@@ -411,11 +465,14 @@ SAD1    LDX    #STRG2    ENDA HEADER
         STX    ENDA
 SAD2    RTS
 
+*****************************************************************************************
 PRINT   EQU    *
         BSR    SADDR     GET BEGA ENDA
         LDX    BEGA      KEEP TEMP POINTER
         STX    TW
-PRT3    JSR    OUTSTG    CRLF
+PRT3    JSR     INCTST
+        BNE     PRT8
+        JSR    OUTSTG    CRLF
         LDX    #TW       OUTPUT ADDRESS
         JSR    OUT4HS
         LDX    TW        OUTPUT DATA
@@ -431,10 +488,10 @@ PRT2    LDAA   0,X+        GET DATA
         DECB
         BNE    PRT2
         STX    TW        CHECK DONE
-		DEX
+        DEX
         CMPX   ENDA
         BLO    PRT3
-        JMP    CONTRL    DONE
+PRT8    JMP    CONTRL    DONE
 
 SELCAR  CMPA   #$20      CHECK LITERAL
         BLO    PRT4      NO
@@ -448,6 +505,9 @@ INCMD   BSR    INEEE     GET CHAR
         BEQ    INCMD     WAIT UNTIL
         RTS
 
+*****************************************************************************************
+*
+*****************************************************************************************
 OUTEE   JMP    [OUTVEC]  USE RAM VECTOR
 
 OTCAR   PSHB             SAVE B
@@ -460,12 +520,17 @@ EXIT    RTS
 
 INEEE   JMP    [INVEC]   USE RAM VECTOR
 
+INCTST  TST    SPI0FUF interruptless transfer
+        RTS
+
+*****************************************************************************************
+*
+*****************************************************************************************
 INCAR   PSHB             SAVE B
-INC1    LDAB   SPI0FUF interruptless transfer
+INC1    BSR    INCTST
         BEQ    INC1
         LDAA   SPI0FUF
-        clrb
-        STAB    SPI0FUF
+        CLR    SPI0FUF
         ANDA   #$7F
         CMPA   #$7F      SKIP RUBOUT
         BEQ    INC1
@@ -473,14 +538,19 @@ INC1    LDAB   SPI0FUF interruptless transfer
         BMI    EXIT1
         BRA    OT1       ECHO
 
-
 PNCHHD  RTS
+*****************************************************************************************
 
 PNCHTR  BSR    PNCHHD    50 NULLS
         LDX    #MTAPE3   S9
         JSR    PDATA1
 C5      JMP    CONTRL    EXIT
 
+*****************************************************************************************
+*
+* call code as a subroutine
+*
+*****************************************************************************************
 MCALL   jsr    BADDR
         bcs    CON1
         LDD    XHI      TRANSFER ADDRESS
@@ -493,15 +563,57 @@ MCALL   jsr    BADDR
         STS     TSP
 CON1    JMP     CONTRL
 
+*****************************************************************************************
+*
+*****************************************************************************************
+IRQHAN  equ     *
+        lda     timstat
+        bpl     irq1
+        sta     timrst   reset IRQ
+        ldd     #3
+irq3    addd    milli2
+        std     milli2
+        ldd     milli0
+        adcb    #0
+        adca    #0
+        std     milli0
+        inc     milcor   make 3 pulses 10 mS
+        lda     milcor
+        anda    #3
+        cmpa    #3
+        bne     irq0
+        ldd     #1
+        bra     irq3 
+irq0    rti     
+*
+irq1    jmp     HWE
 
-MCL0    FCB    $D,$A,0,0,'*','*','*',$20
-MCL1    FCB    $D,$A,0,0,4
-STRG1   FCB    $D,$A,0,0,'B','E','G','A',$20,4
-STRG2   FCB    $D,$A,0,0,'E','N','D','A',$20,4
-MTAPE1  FCB    $D,$A,0,0,'S','1',4
-MTAPE3  FCB    $D,$A,0,0,'S','9',0,0,4
+*****************************************************************************************
+*
+*****************************************************************************************
+MILLIS  equ     *
+        ldx     milli0
+        ldd     milli2
+        rts
+
+togtim  lda     timcpy
+        eora    #$01      bit 0
+        sta     timcpy 
+        sta     timctl
+        bra     CON1
 
 
+*****************************************************************************************
+
+MCL0    FCB    $D,$A,'*','*','*',$20
+MCL1    FCB    $D,$A,0
+STRG1   FCB    $D,$A,'B','E','G','A',$20,0
+STRG2   FCB    $D,$A,'E','N','D','A',$20,0
+MTAPE1  FCB    $D,$A,'S','1',0
+MTAPE3  FCB    $D,$A,'S','9',0
+
+
+*****************************************************************************************
         ORG    $FFF0
 	FDB 	TRAP	reserved
         FDB     SWI3V
