@@ -28,5 +28,17 @@ very high, but suitable for most control purposes. The other response factor is 
 
 When I have progressed I will publish some numbers here. At this moment the kernel driver begins to function.
 
+[2021-02-09]
 
+basic_uf_sys2A.dsk has dbgio drivers built-in. These drivers may assist in debugging a CPU09GPP type application. I also
+updated the SPM09 monitor ROM code
+
+you can boot the following kernels:
+uniflex or uniflex   an IDE/DBG kernel
+uniflex2             an IDE/IOP/DBG kernel
+uniflex4             an IDE/IOP/FLP/DBG kernel
+uniflex9             drops straight in /bin/sh
+
+The drivers are now more resillient against hardware not present for the booted kernel.
+Also the lastest source tree is present.
 
