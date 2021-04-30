@@ -1,1 +1,1 @@
-This is the directory for CPU09GPP applicationsgppflpdrvr is the floppy ROM code for the CPU09GPPbuilds are done by do_make
+This is the directory for CPU09GPP applicationsgppflpdrvr is the floppy ROM code for the CPU09GPPbuilds are done by do_make2021-04-30: minor bug fixes and modfied the way a WD2791 can be used. (more efficient)
