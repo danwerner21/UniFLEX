@@ -225,4 +225,8 @@ at 'RESET' time. It is realy amazing that you can interrupt (NMI) a running kern
 
 Another project is the 09ECN popup board. This board has the hardware for the BBC/Acorn Econet. I am using it with
 a CPU09GPP. My idea is to create a network for it with UniFLEX and possibly also FLEX. It is just for fun.
+2021-02-09:
+The CPU09GPP/09ECN combo start to work. I have been tweaking the low level drivers for the MC68B54 controller.
+I believe to have a solid driver solution for txFrame and rxFrame. In the test code I echo a received packet c 
+couple of times onboth ends. The scope show very tight sequenced packets.
 
