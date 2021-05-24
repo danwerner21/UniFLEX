@@ -4,11 +4,11 @@ an UniFLEX  compatible hardware/software project on Eurocards
 Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. The
 SWTPC hardware proved not to be suitable for 24-7, mainly due to the Molex connectors. I got to design an Eurocard based system (CS System) that was influenced for a part on the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
 
-The resulting hardware has run UniFLEX for many years without failure, that is the hardware never failed but the 5 1/4 Winchester disks did, they barely reached one year with 24-7 operation.
+The resulting system has run UniFLEX for many years without failure, that is the (CS) hardware never failed but the 5 1/4 Winchester disks did, they barely reached one year with 24-7 operation.
 In that time the SASI interface was used but now we have/had IDE/PATA and SATA.
 
 Some months ago it started itching and I started to re-design the CPU board as the first one. The original one had a DATRAM that would allow to re-map memory for processes in 4K blocks, but the DATRAM could only hold one process map. Context switching was
-expensive. My new design has a dual ported RAM that will store the maps for 64 processes all at once. Context switching is disable/enable a latch now. Furthermore the CPU board has a crash protection. No user process is able to bring down the OS.
+expensive. My new design has a dual ported RAM that will store the maps for 64 processes all at once. Context switching is very cheap, disable/enable a latch now. Furthermore the CPU board has a crash protection. No user process is able to bring down the OS.
 The first iteration learned that some things had to change, most particulary the hardware that detects whether the CPU was running as 6809 or 6309. But the intial tests showed that the princicple works. With a HD63C09 it runs smoothly at 4 MHz bus clock!
 
 I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (unlikely) event that someone likes it and want to 
@@ -19,6 +19,11 @@ UniFLEX features include: fully separated kernel/process space (depending on har
 hierachical filesystem, virtual memory in 4K pages (process close to 64K), swapping, interrupt driven IO, DMA, pipes,
 an extensive set of systemcalls via SWI3, user process traps (illegal memory, interrupt blocking, illegal instruction) HW
 dependent, drivers for serial port, parallel port, floppy, WD1002 and IDE, kernel source available.
+
+TSC wrote their code modular and very structured. One part is the basic kernel, this code was completely hardware independent.
+Another part (in mach_m1) is machine dependent. I adapted that code specifically for the CPU09XXX system. They also made
+some runtime settings configurable with the 'tune' utility. The original code had also a 'install' function, that was meant
+to defeat copying of UniFLEX. I trew that out in my adaption as it has no longer any merit.
 
 A friend gave me his CS System that he ran professionally up to 1995! It still works, even the SASI Hard disk and it helps me now to recover the missing pieces in knowledge and it is fun to use it again.
 
@@ -42,7 +47,7 @@ I am very curious how the 4MHz HD63C09 in native mode would do. :-)
 
 With my system in the 80s and 90's we had ported OS9 level1 to UniFLEX :-) It would run as a task. Also Motorola MDOS from the Exorciser was ported and would run under UniFLEX.
 
-We ported the FLEX 6809 debugger to UniFLEX and gave it some extra features like a system-call trap. After invocation it would move itself to the top of the 64K space. I tried it recently and it was pleasure working with it.
+We ported the FLEX 6809 debugger to UniFLEX and gave it some extra features like a system-call trap. After invocation it would move itself to the top of the 64K spacei and leaves abaout 50K of user program. I tried it recently and it was pleasure working with it.
 A number of Unix utilities were ported too (with adaptations for i.e permissions) at, atrun, basename, cat, cmp, cron, crypt, ls, pstat, cu, login, su, find, grep, uniq, units, and a lot more ran very well. One guy here made a port of C-Kermit, it is in my archives.
 
 #############################################################################################
