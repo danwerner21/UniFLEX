@@ -20,7 +20,13 @@ c 4 0   hwgetset  helper device for portbaud,  get/set baudrate on serial ports
 
 c 5 x   ttyxx  tty ports 09 and up, via IOP
 
+c 6 x   fdc floppy character drivers
+
+c 7 x   uio user I/O drivers
+
 b 0 x   wx    block device  for IDE disks 0...7
+
+b 1 x   fd    block device for floppy disks
 
 
 All files are in UniFLEX text format, use 'ufless' to access them from linux.
@@ -30,7 +36,7 @@ On the image CPU09_UF_IOP.dsk.zip there are 3 bootable kernels. 'uniflex' and 'u
 'uniflex5' support SR4 IO _and_ the IOP. If you boot the last one without the CPU09IOP hardware present, the kernel may hang
 in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to reset it.
 
-UF_IOP_200509.dsk.zip is the recent status. It has the most recent driver source tree in it as the latest version of portbaud.
+UF_IOP_200509.dsk.zip. It has the most recent driver source tree in it as the latest version of portbaud.
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
 
@@ -48,7 +54,7 @@ uf20200708.dsk.zip contains a few bootable kernels:
 
 Note: edit /ect/ttylist after booting, disable tty09...tty12 if you don't have IOP and reboot after
 
-##############################################################################################################################
+#######################################################################################
 2020-12-30:
 
 Uploaded usrc_63A, this clean tree contains the most recent improvements as: 

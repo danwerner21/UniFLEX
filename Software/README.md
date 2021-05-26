@@ -16,6 +16,7 @@ Booting a kernel without the corresponding hardware may hang the boot as the ker
 from non-existent locations and can't reset these so it is stuck in this loop ...... 
 (i.e. booting a IOP-aware kernel without IOP present.)
 
+######################################################################################
 [USERIO]   2020-05-22
 I am researching the concept of 'user-IO'. This is a solution where one can add/remove IO boards to a designated backplane and 
 this without desturbing the running kernel. My idea is having a hardware setup as is for the IOP. So a (second) CPU09IOP, but
@@ -28,6 +29,7 @@ very high, but suitable for most control purposes. The other response factor is 
 
 When I have progressed I will publish some numbers here. At this moment the kernel driver begins to function.
 
+######################################################################################
 [2021-02-09]
 
 basic_uf_sys2A.dsk has dbgio drivers built-in. These drivers may assist in debugging a CPU09GPP type application. I also

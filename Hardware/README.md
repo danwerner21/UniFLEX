@@ -20,9 +20,8 @@ Further extentions include:
 
 In development are:
 * CPU09VID          512x472 B/W video board.
-* CPU09GPP/09ECN    Econet compatible (hardware) interface
+* CPU09GPP/09ECN    Econet compatible (hardware) interface with MC68B54 ADLC
 * CPU09GPP/09SPI    SD-card / W5500 network interface
-* CPU09KDB          kernel space debugger interface
 * CPUXXCMI          board for 6802/6809 CPU, 65K RAM, 2K ROM, console port (FLEX)
 * CPU09KDB          kernel debugger, fun to step a running kernel, trap on address etc.
 

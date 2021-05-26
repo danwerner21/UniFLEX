@@ -1,9 +1,10 @@
-As with Unix UniFLEX also used a simular method to determine the type of file
+As with Unix, UniFLEX also used a simular method to determine the type of file
 is it working with.
 
-First there is the kernel part that tests binary format files for validity.
+First there is the kernel part that test files for binary format validity.
 It does this by reading the first 24 bytes of a file. If the file is of
-binary nature, all relevant information is in this header.
+binary nature, all relevant information is in this header. If it is _not_ 
+a binary file the name is passed to a shell for further parsing.
 
 For a file to be recognized as a binary file, the header should start with $02. 
 The next byte tells the kernel what the actual format is. 

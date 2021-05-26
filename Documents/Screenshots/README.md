@@ -11,7 +11,7 @@ boot1, the three logins on the picoterm windows
 
 running2, after loggin in, formatting a diskette
 
-running3, almost starting
+running3, almost starting formatting...
 
 running4, format completed. This is the smallest 80 track disk it can handle.
 
@@ -20,7 +20,7 @@ running5, running 'diskinfo' on the newly created disk
 running6, two 'diskrepair' sessions on the new disk.
 
 running7, with the 'prm' tool examining a running kernel (task 0), the memory
-allocation is shown, dump of pasrt of kernel. yesy, you _CAN_ modify it.....
+allocation is shown, dump of pasrt of kernel. yes, you _CAN_ modify it.....
 
 running8, have the debugger run the formatting program...
 

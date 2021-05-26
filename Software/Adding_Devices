@@ -1,6 +1,7 @@
 Adding new devices to your machine and make your kernel work with them is an interresting and educative job.
 
 For a multi-user/multi-tasking operating sytem like UniFLEX you need to consider a couple of things.
+
 1) The device sould show up in the designated IO space. In the CPU09 system this area is at $F000-$F3FF. The MONitor board 
 already has split this up in smaller parts. While I have 'assigned' some area's to certain targets, you are free to do otherwise.
 
@@ -10,7 +11,7 @@ loss of overall efficiency and responsiveness. It should be avoided at all cost.
 
 Depending on the data structure you could use a 'block' driver or a 'character' driver. Block drivers handle large chunks
 of data per session while Character drivers may handle a byte value as minimum. Block drivers should preferably use DMA(*) to
-transfer their data. Examples of block devices: harddisk, floppy disk. Examples of Character devices: terminal, clock, printer.
+transfer their data. Examples of block devices: harddisk, floppy disk. Examples of Character devices: terminal, user-io, clock, printer.
 
 The kernel has for both types tables to locate the devices and drivers.
 
@@ -20,7 +21,7 @@ A character device table entry consists of 5 pointers. Each point to a specific 
 <ptr_to_open>, <ptr_to_close>, <ptr_to_read>, <ptr_to_write>, <ptr_to_special>
 
 <ptr_to_open> ponts to the open function of the driver. This function initializes some housekeeping, checking for validity
-of caller parameters. It should return an error on any faulty input. Ther could be multiple calls to open.
+of caller parameters. It should return an error on any faulty input. There could be multiple calls to open.
 
 <ptr_to_close> tells the driver to shutdown. This is done when the last connection is terminated.
 
@@ -58,22 +59,22 @@ crw-r-- 1 root      5, 11 May 01 13:48 tty11
 crw-r-- 1 root      5, 12 May 10 02:58 tty12
 crw-r-- 1 root      5, 15 Mar 25 02:12 tty15
 crw-r-- 1 root      5, 16 Mar 25 02:07 tty16
-brw---- 1 root      0,  0 May 01 06:31 w0
-brw---- 1 root      0,  1 Sep 24  2019 w1
-brw---- 1 root      0,  2 Sep 24  2019 w2
-brw---- 1 root      0,  3 Apr 15 06:32 w3
-brw---- 1 root      0,  4 May 10 04:05 w4
-brw---- 1 root      0,  5 Apr 16 16:08 w5
-brw---- 1 root      0,  6 Dec 30 12:10 w6
-brw---- 1 root      0,  7 Sep 24  2019 w7
-crw---- 1 root      3,  0 Sep 24  2019 wc0
-crw---- 1 root      3,  1 Sep 24  2019 wc1
-crw---- 1 root      3,  2 Sep 24  2019 wc2
-crw---- 1 root      3,  3 Sep 24  2019 wc3
-crw---- 1 root      3,  4 Sep 24  2019 wc4
-crw---- 1 root      3,  5 Sep 24  2019 wc5
-crw---- 1 root      3,  6 Sep 24  2019 wc6
-crw---- 1 root      3,  7 Sep 24  2019 wc7
+brw---- 1 root      0,  0 May 01 06:31 w00
+brw---- 1 root      0,  1 Sep 24  2019 w01
+brw---- 1 root      0,  2 Sep 24  2019 w02
+brw---- 1 root      0,  3 Apr 15 06:32 w03
+brw---- 1 root      0,  4 May 10 04:05 w10
+brw---- 1 root      0,  5 Apr 16 16:08 w11
+brw---- 1 root      0,  6 Dec 30 12:10 w12
+brw---- 1 root      0,  7 Sep 24  2019 w13
+crw---- 1 root      3,  0 Sep 24  2019 wc00
+crw---- 1 root      3,  1 Sep 24  2019 wc01
+crw---- 1 root      3,  2 Sep 24  2019 wc02
+crw---- 1 root      3,  3 Sep 24  2019 wc03
+crw---- 1 root      3,  4 Sep 24  2019 wc10
+crw---- 1 root      3,  5 Sep 24  2019 wc11
+crw---- 1 root      3,  6 Sep 24  2019 wc12
+crw---- 1 root      3,  7 Sep 24  2019 wc13
 cr--r-- 1 root      2,  1 Sep 24  2019 zero
 ++ 
 
@@ -84,7 +85,7 @@ device, i.e. tty00...tty08, wc0...wc7. A driver _should_ check to minor values f
 
 The next thing is assign an interrupt to a driver. This method may vary. For the tty's the kernel consult a table with bitmask,
 device address and service routine address. If such is not possible then individual tests may be done. Interrupt handling is
-done in minthan.t. Lastly, some hardware needs to be initialized before the kernel starts. This is a mach.t task. Add calls
+done in "minthan.t". Lastly, some hardware needs to be initialized before the kernel starts. This is a "mach.t" task. Add calls
 to initializing routines in your driver from here.
 
 
