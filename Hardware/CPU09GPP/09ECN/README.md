@@ -1,3 +1,5 @@
+Introduction:
+
 My eye catched the Econet interface that was popular some years ago with the BBC 
 computer. The hardware revolves around the MC68B54. I found it interesting
 enough to create a pop-up for the CPU09GPP (_and_ CPU09FLX) board.
@@ -14,3 +16,24 @@ be around 10 MHz as there are no faster MC68B54 around.
 But that is still very fast :-). 
 
 To be continued....... 
+
+
+
+Provides
+
+* MC68B54 ADLC controller
+* wide biterate selection, 1.228MHz...9K6
+* dual connectors CAT8
+* dipswitches for line termination disable/enable
+* dipswitches for clock source disable/enable
+* collision detection
+* hardware Econet (R) compatible
+* CPU09GPP IO comaptible (max GPP bus frequency 8...10MHz)
+* CPU09FLX IO compatible 
+
+
+This interface is suitable for simple network applications. The ADLC
+is capable to transfer a data packet with minimal code/overhead and maximum
+flexibility. 
+
+
