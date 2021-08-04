@@ -230,3 +230,21 @@ The CPU09GPP/09ECN combo start to work. I have been tweaking the low level drive
 I believe to have a solid driver solution for txFrame and rxFrame. In the test code I echo a received packet c 
 couple of times onboth ends. The scope show very tight sequenced packets.
 
+
+2021-08-04:
+As the CPU09MM3 has already everything in place to keep user processes to run in the CPU mode that they want to.
+either 68X09 (emulation) or 63X09 (native), I decided to take the next step. Creating a UniBUG version that
+supports this and next building a kernel that can cope with it. I did just that in the recent weekend.
+The UniBUG rom needs to save the user CPU state when an interrupt occurs and restore that same state when the
+process returns from the interrupt. I created an extra item in the 'user data area' that sits in the top 256 
+bytes of each process but is only accessable by the kernel. The UniBUG code copies the state of the 74HC590
+counter into 'ustksz', on return this value is checked and the CPU state restored accordingly.
+I had to modify SWI3hndlr.t because the register offset is different between a 68X09 stack and a 63X09 stack.
+Tests show that the CPU state is properly retained over system calls and interrupts. Code which is run
+as 68X09 sees the systemcalls correctly handled by the kernel. 
+
+Now it is time to get OS9-levelI again to run as a UniFLEX process as we did in the past. :-) We build a couple
+of OS9 utils that allowed file transfers from the OS9 environment to UniFLEX and vice-versa. I found the source
+codes back from my archives. And the OS9 disk images.
+
+
