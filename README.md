@@ -2,13 +2,13 @@
 an UniFLEX  compatible hardware/software project on Eurocards
 
 Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. The
-SWTPC hardware proved not to be suitable for 24-7, mainly due to the Molex connectors. I got to design an Eurocard based system (CS System) that was influenced for a part on the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
+SWTPC hardware proved not to be suitable for 24-7, mainly due to the Molex connectors. I got to design an Eurocard based system (CS System) that was influenced for a part by the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
 
 The resulting system has run UniFLEX for many years without failure, that is the (CS) hardware never failed but the 5 1/4 Winchester disks did, they barely reached one year with 24-7 operation.
 In that time the SASI interface was used but now we have/had IDE/PATA and SATA.
 
-Some months ago it started itching and I started to re-design the CPU board as the first one. The original one had a DATRAM that would allow to re-map memory for processes in 4K blocks, but the DATRAM could only hold one process map. Context switching was
-expensive. My new design has a dual ported RAM that will store the maps for 64 processes all at once. Context switching is very cheap, disable/enable a latch now. Furthermore the CPU board has a crash protection. No user process is able to bring down the OS.
+Some months ago it started itching and I started to re-design the CPU board as the first one. The original one had a small DATRAM that would allow to re-map memory for processes in 4K blocks, but the DATRAM could only hold one process map. Context switching was
+expensive. My new design has a DATBOX in the form of dual ported RAM that will store the maps for 64 processes all at once. Context switching is very cheap, disable/enable a latch now. Furthermore the CPU board has a crash protection. No user process is able to bring down the OS.
 The first iteration learned that some things had to change, most particulary the hardware that detects whether the CPU was running as 6809 or 6309. But the intial tests showed that the princicple works. With a HD63C09 it runs smoothly at 4 MHz bus clock!
 
 I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (unlikely) event that someone likes it and want to 
@@ -20,10 +20,10 @@ hierachical filesystem, virtual memory in 4K pages (process close to 64K), swapp
 an extensive set of systemcalls via SWI3, user process traps (illegal memory, interrupt blocking, illegal instruction) HW
 dependent, drivers for serial port, parallel port, floppy, WD1002 and IDE, kernel source available.
 
-TSC wrote their code modular and very structured. One part is the basic kernel, this code was completely hardware independent.
+TSC wrote their code modular and very structured. One code set is the basic kernel, this code was completely hardware independent.
 Another part (in mach_m1) is machine dependent. I adapted that code specifically for the CPU09XXX system. They also made
 some runtime settings configurable with the 'tune' utility. The original code had also a 'install' function, that was meant
-to defeat copying of UniFLEX. I trew that out in my adaption as it has no longer any merit.
+to defeat copying of UniFLEX. I threw that out in my adaption as it has no longer any merit.
 
 A friend gave me his CS System that he ran professionally up to 1995! It still works, even the SASI Hard disk and it helps me now to recover the missing pieces in knowledge and it is fun to use it again.
 
