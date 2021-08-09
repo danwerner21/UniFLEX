@@ -9,6 +9,7 @@ Provides:
 * Full interrupt protection, no user process can disrupt the interrupts in the system
 * DMA mode for specialized fast IO controllers
 * a Supervisor/User state signal and status
+* can (lightweight) detect and record the CPU mode on any Interrupt and restore that on RTI, with matching UniBUG code (63X09 v.s. 68X09)
 * surpasses the SWTPC MPU-1 CPU board in features, as thus it runs UniFLEX-II and beyond 
 
 Description:
