@@ -29,3 +29,9 @@ be present and on the position away from the CY7C130. With the UniBUG monitor it
 is appear as it is RAM.
 
 
+Firmware for IOP:
+
+The code that should go into the ROM on the CPU09IOP board is to be found in 
+../iop_cpu directory in the UniFLEX kernel source code tree.
+
+in ../mach_m1/sysconfig.h you need to set the IOP variable to '1' and build a new kernel to use the IOP.
