@@ -82,6 +82,17 @@ W20,W21,W22,W23 are the second master, W30,W31,W32,W33 are the second slave
 The same goes for the character devices: WC00,WC01,WC02......WC31,WC32,WC33
 
 
+*******************************************************************************************
+2021-08-14:
+
+Created usrc_63B and uploaded uf_b_kern.tar in that directory. It provides a clean source
+tree to build your own UniFLEX kernel. in .../mach_m1/sysconfig.h you can set what 
+hardware is to be supported with your build. 
+This kernel tree supports the 63X09<->68X09 transient of the CPU mode. The kernel runs
+_always_ in 63X09 mode, but a user process may alter that setting. Leave the FIRQ setting
+on 'long stackframe' when meddling with the LDMD register. Failing to do so may result
+in your process crashing and  being terminated.
+**** For this kernel you NEED the UniBUG_B version of the UniBUG ROM ****
 
 
 

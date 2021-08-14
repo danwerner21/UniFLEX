@@ -1,6 +1,6 @@
 ## UniBug
 
-Here is the code for the UniBug ROM that is to be used with the CPU09 system. It is in a CR/LF delimiter format.
+Here is the code for the UniBug ROMs that is to be used with the CPU09 system. It is in a CR/LF delimiter format.
 
 The ROM provides a few basic functions. It provides the basic serial communication with the console port.
 
@@ -29,4 +29,11 @@ The ROM code also provides the context switching between processes and kernel on
 
 Minor addition. The kernel debugger, when present, is initialized properly.
 
+####################################################################################
+2021-08-14:
 
+Added UniBUG_B, this version of UniBUG supports the CPU mode switching between
+63X09<->68X09 mode of the CPU. You _NEED_ this version if you are to use
+the uf_b_kern.tar source tree (in usrc_63B) in the Software/Kernel-builds directory.
+
+####################################################################################
