@@ -81,9 +81,7 @@ that is odd, I expected it to work without problem. But comparing datasheets pro
 the 512Kx8 has A17, the 128Kx8 has CS2. So that needs some intervention. I left pin 30 out of 
 the socket and put a thin wire between pin 30 and pin 32 on the chip. Now it works! 
 UniBUG is clever enough to map out any mirror RAM so it reports correctly 128K.
-And UniFLEX boots and runs with this memory size, although it will swap a lot  :-)
-But using 2 terminals provide a 'workable' environment, but if one user is hogging the system,
-the other user will notice.
-
+UniFLEX boots, but is hampered by the low RAM. Diskrepair will not run. The kernel eats 36K, 
+init eats 12K and a shell eats another 40K. 
 
  
