@@ -20,7 +20,7 @@ Time & date:  19:35  Sep. 30, 2020
   2 CER.CAP             100N                CAP5                C5                                 
                                                                 C6                                 
   1 CER.CAP             100P                CAP5                C1                                 
-  1 CER.CAP             0.47U               CAP5                C3                                 
+  1 CER.CAP             0.22U               CAP5                C3                                 
   1 CER.CAP             1nF                 KERKO4X3R5          C4                                 
   4 CER.CAP             100n                KERKO4X3R5          C16                                
                                                                 C17                                
@@ -49,7 +49,7 @@ Time & date:  19:35  Sep. 30, 2020
                                                                 R7                                 
   1 RES.25W             10M                 RES12               R9                                 
   1 RES.25W             100K                RES12               R5                                 
-  1 RES.25W             220K                RES12               R3                                 
+  1 RES.25W             470K                RES12               R3                                 
   1 RES.25W             1K5                 RES12               R1                                 
   1 RES.POT             10K-var             W3296               P2                                 
   1 RES.POT             50K-var             W3296               P1                                 
