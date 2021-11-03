@@ -68,3 +68,8 @@ It worked for me and others very well in that sense.
 Drop me an email and we will see how to arrange things.
 
 One last word of advise: If you plan to build this project, invest in a good soldering iron, if you have it not already!!
+
+
+2021-11-03: I posted a photo of a minimal UniFLEX hardware system. It has
+CPU09MM3 (CPU and memory management), CPU09MON (UniBUG ROM, timer, system RAM and 
+console port) and CPU09ID6 (DMA capable IDE interface)
