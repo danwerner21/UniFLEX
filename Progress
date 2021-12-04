@@ -247,4 +247,25 @@ Now it is time to get OS9-levelI again to run as a UniFLEX process as we did in 
 of OS9 utils that allowed file transfers from the OS9 environment to UniFLEX and vice-versa. I found the source
 codes back from my archives. And the OS9 disk images.
 
+2021-09-28:
+Yes, OS9 (level I) now runs again as a process on UniFLEX. Now I have completed the restoration of the CPU mode
+in a user process, it runs again. It would not in 63X09 (native mode). All the initialisation of the OS9
+process needs to do is setting the CPU mode to 68X09 (emulation). This UniFLEX runs fully in native 63X09 mode
+but allow a process to change that mode, without any consequences for kernel or other processes.
+
+Another change is that the flpopy driver and interface supports 'double-step'. This allows for a 5 1/4 diskette,
+which had been created in a 40 track drive, to be read in the more common 80 track drive.
+
+2021-12-04:
+For the floppy interface I decided to go for the last mile: read track. That is something no UniFLEX version
+ever had! I adapted flpdrvr.t first, that took a few iterations before all the issues had been addressed
+properly. Next I changed gppflpdrv.t to make read track finally happen. The change went smoothly here.
+
+One of the reasons 'read-track' is a real advantage for, some old 5 1/4 inch disks show CRC errors. With a
+smart read track utility I can read those bad sectors still and reconstruct the whole file from that.
+
+
+
+
+
 
