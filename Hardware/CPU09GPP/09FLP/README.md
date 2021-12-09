@@ -20,6 +20,11 @@ F5-DS40,  5", 40 track, 5 sectors,  single dens,  double side
 F5-SD40,  5", 40 track, 9 sectors,  double dens,  single side (250kBit)
 F5-DD40,  5", 40 track, 9 sectors,  double dens,  double side
 
+F5-SS40=, 5", 40 track, 5 sectors,  single dens,  single side (125kBit)(double step, 40 track disk in 80 track drive)
+F5-DS40=, 5", 40 track, 5 sectors,  single dens,  double side
+F5-SD40=, 5", 40 track, 9 sectors,  double dens,  single side (250kBit)(double step, 40 track disk in 80 track drive)
+F5-DD40=, 5", 40 track, 9 sectors,  double dens,  double side
+
 F5-SD80E, 3|5", 80 track, 10 sectors, double density, single side (250kBit)
 F5-DD80E, 3|5", 80 track, 10 sectors, double density, double side
 
