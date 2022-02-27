@@ -63,7 +63,7 @@ what the actual floppy format is to be.
 
 For standard 512 byte blocks:
 
-Bit 7 of fltsid, when set disables the normal error chacking on read sector.
+Bit 7 of fltsid, when set disables the normal error checking on read sector.
 Bit 6 of fltsid, when set tells the driver that the disk format is 5" vs 8"
 Bit 1 of fltsid, when set tells the driver that the disk has unbiased sectors
 Bit 0 of fltsid, when set tells the driver that the disk is double sided
