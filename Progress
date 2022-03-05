@@ -264,7 +264,18 @@ properly. Next I changed gppflpdrv.t to make read track finally happen. The chan
 One of the reasons 'read-track' is a real advantage for, some old 5 1/4 inch disks show CRC errors. With a
 smart read track utility I can read those bad sectors still and reconstruct the whole file from that.
 
+2022-03-05:
+It took a bit of puzzling but I succeeded. I can now boot and run UniFLEX from a floppy disk!
+That is, for the CPU09GPP/09FLP combo. I had to adapt the UniBUG ROM with adding the 'F' command.
+After selecting 'F', the ROM code checks if the CPU09GPP/09FLP controller is present. It aborts
+the boot attempt if not found. Otherwise it will put the first sector of the disk at $0800 in
+kernel space and jumps to the start of it. This code should be able to load the OS and start it.
+For this to work, I first had to make swapping to floppy disk working, but that was also achieved.
 
+
+
+
+ 
 
 
 
