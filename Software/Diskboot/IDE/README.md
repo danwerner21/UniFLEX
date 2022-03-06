@@ -1,4 +1,4 @@
-This is the code for the boot sector. It has to reside on block 0 of the IDE disk (first block).
+This is the code for the boot sector on the IDE disk. It has to reside on block 0 of the disk (first block).
 It's purpose is to load the OS into memory.
 
 I made a few changes in the code with respect to the SWTPC/GIMIX versions from the past. 
