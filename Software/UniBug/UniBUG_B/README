@@ -12,3 +12,13 @@ Another bug that has been caught is, there was NO stack yet when debini
 was called. Now we setup the first stack in the datbox and later we switch
 to the rom stack,
 
+2022-03-06:
+
+Added bootcode for floppy disk and upped the revision. With the 'F' command
+you can boot from floppy, provided that the CPU09GPP/09FLP combo is present
+in the system. The code tries all variants SD/DD and 5"/8".
+The resulting bootsector (block 0, sector 1) will be placed at 00800 in kernel
+space and after succesful load, it jumps to the first byte of the bootsector.
+Failures result in an SWI trap.
+
+
