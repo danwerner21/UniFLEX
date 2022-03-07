@@ -1,1 +1,0 @@
-when building kernels:if the code in .../kernel or in .../include was modifiedcd .../kerneldo_makeif the code in .../include or any mach_xxx was modifiedcd .../mach_m1do_makeif code in xxx_cpu was modifiedcd into that directorydo_makewith 's1' you can generate S1 formatted files that youshould pass to your programmer
