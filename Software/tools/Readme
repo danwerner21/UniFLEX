@@ -1,15 +1,22 @@
 Here some native UniFLEX programs
 
 
+************************************************************************************************
 'use2'  a slightly modified version of the use screen editor, this one runs also via the IOP.
+It needs a correct /etc/termcap file entry  for it to work.
 
+
+************************************************************************************************
 'formatfd' is a UniFLEX diskette formatter. It's capabilities should match that of the 
 flpdrvr.t in the kernel tree and that of gppflpdrv.t in the gpp_flp branch
+ 
+
+************************************************************************************************
+tar   is a UniFLEX executable that handles _uncompressed_ tar archive files.
+tar: usage  tar [-]{txruc}[vwfblm][0-7[lmh]] [tapefile] [blocksize] file1 file2..
 
 
-
-
-
+************************************************************************************************
                                     format
 
 Format a disk for system use.
@@ -37,5 +44,19 @@ O              unbiased sectors, no filesystem (msdos exchange)
 S              unbiased sectors, UniFLEX filesystem
 I              Use Interleaved sector arrangement on track
 
+************************************************************************************************
+'flexmulti' is a program simular to the 'flex' utility on UniFLEX. But this version can read
+a multitude of diskette formats.  'flexmulti.s1' is the S1 hex formatted version of 'flexmulti'
+ 
+
+************************************************************************************************
 
 
+
+
+
+
+
+
+
+`p
