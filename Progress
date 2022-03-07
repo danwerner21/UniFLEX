@@ -58,7 +58,7 @@ interrupt were testing weird bit combinations. It  is a miracle that it worked i
 reordering the priority of testing the problems with freezing processes are gone.So I can say with confidence that the 
 IOP is finished, hardware and software.
 
-CPU09SPI
+CPU09SPI (abandoned)
 First design version of the SPI board is ready. It can be used with the W5500 network component or with a SD card reader.
 The SPI interface is to work with DMA to a local processor (HD63C09) and the data can be transferred to the OS via a 1Kx8 
 dual-port RAM. When it is time for it I will order the proto version. 
@@ -78,13 +78,15 @@ Edit: Around April 2019 I got in touch with Mike. I spent a few days in figuring
 allocation table contained erroneous pages. After changing the switch settings on the CPU board _and_ modifying the UniBUG
 ROM image, the problem went away. Now it runs as it should and don't crash any longer!
 
-As I can mount this or any UniFLEX filesystem with FUSE on Linux, the building process can be automated with scripts. The biggest hurdle
-is to get it on the IDE disk easily. But I have a few ways to try. (The USB<->IDE dongle is the easiest way)
+As I can mount this or any UniFLEX filesystem with FUSE on Linux, the building process can be automated with scripts. 
+The biggest hurdle is to get it on the IDE disk easily. But I have a few ways to try. (The USB<->IDE dongle is the easiest way)
 
 I have a LOT of fun with my GAL programming hardware and software. I rewrote the GALBLAST.C code in PERL and designed hardware that
 can switch the supply voltages and the programming voltages. It works with a normal PC parallel port and also with _SOME_ USB<->IEE1284
 dongles. I made a separate GitHub archive for it. 
 In the near future I will post both hardware and software on GitHub.
+[2021-03-07] I decided to spent some money and bought the TL866 II plus, it can do GAL's, EEROM's and more. Well worth
+the money. 
 
 2019-07-22:
 
@@ -95,7 +97,7 @@ IDE disks. Now it is time to complete the unibug rom version for this hardware a
 
 2019-07-26:
 
-I am able to (try) to boot from an empty filesystem. After it returns back to UniBUG. I make an provision in the bootsector 
+I am able to (try) to boot an empty filesystem. After it returns back to UniBUG. I make an provision in the bootsector 
 on the disk, so that the user can enter a figure from 0 up to 9 after the D command within 2 seconds. 
 It allowes for to boot different kernels, to experiment. If nothing is entered, then after 2 seconds the standard 'uniflex' is 
 booted.
@@ -271,6 +273,9 @@ After selecting 'F', the ROM code checks if the CPU09GPP/09FLP controller is pre
 the boot attempt if not found. Otherwise it will put the first sector of the disk at $0800 in
 kernel space and jumps to the start of it. This code should be able to load the OS and start it.
 For this to work, I first had to make swapping to floppy disk working, but that was also achieved.
+
+2022-03-07:
+Updated the source tree present on GitHub.
 
 
 
