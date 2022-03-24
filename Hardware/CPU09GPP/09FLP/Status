@@ -23,4 +23,11 @@ Now the code supports the following:
 *       seek to track, sector, side, density
 *       seek to track, side (read/write track)
 
+2022-03-24:
+Moved the design 09FLP_200930.zip to old. While the design had no errors it maybe 
+less convenient with the floppy connectors
 
+Design file 09FLP_210622.zip differs only in that the floppy connectors face downwards here.
+(and the holes for the variable capacitor are slightly wider)
+
+=================================
