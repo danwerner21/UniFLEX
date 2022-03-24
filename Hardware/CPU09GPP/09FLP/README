@@ -98,7 +98,7 @@ The earlier design had the floppy connectors facing upwards, which caused
 space conflict with adjacent boards.
 
 In recent weeks I completed the floppy driver with the last missing bit:
-swapping to/from floppy disk. That functionality has now been added nd tested.
+swapping to/from floppy disk. That functionality has now been added and tested.
 In addition the UniBUG_C version supports booting from floppy and the latest
 posted 'formatfd' can format diskettes with bootsector and with swapspace.
 
