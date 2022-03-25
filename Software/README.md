@@ -1,7 +1,5 @@
 Here are the kernel versions, other special files and UniFLEX utilities
 
-basic_uf_sys.dsk.zip is a image of a 10 MByte filesystem with some swap space. If unzipped first and then
-put on an IDE disk starting at block 0, it may boot in an CPU09XXX system
 
 [2020-05-15]
 basic_uf_sys.dsk.zip is updated. The image expands to an over 15MByte filesystem. It is basically w0.dsk from Mike's SWPTCemu release, but with other boot kernels, another IPL loader and the /dev/entries corrected.
@@ -43,4 +41,18 @@ uniflex9             drops straight in /bin/sh
 
 The drivers are now more resillient against hardware not present for the booted kernel.
 Also the lastest source tree is present.
+
+######################################################################################
+[2022-03-07]
+
+re-organized the Kernel-builds folder
+posted the lates formatfd in the tools folder
+posted a new source tree, the floppy driver now does swap. That addition has
+no consequences for the ROM in the CPU09GPP/09FLP. A tar file is also added.
+UniFLEX does normally not have a 'tar' utility, but there is one present in 
+the tools folder on GitHub. 
+
+
+
+
 

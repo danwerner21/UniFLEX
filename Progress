@@ -97,9 +97,9 @@ IDE disks. Now it is time to complete the unibug rom version for this hardware a
 
 2019-07-26:
 
-I am able to (try) to boot an empty filesystem. After it returns back to UniBUG. I make an provision in the bootsector 
+I am able to (try) to boot an empty filesystem. After it returns back to UniBUG. I make an provision in the bootsector code
 on the disk, so that the user can enter a figure from 0 up to 9 after the D command within 2 seconds. 
-It allowes for to boot different kernels, to experiment. If nothing is entered, then after 2 seconds the standard 'uniflex' is 
+It allows for to boot different kernels, to experiment. If nothing is entered, then after 2 seconds the standard 'uniflex' is 
 booted.
 
 2019-08-23:
@@ -107,10 +107,10 @@ booted.
 The CPU09MMU board is needing an extra chip. I ran into somthing that I could not solve by changing the GAL logic. It came to light when I started 
 to run UniFLEX on an IDE disk and starting to build my custom UniFLEX kernel with it. After adding the new chip everything works like a charm.
 The CPU board, the MONitor board and the IDE controller. Yes I can build my own UniFLEX from the original TSC sources.
-Along the way I changed a few things though. I took out the 'install' function, it is not longer relevant. The Rom boot code alolows 
+Along the way I changed a few things though. I took out the 'install' function, it is not longer relevant. The Rom boot code allows 
 for to choose IDE disk 0 or IDE disk 1. The disk boot code displays:  image: uniflex, after which you have about 2 seconds to type
-an CR or a figure from 0 up to 9. This figure is appended to the boot name and will be tried to boot. This way it is very easy
-to test various kernel code versions fast. I bought a USB<->IDE dongle and under Linux I can easy dump an image.dsk onto the IDE
+an CR or a figure from 0 up to 9. This character is appended to the boot name and will be tried to boot. This way it is very easy
+to test various kernel code versions fast. I bought an USB<->IDE dongle and under Linux I can easy dump an image.dsk onto the IDE
 drive and test it directly under UniFLEX after. The LED's on the MONitor board are nicely updated from the kernel from the
 LIGHTS location.
 
@@ -140,14 +140,14 @@ The final vesion of the CPU/MON/IDE boards populated and tested. Some did immedi
 OK now.
 The first version of the back-plane boards and the CPU09SR4 are in the mail.
 
-20190-10-25:
+2019-10-25:
 
 I must have smoked something bad when I was doing the CPU09SR4 board. While the resulting board was "useable", a lot
 had gone wrong. Missing connections on the MAX233 devices, wrong baudrate division, inverse board selection. 
 So I redid the board and I ordered samples again. I believe this one will do well.
 
 Also the CPU09IOP came in the mail, that one proved to be much better than the above board. I populated the board, 
-programmed the GAL and made a short ribbon cable (40 pole, about 20 cm).An old IDE cable will do well. I put the IOP
+programmed the GAL and made a short ribbon cable (40 pole, about 20 cm). An (old) IDE cable will do well. I put the IOP
 in the backplane, made the bus selection wire and yes the UniFLEX side was working like a charm. On de IOP side I created
 a monitor ROM, took a second backplane, hooked the cable extension into it as a CPU09SR4 board. Yes, I can talk both sides
 now. The interrupt signals in the dualported RAM work too. So that is a big progress.
@@ -195,6 +195,8 @@ further.
 
 2020-04-09:
 Made progress with 'portbaud'. Now it can (re)set baudrate's for CPU09SR4 which are on the main CPU side _and_ on the IOP side.
+And it does that without the need to expose kernel memory. Only ttyset/ttyget call form the interface between userland 
+and the kernel.
 
 2020-07-10:
 While the driver for the 09FLP pop-up board is still experimental it allowed me to restore a 25 floppy large backup from the 
@@ -245,7 +247,7 @@ I had to modify SWI3hndlr.t because the register offset is different between a 6
 Tests show that the CPU state is properly retained over system calls and interrupts. Code which is run
 as 68X09 sees the systemcalls correctly handled by the kernel. 
 
-Now it is time to get OS9-levelI again to run as a UniFLEX process as we did in the past. :-) We build a couple
+Now it is time to get OS9-level I again to run as a UniFLEX process as we did in the past. :-) We build a couple
 of OS9 utils that allowed file transfers from the OS9 environment to UniFLEX and vice-versa. I found the source
 codes back from my archives. And the OS9 disk images.
 
@@ -255,7 +257,7 @@ in a user process, it runs again. It would not in 63X09 (native mode). All the i
 process needs to do is setting the CPU mode to 68X09 (emulation). This UniFLEX runs fully in native 63X09 mode
 but allow a process to change that mode, without any consequences for kernel or other processes.
 
-Another change is that the flpopy driver and interface supports 'double-step'. This allows for a 5 1/4 diskette,
+Another change is that the floppy driver and interface supports 'double-step'. This allows for a 5 1/4 diskette,
 which had been created in a 40 track drive, to be read in the more common 80 track drive.
 
 2021-12-04:
@@ -272,6 +274,7 @@ That is, for the CPU09GPP/09FLP combo. I had to adapt the UniBUG ROM with adding
 After selecting 'F', the ROM code checks if the CPU09GPP/09FLP controller is present. It aborts
 the boot attempt if not found. Otherwise it will put the first sector of the disk at $0800 in
 kernel space and jumps to the start of it. This code should be able to load the OS and start it.
+
 For this to work, I first had to make swapping to floppy disk working, but that was also achieved.
 
 2022-03-07:
