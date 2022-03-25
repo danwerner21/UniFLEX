@@ -19,7 +19,13 @@ V, set mapper page D. When followed by a 2 digit hex character that page is mapp
 J, jump to execute. Will start a program at the 4 hex value typed after the 'J'. 
 
 D, disk boot. After typing the 'D', the program waits for about 2 seconds, In that time a '0' or '1' may be typed
-   as drive select from which it will boot.
+   as drive select from which it will boot. When the bootsector shows the 'uniflex' message, you have
+   about 2 seconds to enter a character '0' up to '9'. This will be appended the 'uniflex' as the name
+   of the bootfile.
+
+F, floppy boot, After typing the 'F', and the bootsector shows the 'uniflex' message, you have
+   about 2 seconds to enter a character '0' up to '9'. This will be appended the 'uniflex' as the name
+   of the bootfile.
 </pre>
 
 
