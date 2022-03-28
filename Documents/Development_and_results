@@ -84,4 +84,16 @@ UniBUG is clever enough to map out any mirror RAM so it reports correctly 128K.
 UniFLEX boots, but is hampered by the low RAM. Diskrepair will not run. The kernel eats 36K, system buffers 32K, 
 init eats 12K and a shell eats another 40K. 
 
+2022-03-28:
+
+All of a sudden te system starting to react weird. It would not boot when I had a CPU09GPP board in the backplane.
+It would boot up uniflex9 with a TRAP at the end. Sometimes it booted normal and 'sort of appeared to work'.
+Hooked up the logic analyzer, I noticed that the /XFEXX signal went low some cycles _after_ the
+vector was fetched and the hardware was in system mode. This caused the CPU to skip the first bytes of
+the interrupt handler code. Checked GAL's but nothing strange was found.
+Looked at the signals /SYS and /B_SYS, they came at the right moment. Checked /syst, hey that one was
+delayed by one cycle. As /syst is coming OR-ed from /SYS and /B_SYS via te 74HC132 a suspected this IC.
+Replaced the 74HC132 and all strange effects were gone! The pin 1 input stopped working,
+It took me a few hours of checking and thinking before I understood the situation fully.
+
  
