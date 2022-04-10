@@ -29,21 +29,19 @@ A friend gave me his CS System that he ran professionally up to 1995! It still w
 
 I will post all design files and schematics for the boards in the near future when I have completed the tests. 
 
-The next board will be the MON-itor board, it contains up to 1 MByte static RAM, 8K ROM, an ACIA for console via RS232, a PIA for timer control, memory trap and support for the 'lights' status from the UniFLEX kernel. 8 LED's show entering and leaving of critical sections in the kernel. Lastly some IO pins allow for the 2 highest ROM addresses to select. It also provides the main address decoding for te system. The memory trap will catch addressing of non-existing memory for read and write (BLACKHOLE). Any access to it results in an abort of the responsible process and give a core dump. When reading from 'non-existent' memory, the resulting data is $3F, this will produce a trap also. I believe I have figured out a reliable way to use a HD63X09 in native mode for the OS and immume for changes in the operating mode by a user processes (modem access.....) with minor overhead.
-
-In the works is further an IDE interface, DMA driven. The design is finished and a board can be made. I expect not that it will
-work the first time. We will see. 2019-04-22: I found that I need to uses other latches in the data path to IDE. Made small
-boards that can piggy-back on the orginal sockets and when they arrive I will continue testing. But it looks good.
-
-I plan (for myself) also to build a Floppy/DMA interface. I have plenty of floppies from that era with a lot of software.
-That floppy controller with WD2793 and 68B44 will enable to read (and write) a large mix of diskette formats (8"/5 1/4", 3 1/2")
-in various sides and densities. The kernel (mine) driver is clever enough to detect most of the formats (even 40 track in an 80 track dive with double step)
-
-I think of building an harddisk-image file that one can drop on an IDE disk and after that would be able to boot UniFLEX.
-2019-04-22: I have a working implementation of 'Fuse' under Linux, where I can mount an UniFLEX disk image and access everything with commandline tools and with 'mc' (midnight commander clone). In Fuse I can create, read, write files and also create directories. Next will be rmdir. It has NO protection to concurrent access however, but for building/maintaining a UniFLEX filesystem under Linux it is sufficient. Another tool is makeuffs, that create a valid UniFLEX diskimage under Linux.
-
 In the various archives there is still a lot of software for UniFLEX available. A 2MHz system can deliver a nice performance and digging into the corners of software and hardware has learned me so much about OS and hardware solutions.
 I am very curious how the 4MHz HD63C09 in native mode would do. :-)
+
+UniFLEX comes with the source code for the kernel (TSC) drivers (CS) and a LOT of support software including:
+
+* TSC Basic, an extensive and powerful Basic interpreter
+* McCosh C, a good C compiler with assembler and linker, the C syntax is compatible with the earlier Unix releases
+* TSC Pascal, a Compiler that compiles Pascal into machine code.
+* TSC sources for quite a number of their programs
+* TSC relocating assembler and linker
+* a port of the FLEX debugger to UniFLEX
+* dynacalc, spreadsheet
+* many more programs, 4GL, 
 
 With my system in the 80s and 90's we had ported OS9 level1 to UniFLEX :-) It would run as a task. Also Motorola MDOS from the Exorciser was ported and would run under UniFLEX.
 
