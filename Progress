@@ -85,8 +85,6 @@ I have a LOT of fun with my GAL programming hardware and software. I rewrote the
 can switch the supply voltages and the programming voltages. It works with a normal PC parallel port and also with _SOME_ USB<->IEE1284
 dongles. I made a separate GitHub archive for it. 
 In the near future I will post both hardware and software on GitHub.
-[2021-03-07] I decided to spent some money and bought the TL866 II plus, it can do GAL's, EEROM's and more. Well worth
-the money. 
 
 2019-07-22:
 
@@ -234,6 +232,8 @@ The CPU09GPP/09ECN combo start to work. I have been tweaking the low level drive
 I believe to have a solid driver solution for txFrame and rxFrame. In the test code I echo a received packet c 
 couple of times onboth ends. The scope show very tight sequenced packets.
 
+[2021-03-07] I decided to spent some money and bought the TL866 II plus, it can do GAL's, EEROM's and more. Well worth
+the money. 
 
 2021-08-04:
 As the CPU09MM3 has already everything in place to keep user processes to run in the CPU mode that they want to.
