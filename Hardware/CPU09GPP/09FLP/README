@@ -102,7 +102,10 @@ swapping to/from floppy disk. That functionality has now been added and tested.
 In addition the UniBUG_C version supports booting from floppy and the latest
 posted 'formatfd' can format diskettes with bootsector and with swapspace.
 
+[2022-05-06]
 
+Kees de Jong decribed some alternate options for lowering the floppy connector
+profile in 'Small 09FLP.pdf'.
 
 
 
