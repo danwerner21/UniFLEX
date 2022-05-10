@@ -96,4 +96,14 @@ delayed by one cycle. As /syst is coming OR-ed from /SYS and /B_SYS via te 74HC1
 Replaced the 74HC132 and all strange effects were gone! The pin 1 input stopped working,
 It took me a few hours of checking and thinking before I understood the situation fully.
 
- 
+2022-04-18:
+
+I took the rm.c source from a Unix V7 source archive on the Internet. After some adaptations for the 
+McCosh compiler it compiled without errors. The resulting 'rm' utility appears to work well and des
+also recursive remove, that is a real advantage. In the coming weeks I will check if everything
+works as intended.
+
+The same went for 'touch.c'. That compiled right away and can create 0 byte files when it does not yet
+exist, something the TSC version could not. As creating empty (flag) files happen quite often I am
+happy that I have a version that does it right.
+
