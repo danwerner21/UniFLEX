@@ -22,4 +22,11 @@ Most, if not all SPI devices are not at 5VDC but at 3V3 DC.
 One of the first components to test is the W5500 network component. I will perform 
 tests if the clock generator can work reliably on 33 MHz eventually.
 
+2022-05-10
+Update, I tried to connect the board, but the CPU09GPP was put at /halt with
+the board on...... Murphy stroke in 2019, when I was doing the layout. the IO connector 
+had it even/odd pin's swapped :-(
+
+So, revised the board design, added some last minute additions and ordered a new board.
+
 
