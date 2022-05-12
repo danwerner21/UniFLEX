@@ -39,9 +39,17 @@ UniFLEX comes with the source code for the kernel (TSC) drivers (CS) and a LOT o
 * TSC Pascal, a Compiler that compiles Pascal into machine code.
 * TSC sources for quite a number of their programs
 * TSC relocating assembler and linker
+* TSC Cobol compiler
+* TSC F77 compiler
 * a port of the FLEX debugger to UniFLEX
 * dynacalc, spreadsheet
-* many more programs, 4GL, 
+* dynamite, disassembler
+* a ported debugger, 
+* Sculptor 4GL
+* many more programs,
+* Introl C-compiler
+* Flex4UniFLEX, accessing FLEX disks under UniFLEX
+* various Unix V4 programs ported 
 
 With my system in the 80s and 90's we had ported OS9 level1 to UniFLEX :-) It would run as a task. Also Motorola MDOS from the Exorciser was ported and would run under UniFLEX.
 
