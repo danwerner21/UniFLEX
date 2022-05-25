@@ -9,18 +9,33 @@ In that time the SASI interface was used but now we have/had IDE/PATA and SATA.
 
 Some months ago it started itching and I started to re-design the CPU board as the first one. The original one had a small DATRAM that would allow to re-map memory for processes in 4K blocks, but the DATRAM could only hold one process map. Context switching was
 expensive. My new design has a DATBOX in the form of dual ported RAM that will store the maps for 64 processes all at once. Context switching is very cheap, disable/enable a latch now. Furthermore the CPU board has full crash protection. No user process is able to bring down the OS.
+
 The first iteration learned that some things had to change, most particulary the hardware that detects whether the CPU was running as 6809 or 6309. But the intial tests showed that the princicple works. With a HD63C09 it runs smoothly at 4 MHz bus E-clock!
 
 I choose to use no SMT components but DIP20, DIP40, DIP14, DIP16 etc. In the (unlikely) event that someone likes it and want to 
 build and experiment with the hard- and software, I feel it is better not to challenge soldering skills too much.
 (OK, only very very few ones, which you normally would not need to have ;-( )
 
-UniFLEX features include: fully separated kernel/process space (depending on hardware), multi-tasking, multi-process, 
-hierachical filesystem, virtual memory in 4K pages (process close to 64K), swapping, interrupt driven IO, DMA, pipes,
-an extensive set of systemcalls via SWI3, user process traps (illegal memory, interrupt blocking, illegal instruction) HW
-dependent, drivers for serial port, parallel port, floppy, WD1002 and IDE, kernel source available.
+UniFLEX features include: 
 
-TSC wrote their code modular and very structured. One code set is the basic kernel, this code was completely hardware independent.
+* fully separated kernel/process space (depending on hardware)
+* full multi-tasking
+* full multi-process 
+* hiearchical filesystem
+* virtual memory in 4K pages (process close to 64K)
+* swapping 
+* interrupt driven IO
+* io DMA
+* pipes
+* signals
+* extensive set of systemcalls via SWI3
+* user process traps (illegal memory, interrupt blocking, illegal instruction) HW dependent 
+
+I have found that a lot a assembly code parts almost literally match the Unix V7 C-code for the same function.
+
+Source for kernel and drivers for serial port, parallel port, floppy, WD1002 and IDE, and a lot of more  available.
+
+TSC wrote their code modular and very structured. One code set is the basic kernel, this code is completely hardware independent.
 Another part (in mach_m1) is machine dependent. I adapted that code specifically for the CPU09XXX system. They also made
 some runtime settings configurable with the 'tune' utility. The original code had also a 'install' function, that was meant
 to defeat copying of UniFLEX. I threw that out in my adaption as it has no longer any merit.
@@ -44,7 +59,7 @@ UniFLEX comes with the source code for the kernel (TSC) drivers (CS) and a LOT o
 * a port of the FLEX debugger to UniFLEX
 * dynacalc, spreadsheet
 * dynamite, disassembler
-* a ported debugger, 
+* a text formatter
 * Sculptor 4GL
 * many more programs,
 * Introl C-compiler
