@@ -72,7 +72,7 @@ included.
 Only, only when you want to cascade two CPU09ID6 boards it need a patch :-(
 The L_DMANEN signal is not included in the GAL logic to control DACK- and BO. 
 One small wire from U10 pin 16 to GAL2 pin 9 is all there is. And I created IDE_G2C 
-with the improvements.
+with the improvements. GALS: IDE_G1B, IDE_G2B/IDE_G2C, IDE_G3B, IDE_G4B
 
 
 2022-05-25:
@@ -81,6 +81,6 @@ Posted revision 2.1 This revision has the connection (2021-01-01) and a modified
 to the IDE bus. Reset may come from the system reset or from a local latch on the board.
 Together with a modified driver it resets the IDE devices on opening. That allows for
 an SD-card<->IDE interface to be used and the card changed without the driver hanging up.
-The GALS to use are IDE_G1B, IDE_G2C, IDE_G3B, IDE_G4B
+The GALS to use are IDE_G1B, IDE_G2D, IDE_G3B, IDE_G4B
 
 
