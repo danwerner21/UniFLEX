@@ -102,6 +102,14 @@ Created usrc_63C, this contains the recent status of all files. The Older direct
 'tar' versions of the previous versions.
 ufsrc_20220307.tar is the tar archive, identical to the files in usrc_63C.
  
+*******************************************************************************************
+2022-06-11:
+
+Added wd0_kees.dsk.zip. This is mostly the wd0 disk from Mike Evenson's memulator.
+I replaced the uniflex versions, re-created the /dev directory, added a few programs.
+===>>> in /ksrc on this image is the latest kermel source present. <<<===
+I build the uniflex versions from this source tree, while running UniFLEX from an SD-card.
+
 
 
 
