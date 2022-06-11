@@ -1,6 +1,9 @@
 # UniFLEX
 an UniFLEX  compatible hardware/software project on Eurocards
 
+
+![example system](./UniFLEX_Minimal_System.png)
+
 Some of us know it, your first love remains forever. In the early 80's I came involved with 6809 UniFLEX from T.S.C. The
 SWTPC hardware proved not to be suitable for 24-7, mainly due to the Molex connectors. I got to design an Eurocard based system (CS System) that was influenced for a part by the SWTPC design but had some additions as a DMA SASI interface card, kernel bug fixes, extra kernel drivers and kernel extensions. (i.e. named pipes)
 
