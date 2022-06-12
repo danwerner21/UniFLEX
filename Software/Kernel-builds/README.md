@@ -32,11 +32,7 @@ b 1 x   fd    block device for floppy disks
 All files are in UniFLEX text format, use 'ufless' to access them from linux.
 The .tar image contains the whole source for the CPU09 UniFLEX kernel, in UniFLEX text format
 
-On the image CPU09_UF_IOP.dsk.zip there are 3 bootable kernels. 'uniflex' and 'uniflex4' are kernels for SR4 IO.
-'uniflex5' support SR4 IO _and_ the IOP. If you boot the last one without the CPU09IOP hardware present, the kernel may hang
-in the interrupt handler as it 'sees' the interrupt flag set, but is un-able to reset it.
-
-UF_IOP_200509.dsk.zip. It has the most recent driver source tree in it as the latest version of portbaud.
+Mix/UF_IOP_200509.dsk.zip. It has the most recent driver source tree in it as the latest version of portbaud.
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
 
@@ -46,7 +42,7 @@ bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 It is advised to only boot a kernel which your hardware configuration (at boot time) supports,  other the boot may
 'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
 
-uf20200708.dsk.zip contains a few bootable kernels:
+Mix/uf20200708.dsk.zip contains a few bootable kernels:
 - uniflex               IDE kernel, supports CPU09SR4 boards
 - uniflex1              same, backup of former
 - uniflex2              IDE kernel with IOP support, IOP supports CPU09SR4 boards
@@ -57,7 +53,7 @@ Note: edit /ect/ttylist after booting, disable tty09...tty12 if you don't have I
 #######################################################################################
 2020-12-30:
 
-Uploaded usrc_63A, this clean tree contains the most recent improvements as: 
+Uploaded Older/usrc_63A, this clean tree contains the most recent improvements as: 
 * partition table is now located in system tables space. Each partition table is
 (re) loaded when a drive/partition is opened the first time
 * creating a file always strips the s+ bit from the perms.
@@ -85,7 +81,7 @@ The same goes for the character devices: WC00,WC01,WC02......WC31,WC32,WC33
 *******************************************************************************************
 2021-08-14:
 
-Created usrc_63B and uploaded uf_b_kern.tar in that directory. It provides a clean source
+Created Older/usrc_63B and uploaded uf_b_kern.tar in that directory. It provides a clean source
 tree to build your own UniFLEX kernel. in .../mach_m1/sysconfig.h you can set what 
 hardware is to be supported with your build. 
 This kernel tree supports the 63X09<->68X09 transient of the CPU mode. The kernel runs
@@ -98,8 +94,9 @@ in your process crashing and  being terminated.
 *******************************************************************************************
 2022-03-07:
 
-Created usrc_63C, this contains the recent status of all files. The Older directrory holds
+Created Older/usrc_63C, this contains the recent status of all files. The Older directrory holds
 'tar' versions of the previous versions.
+
 ufsrc_20220307.tar is the tar archive, identical to the files in usrc_63C.
  
 *******************************************************************************************
