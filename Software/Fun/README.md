@@ -1,5 +1,7 @@
 WHAT TO DO AFTER YOU HIT RETURN.  Part No. HP36000-91005  1975
 
+![Basic Games Book](./20200609_122950a.jpg)
+
 A book full of sketches and software in 'Basic'. With explanations and listings. It was so much fun in those years.
 Written by  People Computer Company, P.O. Box 310, Menlo Park, Ca 94025    (415) 323-6117
 
