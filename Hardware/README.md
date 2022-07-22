@@ -3,6 +3,7 @@ This folder contains the hardware components of my CPU09 system.
 If you like to tinker with hardware and UniFLEX or FLEX this system
 may be attractive for you. The designs are made such that the boards
 will not get damaged quickly and they withstand quite some level of abuse :-)
+They are ideal for a Computer Sience class at school.
 
 For a minimal system you need:
 * CPU09BP       this is the system backplane and accomodates up to 7 slots
@@ -17,6 +18,8 @@ Further extentions include:
 * CPU09IOP          serial IO processor, serves up to 12 ports (3 CPU09SR4)
 * CPU09FLX          carrier board for 09FLP, intended for direct IO based floppy access (FLEX)
 * CPU09EXP          experimenters board, fully buffered with large prototype area
+* CPU09BP3          3 slot backplane with simple 5V power connector
+* CPU09BP4          4 slot backplane with simple 5V power connector
 
 * CPUXXCMI          board for 6802/6809 CPU, 65K RAM, 2K ROM, console port (FLEX)
 With a CPUXXCMI, CPU09FLX/09FLP you would have a simple full blown FLEX compatible system
