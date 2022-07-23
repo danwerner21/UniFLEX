@@ -1,5 +1,7 @@
 This is the backplane for the CPU09 system. It has space for 7 slots.
 
+![backplane 7 slots](./20200218_123213a.jpg)
+
 It has a ATX style power connector. Remote reset button, local fuse as the boards (CPU/MON/IDE) use about 0.8A max.
 An ATX power supply can deliver enough current in the 5 Volt to create fireworks on errors.
 

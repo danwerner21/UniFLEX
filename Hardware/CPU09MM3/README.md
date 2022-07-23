@@ -1,6 +1,9 @@
 This file aims to describe the operation of the CPU09MM3 board and the various
 parts of the circuit.
 
+![CPU09MM3 board](./20191014_184625a.jpg)
+
+
 The CPU board has a couple of distinct functions:
 
 * HD63C09 CPU
