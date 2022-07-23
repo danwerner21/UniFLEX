@@ -1,6 +1,6 @@
 Here is the CPU09FLX board
 
-![CPU09FLX-board](./20210120_224158a.jpg)
+![CPU09FLX-board](./20210723_newer.jpg)
 
 Provides:
 * address decoding for FEXXX / XEXXX
