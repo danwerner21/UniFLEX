@@ -6,7 +6,7 @@ will not get damaged quickly and they withstand quite some level of abuse :-)
 They are ideal for a Computer Sience class at school.
 
 For a minimal system you need:
-* CPU09BP       this is the system backplane and accomodates up to 7 slots
+* CPU09BP       this is the system backplane and accomodates up to 7 slots. It has an ATX compatibe power connector.
 * CPU09MM3      CPU and memory management
 * CPU09MON      provides RAM (1MB), ROM (2K), timer, console port
 * CPU09ID6      DMA driven IDE interface, up to 2 drives
