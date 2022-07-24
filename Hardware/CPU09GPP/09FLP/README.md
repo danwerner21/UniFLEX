@@ -40,3 +40,9 @@ F3-DD80,  3", 80 track, 18 sectors, double density, double side
 F3-SH80,  3", 80 track, 20 sectors, double density, single side
 F3-DH80,  3", 80 track, 20 sectors, double density, double side
 </pre>
+
+But the UniFLEX driver/GPP/09FLP combo can handle other sector formats as well.
+
+For FLEX it uses the 256 byte sectors without difficulty.
+
+
