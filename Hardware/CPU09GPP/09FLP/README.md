@@ -1,5 +1,10 @@
+This is the 09FLP pop-up board
+
+![09FLP-board](./20220324_110724.jpg)
+
+
 <pre>
-In the past the my UniFLEX driver could handle a multitude of floppy-disk formats.
+With this board, my UniFLEX driver can handle a multitude of floppy-disk formats.
 
 2022-03-24: The driver as is of now can do all again  :-)
 
