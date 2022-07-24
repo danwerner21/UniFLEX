@@ -1,3 +1,7 @@
+The 09ECN pop-up board. 'Econet' capable interface.
+
+![09ECN-board](./20210106_111313a.jpg)
+
 Introduction:
 
 My eye catched the Econet interface that was popular some years ago with the BBC 
@@ -35,4 +39,7 @@ This interface is suitable for simple network applications. The ADLC
 is capable to transfer a data packet with minimal code/overhead and maximum
 flexibility. 
 
+In the future the board may get a change such that it can work with the CPU09GPD,
+where the data transfer between 68B54 and memory is under DMA. Anyway the
+board will remain backwards compatible with the CPU09GPP board.
 
