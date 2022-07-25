@@ -52,6 +52,8 @@ I am very curious how the 4MHz HD63C09 in native mode would do. :-)
 
 UniFLEX comes with the source code for the kernel (TSC) drivers (CS) and a LOT of support software including:
 
+* TSC Macro Assembler
+* TSC Sourcecode Line Editor
 * TSC Basic, an extensive and powerful Basic interpreter
 * McCosh C, a good C compiler with assembler and linker, the C syntax is compatible with the earlier Unix releases
 * TSC Pascal, a Compiler that compiles Pascal into machine code.
@@ -59,13 +61,18 @@ UniFLEX comes with the source code for the kernel (TSC) drivers (CS) and a LOT o
 * TSC relocating assembler and linker
 * TSC Cobol compiler
 * TSC F77 compiler
+* TSC sort merge
+* TSC text processor
+* TSC Use, a sourcecode Screen Editor
 * a port of the FLEX debugger to UniFLEX
-* dynacalc, spreadsheet
-* dynamite, disassembler
-* a text formatter
+* Dynacalc, spreadsheet
+* Dynamite, disassembler
 * Sculptor 4GL
 * many more programs,
 * Introl C-compiler
+* LuciData Pascal
+* Database programs
+* MSDOS disks read/write utility
 * Flex4UniFLEX, accessing FLEX disks under UniFLEX
 * various Unix V4 programs ported 
 
