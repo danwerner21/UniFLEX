@@ -1,6 +1,7 @@
 This is the CPU09GPD, it has the characteristics of the CPU09GPP, but
 it has a 68B44 DMA controller next to the CPU.
 
+![GPU09GPD](./20220731_205527.jpg)
 
 2022-07-31:
 
