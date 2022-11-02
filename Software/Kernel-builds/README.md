@@ -108,6 +108,18 @@ I replaced the uniflex versions, re-created the /dev directory, added a few prog
 I build the uniflex versions from this source tree, while running UniFLEX from an SD-card.
 
 
+*******************************************************************************************
+2022-11-02:
+
+Published the present kernel state, source tree  
+In this source I added the loop device driver as block major 1. That implies that the floppy
+driver (and devices) now sit on block major 2. Check your /dev directory.
+Also I corrected a few bugs in the iop_han.t code. Lastly, while testing the loop device driver,
+I found a few bugs in the kernel code. Calling dobfio happened sometimes with the wrong device
+major, also setting the read-ahead disk addresses ommited the DEVICE the read-ahead was to be
+on, added also the device for the 'unxtb' settings.
+
+
 
 
 
