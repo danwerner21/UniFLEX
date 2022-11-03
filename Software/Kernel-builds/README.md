@@ -24,9 +24,17 @@ c 6 x   fdc floppy character drivers
 
 c 7 x   uio user I/O drivers
 
+c 8     gpp debug ports
+ 
+c 9     Econet(r) devices
+
+c 10    loop-control
+
 b 0 x   wx    block device  for IDE disks 0...7
 
-b 1 x   fd    block device for floppy disks
+b 1 X   loop  loop device
+
+b 2 x   fd    block device for floppy disks
 
 
 All files are in UniFLEX text format, use 'ufless' to access them from linux.
@@ -36,8 +44,8 @@ Mix/UF_IOP_200509.dsk.zip. It has the most recent driver source tree in it as th
 bootable kernels" uniflex (IDE basic version), uniflex2 (with IOP drivers in it)
 
 
-2020-07-08:  usrc_63 is the most recent kernel tree. By settings options in .../mach_m1/sysconfig.h the user can select
-             the desired kernel version. i.e. with or without IOP. 
+2022-11-02:  usrc_63_20221102 is the most recent kernel tree. By settings options in .../mach_m1/sysconfig.h the 
+user can select the desired kernel version. i.e. with or without IOP. 
 
 It is advised to only boot a kernel which your hardware configuration (at boot time) supports,  other the boot may
 'hang' because the kernel can't handle the interrupts that it sees on it's IO locations.
