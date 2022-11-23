@@ -43,9 +43,11 @@ Building  it goes like:
 
 If you plan to run gdb with it, your set args should be something like
 
+/<pre>
 set args <name_of_uniflex.dsk> -s -f <mountpoint>
 set breakpoints
 run
+</pre> 
 
 If you need to exit gdb, don't forget to run fusermount -u <mountpoint>
 
