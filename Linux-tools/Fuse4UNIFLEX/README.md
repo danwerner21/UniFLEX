@@ -43,7 +43,7 @@ Building  it goes like:
 
 If you plan to run gdb with it, your set args should be something like
 
-/<pre>
+<pre>
 set args <name_of_uniflex.dsk> -s -f <mountpoint>
 set breakpoints
 run
