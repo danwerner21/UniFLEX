@@ -19,3 +19,10 @@ A total of 4 ports are present, like also on the CPU09SR4.
 
 As for baudrates: you need to set the baudrates for UniFLEX and
 USB (terminal emulator) the same.
+
+2022-11-23:
+
+The board has been populated and tested. It works as intended and as such
+I will post the design files here.
+
+
