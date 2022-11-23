@@ -151,7 +151,7 @@ uint8_t		us_snfdn;
 UFDN		us_scfdn[CFDN];
 uint8_t		us_snfree;
 UDSKAD		us_sfree[CDBLKS];
-uint8_t		us_filler[10];
+uint8_t		us_filler[22];
 } UFSIR;
 
 // 
