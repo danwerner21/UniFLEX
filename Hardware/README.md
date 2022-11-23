@@ -13,6 +13,7 @@ For a minimal system you need:
 
 Further extentions include:
 * CPU09SR4          4 ACIA serial ports, baudrate selection per port, RS232 interface
+* CPU09US4          4 ACIA serial ports, baudrate selection per port, USB interface
 * CPU09GPP          general purpose IO processor, RAM, ROM, timer, IO expansion connector 1K range
 * CPU09GPP/09FLP    separate IO processor, with additional WD2793 floppy disk interface
 * CPU09IOP          serial IO processor, serves up to 12 ports (3 CPU09SR4)
@@ -29,7 +30,6 @@ In development are:
 * CPU09GPP/09ECN    Econet compatible (hardware) interface with MC68B54 ADLC
 * CPU09GPP/09SPI    SD-card / W5500 network interface
 * CPU09KDB          kernel debugger, fun to step a running kernel, trap on address etc.
-* CPU09US4          4 ACIA serial ports, baudrate selection per port, USB interface
 
 The hardware provides a good UniFLEX capable system, with integrated user/system separation
 and protection, no user process can bring down the OS.
