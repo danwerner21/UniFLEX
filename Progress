@@ -280,7 +280,20 @@ For this to work, I first had to make swapping to floppy disk working, but that 
 2022-03-07:
 Updated the source tree present on GitHub.
 
-
+2022-11-21:
+A couple of things happened. 
+* I found a subtle bug in the unibug_b code. I corrected it and updated all files on GitHub. This
+bug will bite almost nobody as it was in the FIRQ handling code in the ROM.
+* I finished tested of CPU09US4. This is a, new board, simular to that of CPU09SR4, but this board
+interfaces to an USB port in various ways. The board has provisions for: USB-C interface module,
+Micro-USB interface module or USB<->TTL interfacing. Each port can be configured to each of the
+IO options.
+* I looked into the Fuse4UniFLEX  code and found an issue in how the UniFLEX SIR was defined. After
+correcting that, I could successfuly build and run it on Linux 64 bit too.
+* The CPU09VID nears completion. During testing, some issues were found and addressed in the design
+files. I tested the board with UniFLEX at 4 MHz busclock and FLEX with 2 MHz busclock. For GAL2 there 
+will be a different version for each of the busclock speeds. I wrote a simple kernel driver for the
+video interface for UniFLEX.   
 
 
  
