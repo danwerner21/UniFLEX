@@ -44,7 +44,7 @@ Building  it goes like:
 If you plan to run gdb with it, your set args should be something like
 
 <pre>
-set args <name_of_uniflex.dsk> -s -f <mountpoint>
+set args <name_of_uniflex.dsk> -s -f \<mountpoint\>
 set breakpoints
 run
 </pre> 
@@ -55,9 +55,10 @@ fusermount -u <mountpoint> will unmount the UniFLEX disk image.
 
 Have Fun!
 
-2022-11-23:
-I took the time to figure out why it would not build properly on Linux 64 bit. It turns out that
-the size of the UniFLEX SIR was defined wrong. Corrected that. Now I can build and use fuse_uf
-on a 64 bit Linux again.
+
+[2022-11-23]
+I took the time to figure out why it would not build properly on Linux 64 bit. You may ignore the
+warnings the compiler may throw at you. It turns out that the size of the UniFLEX SIR was defined 
+wrong. Corrected that. Now I can build and use fuse_uf on a 64 bit Linux again.
 
 
