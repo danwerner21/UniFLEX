@@ -1,5 +1,7 @@
 2022-08-14
 
+![CPU09US4 board](./20221123_154217.jpg))
+
 For some time I have been thinking on a variant of the CPU09SR4 for USB.
 For the CPU09SR4 to use, mostly you need an USB<->RS232 convertor.
 
