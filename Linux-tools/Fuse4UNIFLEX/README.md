@@ -39,7 +39,11 @@ but it is in a very usable state.
 
 Building  it goes like:
 
+  apt-get install libfuse-dev
+
   gcc -g  -Wall fuse_uf.c -fms-extensions  `pkg-config fuse --cflags --libs` -o fuse_uf
+
+warnings may be ignored
 
 If you plan to run gdb with it, your set args should be something like
 
