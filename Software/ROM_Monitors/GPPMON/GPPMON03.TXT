@@ -61,12 +61,17 @@ ROMBASE EQU      $F800
 *
 * PROGRAM STARTS HERE
 *
+* first entries identical to SBUG
+*
+                FDB             CONTRL
+                FDB             START
+                FDB             MICTST
+		FDB		INCAR
+		FDB		OTCAR		write char to terminal
 		FDB		PDATA1		printstring (X)
 		FDB		HEXBYT		print one hex byte (A)
 		FDB		OUTS
-		FDB		OTCAR		write char to terminal
 		FDB		TINIT
-		FDB		INCAR
 
 REENT   JMP     CONREN   JUMP INTO WARM MONITOR
 IOV     JMP    [IOVR]     RAM VECTOR IRQ
@@ -464,6 +469,7 @@ OT1     LDAB    A09MONC
         BITB    #%00000010
         BEQ     OT1
         STAA   A09MOND
+        STAA   SPI0TUF       debugIO
 EXIT1   PULB   RESTORE B
 
 EXIT    RTS
@@ -471,9 +477,8 @@ EXIT    RTS
 INEEE   JMP    [INVEC]   USE RAM VECTOR
 
 INCAR   PSHB             SAVE B
-INC1    LDAB   A09MONC
-        ASRB
-        BCS     INC2
+INC1    bsr     MICTST
+        bne     INC2
         BSR     INFUF
         BNE     INC3
         BRA     INC1
@@ -485,6 +490,11 @@ INC3    ANDA   #$7F
         TST    STATUS    ECHO?
         BMI    EXIT1
         BRA    OT1       ECHO
+
+MICTST  pshs    b
+        LDAB    A09MONC
+        BITB    #%00000001
+        puls    b,pc
 
 INFUF   LDAB    SPI0FUF
         BEQ     NOFUF

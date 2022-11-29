@@ -531,9 +531,6 @@ INC1    BSR    INCTST
         BEQ    INC1
         LDAA   SPI0FUF
         CLR    SPI0FUF
-        ANDA   #$7F
-        CMPA   #$7F      SKIP RUBOUT
-        BEQ    INC1
         TST    STATUS    ECHO?
         BMI    EXIT1
         BRA    OT1       ECHO
