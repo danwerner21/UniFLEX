@@ -10,9 +10,9 @@ For the CF-card it is essential that the interface supports DMA.
 
 I added some photo's on 'how I did it'.
 
-The (big) power connector for the CF-card interface sits aside of the sdadapt
-board (with a bit stress). The smaller power connector is accessible very
-well for both types of interface.
+The (big) power connector for the SD-card interface sits aside of the sdadapt
+board (with a bit stress). I removed it from my board.
+The smaller power connector is accessible very well for both types of interface.
 
 The connector for the CPU09IDE is 40 pole female.
 
