@@ -295,6 +295,43 @@ files. I tested the board with UniFLEX at 4 MHz busclock and FLEX with 2 MHz bus
 will be a different version for each of the busclock speeds. I wrote a simple kernel driver for the
 video interface for UniFLEX.   
 
+2023-01-01:
+recently I started tinkering with a RAM-DISK. If I take the floppy interface design and replace the 09FLP
+board with another board with up to 2MB ram on it, I can use the same kernel driver flpdrvr.t to access it.
+And that is what I did, the board is ready and tests show that the idea works well.
+
+A RAM disk is specially effective when using an SD-card as IDE disk. When you mount the ram disk on /tmp
+many programs create intermediate files in /tmp and as it is now a ram, the wearout of the SD-card is 
+greatly reduced!.
+
+While the driver code for the GPP CPU is _very_ simple and minor, the code needs to be expanded with
+extra functions. 
+One is to detect how much RAM is actually available, the other is building an UniFLEX
+file system on the RAM disk at power-on reset.
+
+I feel that, in able to work with gaps in the ram allocation I may need a translation table in the driver
+code, it would make the size of the basic driver only a bit larger. The ROM and RAM size on the GPP is
+no limitation.
+
+It is also possible to create 2 ram disks. As the ramdisk board has 8 dipswitches a multitude of
+options for the configuration is possible, even a switch position where a /reset would NOT affect 
+the ram disk(s) at all, handy when there is important data there. Rebooting UniFLEX would allow you to 
+retrieve/recover this data still.
+
+2023-01-04:
+Reading back this information I see that I have not mentioned te new 'loop' device which I added in the
+last months. Developing it ate a few of my filesystems :-(. But after some serious trial-and-erros I 
+managed to get it working. A 'loop' device allows one to access an ordinary file as is it a filesystem.
+A working 'loop' device requires an image file to be 'attached' to the 'loop' device, after you can access
+it as a normal block device and all utilities for handling a block device work on it. 
+It also allows you to access FLEX .dsk files. Attach them to the 'loop' device and use a modified FLEX
+utitily to get the directory and copying file off from it. 'losetup' is the program that let you
+'attach' and 'detach' the image file to/from the 'loop' device.
+
+ 
+
+
+
 
  
 
