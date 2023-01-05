@@ -320,12 +320,12 @@ retrieve/recover this data still.
 
 2023-01-04:
 Reading back this information I see that I have not mentioned te new 'loop' device which I added in the
-last months. Developing it ate a few of my filesystems :-(. But after some serious trial-and-erros I 
+last months. Developing it did ate a few of my filesystems :-(. But after some serious trial-and-errors, I 
 managed to get it working. A 'loop' device allows one to access an ordinary file as is it a filesystem.
 A working 'loop' device requires an image file to be 'attached' to the 'loop' device, after you can access
-it as a normal block device and all utilities for handling a block device work on it. 
+it as a normal block device and all utilities for handling a block device work on it. (mount, mkfs) 
 It also allows you to access FLEX .dsk files. Attach them to the 'loop' device and use a modified FLEX
-utitily to get the directory and copying file off from it. 'losetup' is the program that let you
+utitily to get the directory and copying file(s) from it. 'losetup' is the program that let you
 'attach' and 'detach' the image file to/from the 'loop' device.
 
  
