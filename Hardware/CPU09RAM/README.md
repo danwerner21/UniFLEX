@@ -5,6 +5,7 @@ CPU09RAM
 The CPU09RAM is an Eurocard size board with logic and space for up to 8 pieces 
 of AS6C4008-55PCN on it, giving a total of 4194304 bytes of volatile storage.
 
+<pre>
 The board provides:
     * up to 4 MB of RAM storage
     * will be located at FEC00...FEFFF in the address range
@@ -46,5 +47,5 @@ As for options I can imagine:
     * one 1MB disk for mounting on /tmp and the remainder for general use
     * don't touch contents at /reset
     *
-
+</pre>
 
