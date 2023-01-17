@@ -317,6 +317,9 @@ It is also possible to create 2 ram disks. As the ramdisk board has 8 dipswitche
 options for the configuration is possible, even a switch position where a /reset would NOT affect 
 the ram disk(s) at all, handy when there is important data there. Rebooting UniFLEX would allow you to 
 retrieve/recover this data still.
+2023-01-17: in addition, I revamped the ramdisk again. See the CPU09RAM info.
+
+
 
 2023-01-04:
 Reading back this information I see that I have not mentioned te new 'loop' device which I added in the
