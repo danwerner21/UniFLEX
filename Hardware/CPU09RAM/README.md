@@ -13,7 +13,7 @@ The board provides:
     * has address latches to select any of the max 8192 available pages
     * has dipswitches that can be read out to inform the driver
     * no DMA, but the HD63X09 has a block move instruction which is very efficient
-    * transfer speed over 125 KByte/sec
+    * transfer speed over 125 KByte/sec at OS level
     * options, with switches, 1 or 2 disk images. 
     * ttyget call returns switch settings and total available memory
 
