@@ -1,3 +1,4 @@
+<pre>
 CPU09RAM
 
 2023-01-17 under construction, not yet tested
@@ -5,9 +6,8 @@ CPU09RAM
 The CPU09RAM is an Eurocard size board with logic and space for up to 8 pieces 
 of AS6C4008-55PCN on it, giving a total of 4194304 bytes of volatile storage.
 
-<pre>
 The board provides:
-    * up to 4 MB of RAM storage
+    * up to 4 MB of RAM storage as RAM DISK
     * will be located at FEC00...FEFFF in the address range
     * provides RAM access in 512 Byte pages
     * has address latches to select any of the max 8192 available pages
@@ -15,6 +15,7 @@ The board provides:
     * no DMA, but the HD63X09 has a block move instruction which is very efficient
     * transfer speed over 125 KByte/sec
     * options, with switches, 1 or 2 disk images. 
+    * ttyget call returns switch settings and total available memory
 
 I created a simple UniFLEX block/char driver for it. The initialization code is 
 capable of detecting the size of the RAM devices present, provided that the devices
