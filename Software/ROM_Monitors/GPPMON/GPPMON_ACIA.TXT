@@ -18,9 +18,7 @@
 * SYSTEM EQUATES
 *
 
-SPI0TUF equ $03fc       I/O via DPR
-SPI0FUF equ $03fd
-
+* DEBUG IO via EXTRA ACIA 
 A09MONC equ     $80fe    ACIA on 09MON board
 A09MOND equ     $80ff
 
@@ -464,24 +462,22 @@ INCMD   BSR    INEEE     GET CHAR
 
 OUTEE   JMP    [OUTVEC]  USE RAM VECTOR
 
+* use extra DEBUG ACIA
 OTCAR   PSHB             SAVE B
 OT1     LDAB    A09MONC
         BITB    #%00000010
         BEQ     OT1
         STAA   A09MOND
-        STAA   SPI0TUF       debugIO
 EXIT1   PULB   RESTORE B
 
 EXIT    RTS
 
 INEEE   JMP    [INVEC]   USE RAM VECTOR
 
+* use extra DEBUG ACIA
 INCAR   PSHB             SAVE B
 INC1    bsr     MICTST
-        bne     INC2
-        BSR     INFUF
-        BNE     INC3
-        BRA     INC1
+        BEQ     INC1
         
 INC2    LDAA    A09MOND
 INC3    ANDA   #$7F
@@ -496,14 +492,6 @@ MICTST  pshs    b
         BITB    #%00000001
         puls    b,pc
 
-INFUF   LDAB    SPI0FUF
-        BEQ     NOFUF
-        LDAA    SPI0FUF
-        CLR     SPI0FUF
-NOFUF   TSTB
-        RTS
-        
-        
 PNCHHD  RTS
 
 PNCHTR  BSR    PNCHHD    50 NULLS
