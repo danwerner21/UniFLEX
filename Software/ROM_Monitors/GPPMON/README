@@ -2,15 +2,9 @@
 
 SPM09 is the older one
 
-2021-07-20
+2023-02-07
 
-GPPMON03 is the most recent one
-Serial IO via 09MON board, this fits on the IObus on the CPU09GPP
-and has an ACIA and PC connector.
+GPPMON_ACIA.TXT uses a special ACIA (on small board on IO connector)
 
-It also supports data transfer via the phantom serial port
-in the Dual Port Ram. This allows you to edit and build software
-for the GPP apllication and load it into the GPP ram via 'memloader'.
-
-
+GPPMON_DPRD.TXT uses  the Dual Port Ram debug interface via the kernel
 
