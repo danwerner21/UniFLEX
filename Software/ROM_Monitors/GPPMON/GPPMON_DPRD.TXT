@@ -62,7 +62,7 @@ ROMBASE EQU      $F800
 *
                 FDB             CONTRL
                 FDB             START
-                FDB             MICTST
+                FDB             INFUF 
 		FDB		INCAR
 		FDB		OTCAR		write char to terminal
 		FDB		PDATA1		printstring (X)
@@ -341,12 +341,6 @@ PRT01   JSR    OUT2HS    DP
         JMP    OUT4HS    SP  +RTS
 
 TINIT   
-        lda     #$43
-        sta     A09MONC
-        exg     d,x
-        exg     d,x
-        lda     #$15     8 bit 1 stop, no par
-        sta     A09MONC
     	RTS
 
 INCH1   JMP    INEEE
