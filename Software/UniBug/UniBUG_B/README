@@ -1,7 +1,5 @@
 2022-02-20
 
-Posted the latest version of the unibug code as unibug_b.t
-
 This version has added handling of CPU mode in user processes. The context 
 switching code save the orginal CPU mode, set's the CPU to 63X09 native
 for the kernel.
