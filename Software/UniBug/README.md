@@ -43,3 +43,9 @@ Added UniBUG_B, this version of UniBUG supports the CPU mode switching between
 the uf_b_kern.tar source tree (in usrc_63B) in the Software/Kernel-builds directory.
 
 ####################################################################################
+
+2023-04-04:
+
+Posted UniBUG_C, this version supports all features of UniBUG_B with the addition of 
+special traps for Illegal Instruction and Dive by Zero. A careful reviewed and optimized
+version of the interrupt handlers.
