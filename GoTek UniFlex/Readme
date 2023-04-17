@@ -1,0 +1,46 @@
+
+8" UniFlex format images - UniFlex_images.zip
+
+   Empty, UniFlex format:
+		diskname.FD-DD.DSK   
+		diskname.FD-DS.DSK
+		diskname.FD-SD.DSK
+		diskname.FD-SS.DSK
+
+   UniFlex Boot:
+		Master.FD-DD.DSK  
+
+
+
+Master.FD-DD.DSK
+	'F'   boot uniflex  for IDE.
+	'F 4' boot uniflex4 for IDE.
+	'F 7' boot uniflex7 will run a uniflex4 image as UniFlex on floppy image. 
+
+All uniflex images are from the last ufsrc_20221102.tar (floppy on major 2).
+
+
+'PC cable' Jumper both drives as 1 and MOT on.
+
+
+
+# NOTE: 
+#       UniFlex:
+#       Most tags match on filesize alone.
+
+#       Except 8" 77 track SSDD will match on diskname.FD-SD.DSK
+#       FD-DS.DSK and FD-SD.DSK are both 630784 bytes!
+
+So only change the 'diskname' part.
+
+formatfd put wrong yyyy date!
+
+
+
+
+
+
+
+
+
+CdeJ
