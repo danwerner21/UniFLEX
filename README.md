@@ -21,7 +21,7 @@ build and experiment with the hard- and software, I feel it is better not to cha
 
 UniFLEX features include: 
 
-* fully separated kernel/process space (depending on hardware)
+* fully separated kernel/process space (depending on hardware, but 100% on CPU09XXX)
 * full multi-tasking
 * full multi-process 
 * hiearchical filesystem
