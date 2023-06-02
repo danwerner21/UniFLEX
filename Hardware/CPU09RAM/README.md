@@ -1,6 +1,8 @@
 <pre>
 CPU09RAM
 
+![CPU09RAM board](./20230602_205819a.jpg)
+
 2023-01-17 under construction, not yet tested
 2023-03-14 board is in the mail, waiting
 
