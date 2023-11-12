@@ -15,13 +15,19 @@ HITACHI DESKSTAR          Fail,         can read but can't format it            
 HITACHI DESKSTAR          success,      after minor modification to IDE board.   CS  but only as a slave drive :-(
 
 HITACHI DESKSTAR          success,      pin29 ADEN-  HDS728080PLAT20             CJ  
-HITACHI DESKSTAR          success,      pin29 DACK-  HDS728080PLAT20             CJ  
+HITACHI DESKSTAR          success,      pin29 DACK-  HDS728080PLAT20             CJ 
+
+FUJISTSU MHA2021AT        success,      pin29 ADEN-  Label not show LBA          CJ  1
+FUJISTSU MHA2021AT        success,      pin29 DACK-  LBA in service manual       CJ  1 
 
 FUJISTSU MHT2060AT        success,      pin29 ADEN-                              CJ  1
 FUJISTSU MHT2060AT        success,      pin29 DACK-                              CJ  1
 
 FUJISTSU MHV2040AH        success,      pin29 ADEN-                              CJ  1
 FUJISTSU MHV2040AH        success,      pin29 DACK-                              CJ  1
+
+IBM DSOA-20540            success,      pin29 ADEN-  Label not show LBA          CJ  1
+IBM DSOA-20540            success,      pin29 DACK-  Specs not show LBA          CJ  1
 
 KingSpec PA25-8GB         Fail,         pin29 ADEN-  SSD                         CJ  1
 KingSpec PA25-8GB         success,      pin29 DACK-  SSD                         CJ  1
@@ -56,12 +62,20 @@ WD WD3200AAJB             Fail,         pin29 DACK-                             
 
 >SATA Disk Brand, Type    Result        Notes                                    By  Adapter(s) ('+'=And '|'=Or)
 
+Apacer AP128GAS350-1      success,      pin29 ADEN-   SSD                        CJ  2 | 3
+Apacer AP128GAS350-1      Fail,         pin29 DACK-   SSD                        CJ  2
+Apacer AP128GAS350-1      success,      pin29 DACK-   SSD                        CJ  3
+
 Apacer AP240GAS340G       success,      pin29 ADEN-   SSD                        CJ  3
 Apacer AP240GAS340G       success,      pin29 DACK-   SSD                        CJ  3
 
 Apacer Panther 256GAS350  success,      pin29 ADEN-   SSD                        CJ  2 | 3
 Apacer Panther 256GAS350  Fail,         pin29 DACK-   SSD                        CJ  2
 Apacer Panther 256GAS350  success,      pin29 DACK-   SSD                        CJ  3
+
+Apacer AP480GAS340G-1     success,      pin29 ADEN-   SSD                        CJ  2 | 3
+Apacer AP480GAS340G-1     Fail,         pin29 DACK-   SSD                        CJ  2
+Apacer AP240GAS340G-1     success,      pin29 DACK-   SSD                        CJ  3
 
 GALAX GAMER L 120G        success,      pin29 ADEN-   SSD                        CJ  2 | 3
 GALAX GAMER L 120G        Fail,         pin29 DACK-   SSD                        CJ  2
@@ -86,6 +100,21 @@ Samsung 850 EVO 120G      success,      pin29 ADEN-   SSD                       
 Samsung 850 EVO 120G      Fail,         pin29 DACK-   SSD                        CJ  2
 Samsung 850 EVO 120G      success,      pin29 DACK-   SSD                        CJ  3
 
+Samsung HD502IJ           success,      pin29 ADEN-                              CJ  2 | 3
+Samsung HD502IJ           Fail,         pin29 DACK-                              CJ  2
+Samsung HD502IJ           success,      pin29 DACK-                              CJ  3
+
+Samsung HD103SJ           success,      pin29 ADEN-                              CJ  3
+Samsung HD103SJ           success,      pin29 DACK-                              CJ  3
+
+Seagate ST1000DM010       success,      pin29 ADEN-   Barracuda                  CJ  2 | 3
+Seagate ST1000DM010       Fail,         pin29 DACK-                              CJ  2
+Seagate ST1000DM010       success,      pin29 DACK-   Barracuda                  CJ  3
+
+Toshiba  DT01ACA050       success,      pin29 ADEN-                              CJ  2 | 3
+Toshiba  DT01ACA050       Fail,         pin29 DACK-                              CJ  2
+Toshiba  DT01ACA050       success,      pin29 DACK-                              CJ  3
+
 TOSHIBA MQ04ABF100        success,      pin29 ADEN-                              CJ  2 | 3
 TOSHIBA MQ04ABF100        Fail,         pin29 DACK-                              CJ  2
 TOSHIBA MQ04ABF100        success,      pin29 DACK-                              CJ  3
@@ -102,6 +131,8 @@ WD WD1003FZEX             Fail,         pin29 DACK-                             
 
 
 >CF Disk Brand, Type      Result        Notes                                    By  Adapter(s) ('+'=And '|'=Or)
+
+Dane-elec 64MB            Fail,                       memory card only?          CJ
 
 Hitachi HMS360606D5CF00   success,      pin29 ADEN-   MicroDrive                 CJ  1+6 | 4 | 5
 Hitachi HMS360606D5CF00   success,      pin29 DACK-   MicroDrive                 CJ  1+6 | 4 | 5
