@@ -332,12 +332,43 @@ utitily to get the directory and copying file(s) from it. 'losetup' is the progr
 'attach' and 'detach' the image file to/from the 'loop' device.
 
  
+2023-11-15:
+Since a couple of months I am busy with adding TCP-IP networking to my UniFLEX system.
+I have put great thoughts into it and decided to use a CPU09GPP board with a dedicated pop-up 
+board for this. The pop-up has fast SPI hardware and a W5500 network module.
+I made a first version of the pop-up board and started testing the SPI functionality. It proved
+somewhat difficult at first to get that right, but after a few iterations of the GAL programming 
+and some re-wiring it started to work. At the end I removed the speed selection for SPI from 
+this pop-up board.
 
+Next I started to play with the W5500 module itself. While the supply voltage needs to be 3V3,
+ the IO lines are 5 volt tolerant. A small voltage regulator on the pop-up board was sufficient
+to power the W5500 module.
 
+The W5500 module provides for 8 independent sockets, which is enough for this system I expect.
+So I started to write code for the GPP CPU, for that to be efficient I needed to understand the
+operation of the code that transfers data from the main CPU to the IOP side and vice-versa. 
+ I needed to understand the operation of the fio_han.t completely. I can say that it has no sectrets 
+any more for me. I managed to change that code such that it became completey agnostic for the hardware.
+I can (re)use the same fio_han.t code for the IOP and NWP purpose. That reduces the grow of kernel code
+ significantly. One binary code part for multiple hardware applications.
 
+I added Berkely 'socket' calls to the kernel code and created additional code in the machine part,
+the interface between the socket code and the dual-port RAM on the GPP board.
+Also a new device entry was added: net0. This device is used to set/display the network device
+ configuration with 'ifconfig'.
 
- 
+++ ifconfig net0
+inet      192.168.1.177  netmask 255.255.255.0    up
+gateway   192.168.1.150  ether   54:53:43:55:46:01
 
+The kernelcode part is the least complex. the GPP CPU part is far more complicated, not in the
+least because how the W5500 module works. It turns ot that the device interrupts should be used
+ extensively here. This requires a complex and capable interrupt processing system.
+Here too, slowly the understanding on how the W5500 works precisely is growing by the day.
 
+The socket  open() and connect() calls work for te most. When the interrupt layer has been written
+somewhat further the read() and write() calls from sockets can be tested.
 
+So enough for those cold winter evenings  :-D
 
