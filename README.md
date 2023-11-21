@@ -104,3 +104,5 @@ One last word of advise: If you plan to build this project, invest in a good sol
 2021-11-03: I posted a photo of a minimal UniFLEX hardware system. It has
 CPU09MM3 (CPU and memory management), CPU09MON (UniBUG ROM, timer, system RAM and 
 console port) and CPU09ID6 (DMA capable IDE interface)
+
+Note: whenever you can't read the source/(text) files on this archive, try hitting 'Raw' at the top right of the browser window.
