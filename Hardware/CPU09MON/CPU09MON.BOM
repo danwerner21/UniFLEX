@@ -8,7 +8,7 @@ Time & date:  20:46  Sep. 19, 2019
 -------------------------------------------------------------------------------
 
   1 74HC21              74HC21              DIP14               U14                                
-  1 74HC125             74LS125             DIP14               U8                                 
+  1 74HC125             74HC125             DIP14               U8                                 
   2 74HC245             74HC245             DIP20               U1                                 
                                                                 U7                                 
   2 74HC393             74HC393             DIP14               U10                                
@@ -51,8 +51,8 @@ Time & date:  20:46  Sep. 19, 2019
                                                                 D7                                 
                                                                 D8                                 
   1 MAX232              MAX232              DIP16               U17                                
-  1 MC6821              MC68X21             DIP40A              U3                                 
-  1 MC6850              MC68X50             DIP24A              U2                                 
+  1 MC6821              MC63B21             DIP40A              U3                                 
+  1 MC6850              MC63B50             DIP24A              U2                                 
   4 POL.CAP             10U                 ELCO                C7                                 
                                                                 C9                                 
                                                                 C10                                
@@ -73,3 +73,4 @@ Time & date:  20:46  Sep. 19, 2019
                                                                 R11                                
                                                                 R12                                
                                                                 R13                                
+    
