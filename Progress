@@ -372,3 +372,54 @@ somewhat further the read() and write() calls from sockets can be tested.
 
 So enough for those cold winter evenings  :-D
 
+2023-12-13:
+Networking in its basic operation works! 
+
+I dropped the interrupts from the W5500 module in favor for fast polling. For the GPP CPU that is not 
+an issue, it proves to be quite efficient and simplified the GPP code a lot.
+
+When the main CPU get a socket() call, most of the data is handed over to the GPP CPU almost immediately.
+
+The normal 'traffic' between the two CPU's goes via a dual port RAM in the form of mailbox messages. 
+TSC had already a driver for such a construction that worked more or less. I have restructered that code
+and made it hardware agnostic. The _same_ code can be used for the IO processor and also by the network
+processor. I foresee that the ECN driver will use it too.
+The dual port RAM also holds a 512 byte buffer (fifo) to exchange data between the 2 sides.
+When the GPP CPU runs the steps for the socket() call it reads, via SPI, various W5500 registers and when
+the provided data is good, the socket in the W5500 is set to open, in UniFLEX a file entry is created,
+The next call would be now socket(), here the data too is handed over to the GPP CPU. The next call
+could also be bind() and listen(), but that has not yet been done.
+
+In the dual port RAM I set aside 8 parameter area's for each socket, 32 bytes each. I call these 'sock' 
+buffers, they contain copies of the W5500 socket status and command registers and the network settings 
+like IP and port info. This makes debugging quite easy. 
+When the destination [connect() is a client call] server is active, the connect() call will return succesful. 
+Now the normal UniFLEX read/write/close calls can be used to manupilate data. Sockets are bi-directional
+by nature.
+
+I have created 2 simple tools on UniFLEX:
+
+w2sock, can be used to copy data from UniFLEX to i.e. Linux. When started with a file argument, that file
+will be copied over. 
+
+On UniFLEX  : w2sock <file> 
+On Linux    : nc -l  -p 32100 >  <file> is used to put the received data in <file>.
+The transfer is binary.
+
+sock2r can be used to receive data from i.e. Linux to UniFLEX. When started with a file argument, that file 
+will be created.
+
+On Linux    : cat <file> | nc -l -p 32100 -q0
+On UniFLEX  : sock2r <file>
+
+At this moment it takes 30 sec to transfer an almost 4 MByte file, that is >100kByte/sec. That is not breath
+taking fast but a lot faster than any other available method.
+
+I also started to created a socklib library that provides the socket() call to C. The Mc Cosh compiler
+hapily builds C code for the network now.
+
+I am aware that there is still a LOT to do, next will be implementing the UDP connection calls. The next
+iteration of the 09NET board is in the mail. I expect that to work out of the box, that is, populate the
+board and run it. The W5500 provides 8 sockets which can be used in parallel and simultaneously. The basic
+networking code has proven to do that without any problem.
+
