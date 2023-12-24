@@ -83,6 +83,25 @@ the status of mounted devices.
 
 ************************************************************************************************
 
+* UniFLEX Disk Format Program
+*
+* usage: ++ mkfsu +nsdrfqB
+* where:
+*    mkfs2 - The name of the format program.
+*
+*    options:
+*      +n - Don't prompt the user for the volume information
+*      +d - Specify the [block] device to be formatted
+*           Given as "+d=XXXX"
+*      +r - Specify the number of swap blocks !!
+*           Given by "+r=NNNNNN", where NN is a decimal number
+*      +f - Specify the number of FDN blocks
+*           Given by "+f=NN", where NN is a decimal number
+*      +q - Don't issue the verification prompt.
+*      +B - Don't actually format the disk - Only rewrite
+*           the boot sector.
+*      +s - Specify the total number of disk blocks for this
+*           filesystem.
 
 
-
+************************************************************************************************
