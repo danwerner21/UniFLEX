@@ -20,3 +20,7 @@ applications can be served.
 
 Also a socklib.r is being created, that allows the Mc Cosh C compiler to
 build programs with networking capabilities.
+
+Hm, yes, I used a few SMT components, the ones to serve as 3V3 power source
+for the W5500 module. The IO pin's are 5 V tolerant.
+
