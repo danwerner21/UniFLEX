@@ -21,7 +21,7 @@ I made 2 simple (piping) utilities to upload/download data between Linux
 and UniFLEX.
 
 Linux:   nc -l  -p 32100 >UniFLEX-file
-UniFLEX: cat UniFLEX-file | w2sock
+UniFLEX: w2sock <UniFLEX-file
 
 or the other way
 
