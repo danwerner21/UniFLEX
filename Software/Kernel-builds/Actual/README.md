@@ -18,4 +18,7 @@ For me it is very rewarding, as the alternatives are much worse.
 
 The current sysconfig.h is setup for: IDE, RAMDSK, LOOP, NET, GPPDBG
 
-        
+2024-01-03:
+
+made progress with UDP read, seems to work, Next UDP write, but I expect that
+to be easier now.        
