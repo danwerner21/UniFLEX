@@ -3,20 +3,6 @@
 The REV 0.9 board has no known flaws. The LT3080 voltage regulator is more than
 capable to power the W5500.
 
-Functions that work:
-
-sref = socket(AF_INET, SOCK_STREAM, 0)
-int    connect(sref, *sock_addr, sock_addlen)
-int    read(sref, *buffer, count);
-int    write(sref, *buffer, count)
-       close(sref)
-
-Additional:
-
-int    bind(sref, *sock_addr, sock_addlen)
-int    listen(sref)
-int    accept(sref)
-
 I made 2 simple (piping) utilities to upload/download data between Linux
 and UniFLEX.
 
@@ -27,25 +13,6 @@ or the other way
 
 Linux:   cat UniFLEX-file |nc -l -p 32100 -q0
 UniFLEX: sock2r >UniFLEX-file
-
-
-I am working on UDP:
-
-sref = socket(AF_INET, SOCK_DGRAM,0)
-int    readfrom(sref, *buffer, len, *sockaddr)
-int    writeto(sref, *buffer, len, *sockaddr)
-       close(sref)
-
-Note that the readfrom() and sendto() calls are truncated, the
-reason is that the UniFLEX kernel can handle only 4 system call
-arguments at most. That is not a big issue as the address info
-should always be 8 bytes in total.
-
-{
-    int16_t sin_family;
-    uint16_t sin_port;
-    uint32_t sin_addr;
-}
 
 One big advantage is the UniFLEX (6X09) has already the bytes
 in network order. (big endian).
