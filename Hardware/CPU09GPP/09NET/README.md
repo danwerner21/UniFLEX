@@ -6,7 +6,7 @@
  
 * works with CPU09GPP
 * works with UniFLEX kernel with 'sockets' added to kernel
-* wzdrvr should be in boot image
+* wzdrvr/socket should be in kernel boot image
 
 The module in combination with the CPU09GPP provides TCP/IP communications
 for UniFLEX 6X09. The software however is tailored for the HD63C09 CPU.
@@ -23,4 +23,8 @@ build programs with networking capabilities.
 
 Hm, yes, I used a few SMT components, the ones to serve as 3V3 power source
 for the W5500 module. The IO pin's are 5 V tolerant.
+
+The scope screenshot shows the nice timing of the SPI clocks versus the data bits.
+Here the SPI address was 0003 (big endian)
+
 
