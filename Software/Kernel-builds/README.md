@@ -4,6 +4,14 @@ Here are the UniFLEX kernel versions.
 LATEST is uf231101.img.zip, 2023-11-01
 
 
+#######################################################################################
+
+If you put a UniFLEX disk image on a drive or SD-card with 'dd' the commandline
+should read:
+
+dd if=<name_of_image> of=<name_of_disk_on_your_os> bs=512 conv=swab
+
+The latter is important to get the image with the right byte sequence.
 
 #######################################################################################
 Older information
