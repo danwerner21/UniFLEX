@@ -38,6 +38,13 @@ I have found that a lot a assembly code parts almost literally match the Unix V7
 
 Source for kernel and drivers for serial port, parallel port, floppy, WD1002 and IDE, and a lot of more  available.
 
+2024-01-01:
+
+* added TCP/IP networking to the system and the kernel. Now: socket(), connect(), bind(), listen(), accept(),
+    read(), write(), close(), recfrom() and sendto() are all implemented at the socket level in a compatible
+    way. Calls can be dome in assembly as well from C. A socklib with the interface for the Mc Cosh compiler
+    is available. 
+
 TSC wrote their code modular and very structured. One code set is the basic kernel, this code is completely hardware independent.
 Another part (in mach_m1) is machine dependent. I adapted that code specifically for the CPU09XXX system. They also made
 some runtime settings configurable with the 'tune' utility. The original code had also a 'install' function, that was meant
@@ -89,11 +96,10 @@ software.
 
 As more people get involved we could add some simple networking, SD card interface and so on. And yes the boards will have GAL's to minimize discrete logic. That was the reason for my Perlblast project. I will make all design files for the GAL's available too.
 
-I hope I get enough years to complete this project :-)) It would be a nice learning tool for CS education. The boards are robust
-against careless handling which makes it very suitable for handling by students. The whole system, as everything and anything
-is open, can be thouroughly examined, modified and extended. It contains many aspects of computing: virtual memory, DMA, IO,
-process protection, Interrupts.
-It worked for me and others very well in that sense.
+I hope I get enough years to complete this project :-)) It would be a nice learning tool for Computer Sience Education. 
+The boards are robust against careless handling which makes it very suitable for handling by students. The whole system, 
+as everything and anything is open, can be thouroughly examined, modified and extended. It contains many aspects of modern 
+computing: virtual memory, DMA, IO, process protection, Interrupts. It worked for me and others very well in that sense.
 
 !!! For those who can't program their own GAL's and/or EPROM's: I am able and willing to help here,but only for this project. 
 Drop me an email and we will see how to arrange things.
