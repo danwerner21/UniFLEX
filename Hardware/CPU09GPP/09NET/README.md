@@ -11,12 +11,16 @@
 The module in combination with the CPU09GPP provides TCP/IP communications
 for UniFLEX 6X09. The software however is tailored for the HD63C09 CPU.
 
-The mdule provides up to 8 socket connections.
-The network connection is UTP
-In the kernel a few Berkely calls are added:
+The module provides up to 8 socket connections.
 
-socket(), connect, bind() and listen(), so that both client and server
-applications can be served.
+The network connection is UTP connector.
+
+In the kernel a few Berkely (TCP/IP) calls are added:
+
+socket(), connect(), bind() and listen(), accept(), read(), write(), close,
+so that both client and server applications can be served.
+
+Additionally recfrom() and sendto() calls (UDP) are also implemented
 
 Also a socklib.r is being created, that allows the Mc Cosh C compiler to
 build programs with networking capabilities.
