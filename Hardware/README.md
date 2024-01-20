@@ -13,7 +13,7 @@ For a minimal system you need:
 
 Further extentions include:
 * CPU09SR4          4 ACIA serial ports, baudrate selection per port, RS232 interface
-* CPU09US4          4 ACIA serial ports, baudrate selection per port, USB interface
+* CPU09US4          4 ACIA serial ports, baudrate selection per port, USB/TTL interface
 * CPU09GPP          general purpose IO processor, RAM, ROM, timer, IO expansion connector 1K range
 * CPU09GPP/09FLP    separate IO processor, with additional WD2793 floppy disk interface
 * CPU09IOP          serial IO processor, serves up to 12 ports (3 CPU09SR4)
@@ -21,15 +21,18 @@ Further extentions include:
 * CPU09EXP          experimenters board, fully buffered with large prototype area
 * CPU09BP3          3 slot backplane with simple 5V power connector
 * CPU09BP4          4 slot backplane with simple 5V power connector
-
+* CPU09GPP/09NET    TCP/IP network interface, provides socket calls to the kernel
+* CPU09RAM          RAM disk board with up to 4096 KByte of RAM on board
 * CPUXXCMI          board for 6802/6809 CPU, 65K RAM, 2K ROM, console port (FLEX)
 With a CPUXXCMI, CPU09FLX/09FLP you would have a simple full blown FLEX compatible system
 
 In development are:
 * CPU09VID          512x472 B/W video board.
 * CPU09GPP/09ECN    Econet compatible (hardware) interface with MC68B54 ADLC
-* CPU09GPP/09SPI    SD-card / W5500 network interface
 * CPU09KDB          kernel debugger, fun to step a running kernel, trap on address etc.
+* CPU09GPP/09SPI    generic SPI interface (i.e. sd-card)
+* CPU09SDC          variant of IDE board where SD-card can be used with minimal extra depth.
+* CPU09GPD          variant of GPP with on-board DMA controller, for DMA type peripherals
 
 The hardware provides a good UniFLEX capable system, with integrated user/system separation
 and protection, no user process can bring down the OS.

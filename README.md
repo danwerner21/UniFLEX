@@ -41,8 +41,8 @@ Source for kernel and drivers for serial port, parallel port, floppy, WD1002 and
 2024-01-01:
 
 * added TCP/IP networking to the system and the kernel. Now: socket(), connect(), bind(), listen(), accept(),
-    read(), write(), close(), recfrom() and sendto() are all implemented at the socket level in a compatible
-    way. Calls can be dome in assembly as well from C. A socklib with the interface for the Mc Cosh compiler
+    read(), write(), close(), recfrom() and sendto() are all implemented at the socket level as the Unix
+    versions. Calls can be done in assembly as well from C. A socklib with the interface for the Mc Cosh compiler
     is available. 
 
 TSC wrote their code modular and very structured. One code set is the basic kernel, this code is completely hardware independent.
