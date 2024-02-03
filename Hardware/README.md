@@ -41,6 +41,14 @@ and protection, no user process can bring down the OS.
 Essentials skills: good in soldering!
 
 
-2021-08-14: Guus Assmann set himself to the tedious job to create a spreadsheet with all the components for the CPU boards and most of the components have even a stock
-number for various webshops. I owe him great thanks.
+2021-08-14: Guus Assmann set himself to the tedious job to create a spreadsheet with all the 
+components for the CPU boards and most of the components have even a stock number for 
+various webshops. I owe him great thanks.
 
+##################################################################################################
+
+General NOTE:
+
+Choosing  GAL's, the Lattice brand is strongly preferred!
+
+##################################################################################################
