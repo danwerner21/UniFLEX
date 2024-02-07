@@ -423,3 +423,22 @@ iteration of the 09NET board is in the mail. I expect that to work out of the bo
 board and run it. The W5500 provides 8 sockets which can be used in parallel and simultaneously. The basic
 networking code has proven to do that without any problem.
 
+2024-01-23:
+
+Added the UDP calls, recvfrom() and sendto() and changed the call interface. I found out 
+that the kernel in fact allows a call to pass 6 parameters: D, X, and 4 additional.
+That allowed me to implement the networking calls much better.
+
+While testing the first hardware version, 'Murphy' visited me. The first 2 boards which
+I populated worked right from the start. A third board however was showing weird effects,
+data transfers had extra data in them....  After a LOT of debugging and testing it
+appeared to be crosstalk on the board. So I went to move components on the board and
+changed to layout too. Now high frequency traces are short. The new board version has
+been ordered and hopefully the issue is resolved. Will keep you posted.
+
+Started my excersise with 'tnfs', it is documented but you have to read the source code
+to fully understand the implementation. I got that far that, on UniFLEX, I can 'ls files'
+ in the exported folder on Linux. When completed, looking up files and transferring
+ those 'up' or 'down' will be very easy.
+ 
+ 

@@ -1,3 +1,5 @@
+<pre>
+
 Here some native UniFLEX programs which are very handy.
 
 
@@ -7,28 +9,11 @@ Here some native UniFLEX programs which are very handy.
 It needs a correct /etc/termcap file entry  for it to work.
 
 
+
 ************************************************************************************************
 
 'formatfd' is a UniFLEX diskette formatter. It's capabilities should match that of the 
 flpdrvr.t in the kernel tree and that of gppflpdrv.t in the gpp_flp branch
- 
-
-************************************************************************************************
-
-tar   is a UniFLEX executable that handles _uncompressed_ tar archive files.
-tar: usage  tar [-]{txruc}[vwfblm][0-7[lmh]] [tapefile] [blocksize] file1 file2..
-
-
-************************************************************************************************
-                                    format
-
-Format a disk for system use.
-
-SYNTAX
-
-     /etc/format [ +Bdfl LmMnPqrv J
-
-Options
 
 B              Write boot sector only. Do not format disk.
 d=<devicename> Format the device file name>.
@@ -46,12 +31,29 @@ D              Destroy, just erase the disk
 O              unbiased sectors, no filesystem (msdos exchange)
 S              unbiased sectors, UniFLEX filesystem
 I              Use Interleaved sector arrangement on track
+v              Verify disk
+b              No filesystem written
+
+************************************************************************************************
+
+tar   is a UniFLEX executable that handles _uncompressed_ tar archive files.
+tar: usage  tar [-]{txruc}[vwfblm][0-7[lmh]] [tapefile] [blocksize] file1 file2..
+
+tar tvf tarfile       shows contents of tarfile
+
+tar xvf tarfile       [<match_pattern>] retrieve files from tarfile
+
+tar cvf tarfile       [<match_pattern>] creates tarfile
+
 
 ************************************************************************************************
 
 'flexmulti' is a program simular to the 'flex' utility on UniFLEX. But this version can read
 a multitude of diskette formats in a real floppy drive. 
  'flexmulti.s1' is the S1 hex formatted version of 'flexmulti'
+ 
+flexmulti /dev/fd0
+flexmulti /dev/fd1    filename  filename     copies file from FLEX disk to UniFLEX
 
 ************************************************************************************************
 
@@ -63,9 +65,14 @@ will make the <disk_image_file> available as a block device under UniFLEX. All b
 tools (diskrepair, blockcheck, fdncheck, devcheck, mkfs, mount, umount) can be applied on this 
 device.
 
+
 It is also possible to use a FLEX diskimage, but that CAN NOT BE MOUNTED. The tool 'flexloopx'
 however can access the files in the image. flexloop0 will show the directory of the FLEX-image
 made avialable on /dev/loop0.
+
+flexloop0(flexloop1)  shows FLEX directory of disk accessed via loop device
+
+flexloop0 filename filename     copies FLEX file over to UniFLEX
 
 ************************************************************************************************
 
@@ -74,16 +81,21 @@ files AND directories.
 
 This 'rm' version need also the 'rmdir' program to function.
 
+rm -rf *   WILL ERASE EVERYTHING from current directory and downwards!
+
 ************************************************************************************************
 
 
 'mount' and 'umount' are essentially Unix variants. They maintain the '/etc/mtab' file to register
-the status of mounted devices.
+the status of mounted devices. It does NOT support umount on directories.
+
+mount /dev/w03 /home
+umount /dev/w03
 
 
 ************************************************************************************************
 
-* UniFLEX Disk Format Program
+* UniFLEX Hard Disk Format Program
 *
 * usage: ++ mkfsu +nsdrfqB
 * where:
@@ -103,5 +115,13 @@ the status of mounted devices.
 *      +s - Specify the total number of disk blocks for this
 *           filesystem.
 
+It will abort if the assigned disk is mounted (in use)
 
 ************************************************************************************************
+
+
+
+
+
+
+</pre>
