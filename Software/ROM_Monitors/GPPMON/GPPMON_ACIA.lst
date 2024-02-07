@@ -16,7 +16,7 @@
                               OPT    PAG
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 1
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 1
 
 
                       *
@@ -24,8 +24,8 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 1
                       *
  
                       * DEBUG IO via EXTRA ACIA 
-                      A09MONC equ     $80fe    ACIA on 09MON board
-                      A09MOND equ     $80ff
+                      A09MONC equ     $82fe    ACIA on 09MON board
+                      A09MOND equ     $82ff
  
                       FIFO    EQU     $0000
  
@@ -82,7 +82,7 @@ one hex byte (A)
  F812 7EF831          REENT   JMP     CONREN   JUMP INTO WARM MONITOR
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 2
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 2
 
 
  F815 6E9F7F00        IOV     JMP    [IOVR]     RAM VECTOR IRQ
@@ -148,7 +148,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 2
  
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 3
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 3
 
 
  F88F 8D16            BADDR   BSR    INBYTE      READ HIBYTE
@@ -214,7 +214,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 3
  F901 8D40                    BSR    OUT4HS
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 4
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 4
 
 
  F903 BE7F1C                  LDX    XHI       RESTORE POINTER
@@ -280,7 +280,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 4
  F981 BF7F14                  STX    OUTVEC
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 5
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 5
 
 
  F984 7F7F22                  CLR    STATUS    ENABLE ECHO
@@ -346,7 +346,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 5
  FA05 2754                    BEQ    PUNCH
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 6
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 6
 
 
  FA07 7EFAEF                  JMP    PRINT
@@ -377,11 +377,11 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 6
  
                       TINIT   
  FA3C 8643                    lda     #$43
- FA3E B780FE                  sta     A09MONC
+ FA3E B782FE                  sta     A09MONC
  FA41 1E01                    exg     d,x
  FA43 1E01                    exg     d,x
  FA45 8615                    lda     #$15     8 bit 1 stop, no par
- FA47 B780FE                  sta     A09MONC
+ FA47 B782FE                  sta     A09MONC
  FA4A 39                      RTS
  
  FA4B 7EFB4C          INCH1   JMP    INEEE
@@ -412,7 +412,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 6
  FA81 8D0D                    BSR    PUN40
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 7
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 7
 
 
  FA83 BE7F16          PUN50   LDX    TW        CHECK DONE
@@ -478,7 +478,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 7
  FB0D BE7F16                  LDX    TW        RESTORE POINTER
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 8
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 8
 
 
  FB10 C610                    LDAB   #16       RESTORE SIZE
@@ -508,10 +508,10 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 8
  
                       * use extra DEBUG ACIA
  FB3D 3404            OTCAR   PSHB             SAVE B
- FB3F F680FE          OT1     LDAB    A09MONC
+ FB3F F682FE          OT1     LDAB    A09MONC
  FB42 C502                    BITB    #%00000010
  FB44 27F9                    BEQ     OT1
- FB46 B780FF                  STAA   A09MOND
+ FB46 B782FF                  STAA   A09MOND
  FB49 3504            EXIT1   PULB   RESTORE B
  
  FB4B 39              EXIT    RTS
@@ -523,7 +523,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 8
  FB52 8D12            INC1    bsr     MICTST
  FB54 27FC                    BEQ     INC1
                               
- FB56 B680FF          INC2    LDAA    A09MOND
+ FB56 B682FF          INC2    LDAA    A09MOND
  FB59 847F            INC3    ANDA   #$7F
  FB5B 817F                    CMPA   #$7F      SKIP RUBOUT
  FB5D 27F3                    BEQ    INC1
@@ -532,7 +532,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 8
  FB64 20D9                    BRA    OT1       ECHO
  
  FB66 3404            MICTST  pshs    b
- FB68 F680FE                  LDAB    A09MONC
+ FB68 F682FE                  LDAB    A09MONC
  FB6B C501                    BITB    #%00000001
  FB6D 3584                    puls    b,pc
  
@@ -544,7 +544,7 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 8
  FB78 7EF999          C5      JMP    CONTRL    EXIT
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 9
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 9
 
 
  
@@ -588,11 +588,11 @@ mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 9
 1 warning(s) in pass 2.
 
 
-mon6809                          2023-02-07 A09 6809 Assembler V1.37 Page 10
+mon6809                          2023-11-04 A09 6809 Assembler V1.37 Page 10
 
 
 SYMBOL TABLE
-   A09MONC 00 80FE   A09MOND 00 80FF     BADDR 02 F88F     BADR1 02 F89D
+   A09MONC 00 82FE   A09MOND 00 82FF     BADDR 02 F88F     BADR1 02 F89D
       BEGA 02 7F0E    BYTEC1 02 7F18     BYTEX 02 F8C3        C1 02 F878
        C11 02 F90F        C3 02 F90C        C4 02 FA18        C5 02 FB78
         C8 02 F92C      CHA1 02 F8D6     CHA11 02 F908     CHA12 02 F8F9

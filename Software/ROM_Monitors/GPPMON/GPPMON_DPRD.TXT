@@ -239,7 +239,7 @@ START   EQU    *
         FCB     $11,$3D,$03             set 6309
 *
 
-        LDA    #$80      SET DP REG
+        LDA    #$D0      SET CC REG
         STA    0,S
         clr    5,s      set dp
         LDX    #SFE      SOFTWARE INTERR. ENTRY
@@ -291,14 +291,15 @@ CONTRL  LDS    #CSTACK   MONITOR STACK
         BEQ    PRNTRG
         cmpb    #'b
         bne     contr1
-        ldx     #HWE
-        stx     SWIVEC
+*        ldx     #HWE
+*        stx     SWIVEC
 contr1  CMPB   #'g       GO?
         BNE    CONTRL    NO
 * GO cmd
-        JSR    INCH      HOW?
+        JSR    INCRAW    HOW? (NO ECHO)
         CMPA   #$0D      CR?
         BEQ    CONTIN    WITH CURRENT ADDRESS
+        JSR    OTCAR     echo char
         JSR    INHEX+3   GET NEW ADDRESS
         BCS    CONTRL
         JSR    INBYTE+2
@@ -307,8 +308,9 @@ contr1  CMPB   #'g       GO?
         bcs    CONTRL
         LDD    XHI      TRANSFER ADDRESS
         LDX    TSP       TO PSEUDO REGS
-	STD	   12,x
-CONTIN  LDS    TSP       RESTORE USER STACK
+	STD    12,x
+CONTIN  jsr     OUTSTG
+        LDS    TSP       RESTORE USER STACK
         RTI              AND RUN...
 
 CL1     BSR    INCH1     GET SUB COMM.
@@ -468,15 +470,19 @@ INEEE   JMP    [INVEC]   USE RAM VECTOR
 
 * use the DPR debug interface
 INCAR   PSHB             SAVE B
-INC1    BSR     INFUF
-        BEQ     INC1
-        
-INC3    ANDA   #$7F
-        CMPA   #$7F      SKIP RUBOUT
-        BEQ    INC1
+        BSR    INCRAW
         TST    STATUS    ECHO?
         BMI    EXIT1
         BRA    OT1       ECHO
+
+* pure input, no echo
+INCRAW  BSR     INFUF
+        BEQ     INCRAW
+        
+INC3    ANDA   #$7F
+        CMPA   #$7F      SKIP RUBOUT
+        BEQ    INCRAW
+        RTS
 
 INFUF   LDAB    SPI0FUF
         BEQ     NOFUF

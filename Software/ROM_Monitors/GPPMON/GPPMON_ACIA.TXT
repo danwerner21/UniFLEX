@@ -19,8 +19,8 @@
 *
 
 * DEBUG IO via EXTRA ACIA 
-A09MONC equ     $80fe    ACIA on 09MON board
-A09MOND equ     $80ff
+A09MONC equ     $82fe    ACIA on 09MON board
+A09MOND equ     $82ff
 
 FIFO    EQU     $0000
 
