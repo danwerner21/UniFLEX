@@ -9,7 +9,7 @@ Does the fuse table do what it is programmed to do?
 In the TL866II+, import the GPP_xxx.lgc files in the 'Logic IC Test' screen and Test the chip!
 
 For the GPP_3 use GPP_3.lgc (this is a full test, no don't care inputs).
-For the GPP_2 use both CMI_2-P1.lgc and GPP_2-P2.lgc (this tests use don't care inputs).
+For the GPP_2 use both GPP_2-P1.lgc and GPP_2-P2.lgc (this tests use don't care inputs).
 The GPP_1 has to many inputs to test on the TL866II+. 
 
 Works for GAL...., ATF.... and PALCE... chips.
