@@ -1,7 +1,7 @@
 ;PALASM Design Description
 
 ;---------------------------------- Declaration Segment ------------
-TITLE    09NET_G1 U7
+TITLE    09NET_G1A U7
 PATTERN
 REVISION
 AUTHOR   CS
@@ -20,11 +20,11 @@ PIN  6	        C_E
 PIN  7	        CLK_FF1
 PIN  8	        Q_FF1
 PIN  9	        SH_HOLD
-PIN  10	        SPI_INTE
-PIN  11	        SPI_INT_
+;PIN  10	        SPI_INTE
+;PIN  11	        SPI_INT_
 
 PIN  13         U9Q7
-PIN  14         SPI_INT      
+PIN  14         U12_PRELOAD
 PIN  15         SPI_MOSI           ; OUT
 PIN  16	        SPICLK             ; IN
 PIN  17	        C_A2               ; IN
@@ -39,27 +39,25 @@ PIN  23	        SPI_CLK
 EQUATIONS
 
 ; clock for bit clocks counter
-/U12_CLK = (C_A2 * C_E * /CLK_FF1) + (/SPICLK  * Q_FF1 *CLKENB);
-
-; inverse clock
-/SPICLK_ = SPICLK;
-
-; load  for bit clocks counter
-;;/U12_LD_ =  (8BIT * QA * QB * QC * /SPICLK)  + (/8BIT * QA * QB * QC * QD * /SPICLK) ;
-/U12_LD_ =  (8BIT * QA * QB * QC )  + (/8BIT * QA * QB * QC * QD ) ;
-
+/U12_CLK = (C_A2 * C_E * /CLK_FF1) + (SPICLK  * Q_FF1 *CLKENB);
 
 ; shift register clock
 /SHCLK    =  (/SH_HOLD * Q_FF1 * SPICLK * CLKENB) + (/CLK_FF1 * C_E * C_A2) ;
 
-
+;
 SPI_CLK   =  (/SH_HOLD * Q_FF1 * SPICLK * CLKENB) :+: GND;
+
+; inverse clock U15B
+/SPICLK_ = SPICLK;
+
+; load  for bit clocks counter
+/U12_LD_ =  (8BIT * QA * QB * QC )  + (/8BIT * QA * QB * QC * QD ) ;
 
 ;
 SPI_MOSI = U9Q7 ; 
 
-;
-SPI_INT= /SPI_INT_ * SPI_INTE ;                interrupt enable
+; REMOVE FET!
+/U12_PRELOAD = /U12_LD_ * SPICLK
 
 
 ;----------------------------------- Simulation Segment ------------
