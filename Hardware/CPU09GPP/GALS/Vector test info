@@ -1,0 +1,16 @@
+Vector test on TL866II Plus
+
+
+GPP_1        - Many inputs can't test.
+
+GPP_2-P1.lgc - full equations tests, unused input pin's don't care state.
+               Test: OER_, CER_, WER_, IOLED_, SEL1_, SEL2_, LCLIO_
+
+GPP_2-P2.lgc - full equations tests, unused input pin's don't care state.
+               Test: CPURES_, U4CE_, U5CE_
+
+GPP_3.lgc    - full equations tests, unused input pin's don't care state.
+               Test: DATON, DATCLK, RESINT_
+			   
+			   
+CdeJ
