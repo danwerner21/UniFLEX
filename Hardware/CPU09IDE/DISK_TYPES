@@ -137,11 +137,19 @@ Dane-elec 64MB            Fail,                       memory card only?         
 Hitachi HMS360606D5CF00   success,      pin29 ADEN-   MicroDrive                 CJ  1+6 | 4 | 5
 Hitachi HMS360606D5CF00   success,      pin29 DACK-   MicroDrive                 CJ  1+6 | 4 | 5
 
-Transcent TS16GCF400      success,      pin29 ADEN-   CompactFlash               CJ  1+6 | 4 | 5
-Transcent TS16GCF400      success,      pin29 DACK-   CompactFlash               CJ  1+6 | 4 | 5
+Transcent TS16GCF400      success,      pin29 ADEN-   CompactFlash UDMA 16GB     CJ  1+6 | 4 | 5
+Transcent TS16GCF400      success,      pin29 DACK-   CompactFlash UDMA 16GB     CJ  1+6 | 4 | 5
 
+Trancent 2GB 133x         success,      pin29 ADEN-   CompactFlash (RAW) *       CJ  1+6 | 5
+Trancent 2GB 133x         success,      pin29 DACK-   CompactFlash (RAW) *       CJ  1+6 | 5
+
+Trancent 2GB 133x         Fail,         pin29 ADEN-   CompactFlash (RAW) *       CJ  4 
+Trancent 2GB 133x         Fail,         pin29 DACK-   CompactFlash (RAW) *       CJ  4 
 
 >SD Disk Brand, Type      Result        Notes                                    By  Adapter(s) ('+'=And '|'=Or)
+
+Kingston 32GB             success,      pin29 ADEN-   Micro SD HC I SDC10        CJ  9 | 15 | 1+11 | 1+12
+Kingston 32GB             success,      pin29 ADEN-   Micro SD HC I SDC10        CJ  9 | 15 | 1+11 | 1+12
 
 microdrive 8GB  HC        success,      pin29 ADEN-   SD Smart card AK2689       CJ  3+7+8 | 9 | 1+11 | 1+12
 microdrive 8GB  HC        success,      pin29 DACK-   SD Smart card              CJ  3+7+8 | 9 | 1+12
@@ -168,10 +176,11 @@ Adapter  Type, description
   8      Class 10 micro SD Adapter, microdrive SD - TF adapter
   9      TF35VA0, true-IDE DMA-33 Transmission mode TF to IDE converter
   10     LogiLink AD0005A, SATA to IDE 40-pin converter
-  11     TF25VA0, true-IDE Transmission mode SD to IDE 44-pin converter
-  12     SKU009230, SD/SDHC/SDXC/MMC to IDE 44-pin converter
+  11     TF25VA0, true-IDE Transmission mode SD to IDE 40-pin converter
+  12     SKU009230, SD/SDHC/SDXC/MMC to IDE 40-pin converter
   13     -, Kebidu CF Compact Flash Memory to SATA converter
   14     Extreme CF Adapter, TF to CF converter
   15     SD35VC0, TF to IDE 40-pin converter
 
-Note: all tests by CJ on 'CPU09ID6' and 'CPU09ID4 with at least mods v1.2 and v1.3'.
+Notes: All tests by CJ on 'CPU09ID6' and 'CPU09ID4 with at least mods v1.2 and v1.3'.
+       * - RAW format type, works not on Windows! but can access on LINUX.
