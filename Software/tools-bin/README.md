@@ -119,9 +119,29 @@ It will abort if the assigned disk is mounted (in use)
 
 ************************************************************************************************
 
+relasmb2 is a modified relasmb. Here the tables setup has been altered to allow for more macro's.
 
 
+************************************************************************************************
 
+wasock is a program that allows you to upload data from UniFLEX to a server
 
+wasock -i IP_of_SERVER -p PORT_OF_SERVER <filename>
+
+will upload 'filename' to your server. Note{*} your server MUST have been started already.
+Filenames used on server and on UniFLEX _may_ have different names.
+
+source code is in ../Networking
+************************************************************************************************
+
+rasock is a program that allows you to download data from a server to UniFLEX
+
+rasock -i IP_of_SERVER -p PORT_OF_SERVER <filename>
+
+will download 'filename' from your server. Note{*} your server MUST have been started already.
+Filenames used on server and on UniFLEX _may_ have different names.
+
+source code is in ../Networking
+************************************************************************************************
 
 </pre>
