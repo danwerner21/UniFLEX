@@ -1,7 +1,7 @@
  Last weeks I am making headway with the project.
 
-The REV 0.9 board has no known flaws. The LT3080 voltage regulator is more than
-capable to power the W5500.
+(The REV 0.9 board has no known flaws. The LT3080 voltage regulator is more than
+capable to power the W5500.) I was wrong!
 
 I made 2 simple (piping) utilities to upload/download data between Linux
 and UniFLEX.
@@ -33,4 +33,21 @@ for the GPP up to now. (one error in unused code)
 The kernel code organization is:  socket.t ===> wzdrvr.t ===> fio_han.t to
 reach the dual port RAM, where the GPP CPU sits at the other side.
 
+2024-02-24:
 
+I found out the hard way that the design had a flaw though. Some boards worked
+perfect while others distorted the transferred data either by dropping data 
+or with adding external data. During my excercises with the scope and hardware
+sometimes the clock train would change its length. So I thought it is cross-talk.
+
+I made a new design where all the high frequency tracks were short. When I had
+received these boards and put all components on one of them, it did not work.
+
+After a lot of measuring, testing and experimenting with GAL formulas I found
+the real culprit. The expected method of resetting the bit counter did not work.
+The parallel load was simply in the wrong state for that.
+
+I changed the wiring a bit and changed the GAL G1 a bit. After applying that 
+fix to all my 4 boards, they all worked flawlesly after that.
+
+ 
