@@ -24,25 +24,25 @@ You can even test with a 5V or 3.3V supply.
 Comments:
 
    The TL866II+ vector table can only handle 512 lines.
-
+   
    Chips with many inputs must therefore be tested in parts
+   
    and with a 'don't care' on inputs that are not used in the function under test.
-
+   
    The test items are indicated with -P1, -P2 etc.
-
+   
    If there is no -Px after the GAL name, it is a full test.
-
+   
    A single equation test vector table for the GPP_1 contains more than 2000 lines.
 
 
 Remarks:
 
    Tested by reading/writing to a GoTek and running software from a GoTek.
-
+   
    Even BOOT the Master.FD-DD.DSK (F 7) and run programs (asmb, basic).
 
 
 
 CdeJ
-
 
