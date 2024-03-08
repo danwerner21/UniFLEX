@@ -1,0 +1,17 @@
+Vector test on TL866II Plus. In Vector are the LGC files.
+
+IDE_G1B-P1.lgc - full equations tests, unused input pin's don't care state.
+                 Test: 
+
+IDE_G1B-P2.lgc - full equations tests, unused input pin's don't care state.
+                 Test: 
+
+IDE_G2D.lgc    - full equations tests, unused input pin's don't care state.
+                 Test: 
+
+IDE_G3B-P1.lgc - full equations tests, unused input pin's don't care state.
+                 Test: 
+
+
+
+CdeJ
