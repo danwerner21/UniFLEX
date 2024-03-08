@@ -1,5 +1,5 @@
 Name      CPU_G1 U10;
-Partno    ATF22V10;
+Partno    ATF22V10C;
 Date      22/08/2021;
 Revision  00;
 Designer  FG;
@@ -20,13 +20,13 @@ Device    G22V10;
 
 PIN 1   = C_BA;          /* IN CPU BA */
 PIN 2   = C_BS;          /* IN CPU BS */
-PIN 3	  = C_Q;           /* IN CPU Q clock */
-PIN 4	  = C_E;           /* IN CPU E clock */
-PIN 5	  = B_NMI_;        /* IN BUS NMI- */
-PIN 6	  = C_W_;          /* IN CPU READ /WRITE */
-PIN 7	  = EWR_;          /* IN DMA WRITE in */
-PIN 8	  = IVMA;          /* IN LOCAL selected items */
-PIN 9	  = EVMA_;         /* IN DMA VMA in */
+PIN 3   = C_Q;           /* IN CPU Q clock */
+PIN 4   = C_E;           /* IN CPU E clock */
+PIN 5   = B_NMI_;        /* IN BUS NMI- */
+PIN 6   = C_W_;          /* IN CPU READ /WRITE */
+PIN 7   = EWR_;          /* IN DMA WRITE in */
+PIN 8   = IVMA;          /* IN LOCAL selected items */
+PIN 9   = EVMA_;         /* IN DMA VMA in */
 PIN 10  = ONESHOT;       /* IN HC123 crash protection */
 PIN 11  = SYS_;          /* IN USER /SYSTEM */
 PIN 13  = LCLIO_;        /* IN CPU board counter, latch, FF, stkcnt */
