@@ -52,7 +52,25 @@ no consequences for the ROM in the CPU09GPP/09FLP. A tar file is also added.
 UniFLEX does normally not have a 'tar' utility, but there is one present in 
 the tools folder on GitHub. 
 
+######################################################################################
+2024-03-19
 
+WARNING when building your own kernel !!  I have noticed sometimes that when building
+kernels and trying to boot them, they don't. In such cases the boot process appears to
+hang after the 'Total user memory' message. In these cases rebuilding with do_make 
+does not reveal any errors. The deeper cause maybe a bug in the relasmb/link-edit combo.
+
+In very particular cases during the build process, a 'CONSTANT define' is not  
+resolved and is silently replaced by 0000. In normaal cases link-edit should produce an
+error for this, sometimes it does not. It needs no explanation that such a value
+will confuse the kernel and it is unable to start properly. 
+
+FINDING the culprit can be challenging.....  
+
+Advise: also check your files in /lib, sysdef, syserrors, macdefs and such if they 
+are up to date.
+  
+######################################################################################
 
 
 
