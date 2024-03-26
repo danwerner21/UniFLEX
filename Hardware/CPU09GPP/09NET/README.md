@@ -1,6 +1,5 @@
 
  This is the new 09NET module
-
  
  ![09NET-board](./20240228_190554.jpg)
  
@@ -27,11 +26,21 @@ Also a socklib.r is being created, that allows the Mc Cosh C compiler to
 build programs with networking capabilities.
 
 2024-02-28:
-(*) The photo is NOT from the latest board, but one will notice hardly any 
-difference with the final board other than the Revision: 1.0
+(*) The photo is NOT from the very latest board, but one will notice the extra
+IC (U1) that can provide extra delays for SPI_CLK en SHCLK. 
 
-New GALS patterns for the networking board. (G1 and G3)
+New GALS patterns for the networking board. (G1, G2, G3)
 Holes for W5500 and 20MHz oscillator are enlarged.
 
 Artwork and component positions completely re-done and fix incorporated.
+
+Board revision is 1.0. 
+
+As 20MHz means 25/25nS which nears the propagation delays in some components.
+While some combinations of brands of components provide a working board, we
+found that some combinations did not work first try. The main reason was
+that the SPI clock was not properly aligned with the data. Making it possible
+to delay the SPI clk by some 10nS proved the solution for this.
+
+
 

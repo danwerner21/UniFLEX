@@ -52,33 +52,34 @@ fix to all my 4 boards, they all worked flawlesly after that.
 
 2024-03-10:
 
-Added a way to check the SPI operation. As of the ROM version of 2024-03-10
-One can check if the W5500 is properly set. With 'tools-assembly'  tsconf.t
-when run, it triggers reading back the basic settings from the W5500/
+Added a way to check the SPI operation. As of the ROM version of 2024-03-26
+one can check if the W5500 is properly set. This ROM version sets the
+W5500 via ifconfig, but ifconfig also shows the read-back values. This means
+that the settings done with ifconfig should be identical when checked with
+ifconfig
 
-With prm +0 you can check that. The upper data is as supplied with ifconfig.
+===========================================================================
+2024-03-26:
 
-The lower data is as read back from the W5500 after running 'tsconf'. 
+It was a rough ride. While all my 4 boards work flawlesly, that was not the
+case for some others. I have shared a few video sessions with Paul Jacobs to
+get to the root cause. Simply put, the combinations of used components is
+an important factor.
 
--->e
-start address :eb00
-end address :ebff
+That is understandable, a 20MHz clock has 25/25nS periods and that nears 
+the propagation times in some of the components, even different brands
+of the same component can make a difference. I must have been VERY lucky
+when the boards worked first time.
 
-eb00  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-eb10  00 00 00 00 00 00 00 00 00 00 00 00 02 00 00 00  ................
-eb20  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-eb30  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-eb40  00 00 00 00 00 00 01 00 00 00 00 00 00 00 00 00  ................
-eb50  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-eb60  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-eb70  c0 a8 01 b1 ff ff ff 00 c0 a8 01 96 54 53 43 55  ............TSCU   <<
-eb80  46 01 ff 00 00 00 00 00 00 00 00 00 00 00 00 00  F...............   << as set with ifconfig
-eb90  c0 a8 01 b1 ff ff ff 00 c0 a8 01 96 54 53 43 55  ............TSCU   <-
-eba0  46 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00  F...............   <- as returned from the W5500
-ebb0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................   The 'FF' flag is ommitted!
-ebc0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-ebd0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-ebe0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-ebf0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+Anyway, we found that, wen we delay the SPI clock to the W5500 by some 10nS
+the clock pulses shift to the mid of the data bit and things start to work
+as designed. 
 
- 
+As predicting upfront how the components will play together I have added a
+way to shift clocks when applicable. A jumper select between 'default'
+delay and 'extra' delay for SPI_CLK and also for SHCLK. For the latter
+I expect it not to be needed, but making it possible was little work.
+
+A set new GAL's have been published too.
+
+
