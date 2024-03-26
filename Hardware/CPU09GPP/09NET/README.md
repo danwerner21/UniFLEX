@@ -1,5 +1,5 @@
 
- This is the new 09NET module
+ This is the new 09NET module (but NOT THE LATEST V1.0 version!)
  
  ![09NET-board](./20240228_190554.jpg)
  
