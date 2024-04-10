@@ -1,6 +1,10 @@
 
 This is a near realtime version of my kernel build 
 
+***  check the contents of usrc_63/mach_m1/sysconfig.h first ***
+***  it is Mine and may not suit your requirements           ***
+
+
 There may (there are!) bugs in the newer networking code, be fore-warned!!!!
 
 But if you want to follow the progress it is a nice place and I wil regularely 
