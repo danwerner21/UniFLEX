@@ -69,5 +69,12 @@ At present the dip-switches have the following assigments:
     SW1-3,
     SW1-4
 
+[2024-04-23] The first board version (0.9.1) had still an error, the clocks to the address
+latches were in reverse order (lowbyte-highbyte).
+I corrected that in 0.9.5. The 0.9.1. boards can be fixed easily by 2 trace cuts and 2 small wires,
+see attached photo.(20240423_072023.jpg)
+
+Board version 0.9.5 has this fixed.
+
 
 </pre>
