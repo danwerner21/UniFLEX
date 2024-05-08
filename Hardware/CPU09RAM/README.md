@@ -60,14 +60,14 @@ perform a read-only protection.
 
 
 At present the dip-switches have the following assigments:
-    SW2-1,  ON = (UniFLEX: don't rebuild fs, jumper J3)
-    SW2-2,  ON = (UniFLEX write-protect, jumper J4)
-    SW2-3,
-    SW2-4,
-    SW1-1, OFF = (UniFLEX: if possible make 2 disks instead of 1)
-    SW1-2,
+    SW2-4,  ON = (UniFLEX: don't rebuild fs, jumper J3)
+    SW2-3,  ON = (UniFLEX write-protect, jumper J4)
+    SW2-2,
+    SW2-1,
+    SW1-4, OFF = (UniFLEX: if possible make 2 disks instead of 1)
     SW1-3,
-    SW1-4
+    SW1-2,
+    SW1-1
 
 [2024-04-23] The first board version (0.9.1) had still an error, the clocks to the address
 latches were in reverse order (lowbyte-highbyte).
