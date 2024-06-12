@@ -42,3 +42,9 @@ C
     recvfrom(sfdn, buffer, count, *server, *serveraddrlen);
 
 
+[2024-06-12]
+
+Corrected buffer handling code in the kernel, that made the netblock device finally
+work without errors.
+
+
