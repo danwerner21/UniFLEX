@@ -36,6 +36,8 @@ cc netserver.c getopt.r socklib.t.r +o=netserver
 
 Lin4UF.c is a version of 'netserver' that runs on a Linux system.
 
+=========================================================================
+
 [2024-06-30]
 Added 2 utilities, setnb0.t and setnb1.t. These are to be used to
 setup the netblock devices to connect to the right netserver.
@@ -46,5 +48,21 @@ brw-r-- 1 root      4,  0 Jun 26 13:38 netblk0
 brw-r-- 1 root      4,  1 Jun 22 15:32 netblk1
 crw-r-- 1 root     14,  0 Mar 27 17:44 netblkc0
 crw-r-- 1 root     14,  1 Jun 22 15:32 netblkc1
+
+The basic pieces are nwp.bin which is the core code for the GPP+NET 
+hardware and nwpboot.bin is the code for the boot sector.
+
+When you assemble nwpboot.t you should specify the IP address and PORT 
+of your netserver in the source code, so it can connect.
+
+The binary nwpboot.bin is an overlay in the GPP rom code at $1C00. Be careful
+to instruct your programming tool properly:
+1)  load the nwp.bin image 
+2)  load the nwpboot.bin image but DO NOT ERASE YOUR BUFFER!
+So both binaries should go into the buffer. Don't change sequence of loading,
+it will fail.
+
+=========================================================================
+
 
 
