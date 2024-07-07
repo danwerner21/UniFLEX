@@ -74,8 +74,15 @@ would allow to access the CPU09VID board ram over the network?...
 The lower 32 K is video RAM and everything above that can be driver code
 and graphic functions that drives the display.
 
+I created a small system with CPU09BP4, CPU09MM3, CPU09MON and CPU09GPP/09NET.
+The open slot can be used for i.e a CPU09SR4.
 
+Below some pictures of how ot looks
 
+20240707_132728.jpg  is the system before boot
 
+20240707_132823.jpg  is the terminal when booting
+
+20240707_132835.jpg  when the system has boot up
 
 

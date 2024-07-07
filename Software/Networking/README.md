@@ -27,7 +27,7 @@ netserver -p 30000 -f w0.dsk    __or__      (disk is file)
 netserver -p 30000 -f /dev/w01              (disk is device)
 
 System B:
-setnbdev -p 30000 -i <IP_of_systemA>
+setnbdev -p 30000 -i <IP_of_systemA>        (setnbdev is in development....)
 
 Now on system B you can access the contents of the 'disk'
 on System A as was it local via /dev/netblk0
@@ -49,11 +49,24 @@ brw-r-- 1 root      4,  1 Jun 22 15:32 netblk1
 crw-r-- 1 root     14,  0 Mar 27 17:44 netblkc0
 crw-r-- 1 root     14,  1 Jun 22 15:32 netblkc1
 
+Booting from the network:
+
 The basic pieces are nwp.bin which is the core code for the GPP+NET 
-hardware and nwpboot.bin is the code for the boot sector.
+hardware and nwpboot.bin is the code for the boot sector. De ROM code in
+UniBUG is not much, around 91 bytes!! This is enough to get the specific
+512 bootsector code loaded from the GPP and start it.
 
 When you assemble nwpboot.t you should specify the IP address and PORT 
-of your netserver in the source code, so it can connect.
+of your netserver in the source code, so it can connect. Also in the nwpboot.t
+file is the name of the kernel to load, I choose 'uniflexn' as this can't be
+selected from the commandline/ 
+
+By modifying nwpboot.t one can boot specific code into memory and start it,
+that is not necessarely an UniFLEX kernel. FLEX or OS9 are also likely
+candidates. Or even a dedicated driver executable like for a video board.
+
+
+Creating NWP ROM:
 
 The binary nwpboot.bin is an overlay in the GPP rom code at $1C00. Be careful
 to instruct your programming tool properly:
