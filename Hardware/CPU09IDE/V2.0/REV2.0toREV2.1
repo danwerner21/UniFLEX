@@ -18,8 +18,9 @@ Wire pin 21 of U7 to the via as shown on img_v2.0tov2.1a.jpg
 Cut the trace as shown on img_v2.0tov2.1b.jpg 
 
 Only left over is a change in the G2 Pal definition:
-Pin 16   CRES     ; input
-Pin 21   IDE_RES_ ; output
+IDE_G2D.PDS
+       Pin 16   CRES     ; input
+       Pin 21   IDE_RES_ ; output
 
 /IDE_RES_ = /IRES_ + CRES  ; reset IDE with system and software
 
